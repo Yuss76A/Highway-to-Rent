@@ -5,12 +5,20 @@ import App from "./App.js";
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import { UserProvider } from "./components/contexts/UserContext.js";
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App></App>,
-    },
-]);
+const router = createBrowserRouter(
+  [
+      {
+          path: "/",
+          element: <App />,
+      },
+      
+  ],
+  {
+      future: {
+          v7_relativeSplatPath: true, // Enable future relative splat path behavior
+      },
+  }
+);
 createRoot(document.getElementById("root")).render(
     <StrictMode>
       <UserProvider>
