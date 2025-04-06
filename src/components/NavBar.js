@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Navbar.css";
+import styles from "../styles/NavBar.module.css";
 import { UserContext } from "../contexts/UserContext";
 
 const Navbar = () => {
@@ -14,8 +14,8 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="navbar">
-          <h1>Car Rental Service</h1>
+        <nav className={styles.navbar}>
+          <h1>Happy Rental</h1>
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -28,7 +28,7 @@ const Navbar = () => {
                 <li>
                   <Link to="/my-rentals">My Rentals</Link>
                 </li>
-                <li className="logout" onClick={handleLogout}>
+                <li className={styles.logout} onClick={handleLogout}>
                   Logout
                 </li>
               </>
