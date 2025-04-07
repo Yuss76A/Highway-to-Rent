@@ -4,12 +4,22 @@ import "./index.css";
 import App from "./App.js";
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import { UserProvider } from "./contexts/UserContext.js";
+import AuthForm from "./pages/auth/AuthForm.js";
+import GuestRoute from "./routes/GuestRoute.js";
 
 const router = createBrowserRouter(
   [
       {
           path: "/",
           element: <App />,
+          children:[{
+            path:"/auth",
+            element: (
+              <GuestRoute>
+                <AuthForm></AuthForm>
+              </GuestRoute>
+            ),
+          }]
       },
       
   ],

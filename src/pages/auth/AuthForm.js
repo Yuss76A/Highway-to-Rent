@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import styles from "./AuthForm.module.css";
-import { UserContext } from "./UserContext";
+import styles from "../../styles/AuthForm.module.css";
+import { UserContext } from "../../contexts/UserContext"; 
 import { useNavigate } from "react-router-dom";
+
 const AuthForm = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
@@ -16,11 +17,13 @@ const AuthForm = () => {
     if (user) {
       navigate("/");
     }
-  }, []);
+  }, [user, navigate]); // Include dependencies to avoid warnings
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+
   async function handleLogin() {
     console.log("Logging In", formData);
     let userData = formData;
@@ -36,7 +39,7 @@ const AuthForm = () => {
             email: userData.email,
             password: userData.password,
             username: userData.email,
-          }), // Payload
+          }),
         }
       );
 
@@ -44,9 +47,8 @@ const AuthForm = () => {
         throw new Error("Login failed");
       }
 
-      const data = await response.json(); // Parse the JSON response
+      const data = await response.json(); // Parse JSON response
       console.log("Login successful:", data);
-
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
       navigate("/");
@@ -54,6 +56,7 @@ const AuthForm = () => {
       console.error("Error during login:", error);
     }
   }
+
   async function handleRegister() {
     console.log("Registering", formData);
     let userData = formData;
@@ -96,19 +99,22 @@ const AuthForm = () => {
       await handleRegister();
     }
   };
+
   const toggleAuthMode = () => {
     setIsLogin((prev) => !prev);
     setFormData({ email: "", password: "", name: "" }); // Clear form data when switching
   };
+
   return (
-    <div className="auth-form-container">
-      <form className="auth-form" onSubmit={handleSubmit}>
+    <div className={styles.authFormContainer}> {/* Apply styles from CSS module */}
+      <form className={styles.authForm} onSubmit={handleSubmit}> {/* Apply styles here */}
         <h2>{isLogin ? "Login to Your Account" : "Create an Account"}</h2>
         {!isLogin && (
           <input
             type="text"
             name="name"
             placeholder="Name"
+            className={styles.inputField} // Optional styling
             value={formData.name}
             onChange={handleChange}
             required
@@ -118,6 +124,7 @@ const AuthForm = () => {
           type="email"
           name="email"
           placeholder="Email"
+          className={styles.inputField} // Optional styling
           value={formData.email}
           onChange={handleChange}
           required
@@ -126,6 +133,7 @@ const AuthForm = () => {
           type="password"
           name="password"
           placeholder="Password"
+          className={styles.inputField} // Optional styling
           value={formData.password}
           onChange={handleChange}
           required
@@ -134,10 +142,10 @@ const AuthForm = () => {
       </form>
       <p>
         {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
-        <button className="switcher" onClick={toggleAuthMode}>
+        <button className={styles.switcher} onClick={toggleAuthMode}>
           {isLogin ? "Sign Up" : "Login"}
         </button>
-      </p>
+        </p>
     </div>
   );
 };
