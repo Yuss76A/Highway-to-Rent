@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./AuthForm.css";
+import styles from "./AuthForm.module.css";
 import { UserContext } from "./UserContext";
 import { useNavigate } from "react-router-dom";
 const AuthForm = () => {
