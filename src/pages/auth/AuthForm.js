@@ -28,20 +28,17 @@ const AuthForm = () => {
     console.log("Logging In", formData);
     let userData = formData;
     try {
-      const response = await fetch(
-        "https://booking-app-backend-4vb9.onrender.com/login/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: userData.email,
-            password: userData.password,
-            username: userData.email,
-          }),
-        }
-      );
+        const response = await fetch("https://carbookingbackend-df57468af270.herokuapp.com/api-auth/login/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: userData.email,
+                password: userData.password,
+                username: userData.email, // Assuming this is your username
+            }),
+        });
 
       if (!response.ok) {
         throw new Error("Login failed");
