@@ -14,16 +14,16 @@ const router = createBrowserRouter([
       element: <App />,
       children: [
           {
-              path: "auth", // Path for the authentication form
+              path: "auth",
               element: (
                   <GuestRoute>
-                      <AuthForm /> {/* Render the AuthForm within the GuestRoute */}
+                      <AuthForm /> {}
                   </GuestRoute>
               ),
           },
           {
-              path: "*", // Catch-all for undefined routes
-              element: <NotFound />, // Redirect all undefined routes to NotFound component
+              path: "*",
+              element: <NotFound />,
           },
       ],
   },

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";  // Import statements go here
+import { useContext, useEffect, useState } from "react";
 import NavBar from "./components/NavBar";
 import { Outlet } from "react-router-dom";
 import { UserContext } from "./contexts/UserContext";
