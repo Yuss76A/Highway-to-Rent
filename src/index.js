@@ -17,7 +17,7 @@ const router = createBrowserRouter([
               path: "auth",
               element: (
                   <GuestRoute>
-                      <AuthForm /> {}
+                      <AuthForm />
                   </GuestRoute>
               ),
           },
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
   },
 ], {
   future: {
-      v7_relativeSplatPath: true, // Enable future relative splat path behavior
+      v7_relativeSplatPath: true,
   },
 });
 
