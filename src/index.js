@@ -8,6 +8,7 @@ import AuthForm from "./pages/auth/AuthForm.js";
 import GuestRoute from "./routes/GuestRoute.js";
 import NotFound from "./pages/NotFound";
 import BookingComponent from "./components/BookingComponent.js";
+import AllCars from "./components/AllCars.js";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <BookingComponent></BookingComponent>,
+        },
+        {
+          path: "/browse-cars",
+          element: <AllCars></AllCars>,
         },
           {
               path: "auth",
