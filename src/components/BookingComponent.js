@@ -22,7 +22,7 @@ const BookingComponent = ({ currentUser }) => {
     async function fetchCarData() {
       try {
         const response = await fetch(
-          "https://your-api-endpoint.com/cars/", // Update the URL to fetch car data
+          "https://carbookingbackend-df57468af270.herokuapp.com/carbooking/cars/",
           {
             method: "GET",
           }
@@ -127,37 +127,40 @@ const BookingComponent = ({ currentUser }) => {
   };
 
   const days = generateCalendarDays();
-
   const handleFilterCars = () => {
     if (!selectedDates.startDate) {
       setError("Please select a valid date.");
       setIsFiltered(false);
       return;
     }
-
+  
     // If endDate is null, fall back to startDate for single-day booking
     const startDate = selectedDates.startDate;
     const endDate = selectedDates.endDate || selectedDates.startDate;
-
+  
     const isDateInRange = (occupiedDate) => {
       const occupied = new Date(occupiedDate);
       occupied.setHours(0, 0, 0, 0);
-
+  
       let fallsIntoRange = true;
-
+  
       if (endDate.getTime() !== startDate.getTime()) {
         fallsIntoRange = occupied >= startDate && occupied <= endDate;
       } else {
         fallsIntoRange = occupied.getTime() === startDate.getTime();
       }
-
+  
       return fallsIntoRange;
     };
-
-    const availableCars = carData.filter((car) =>
-      car.occupiedDates.every((occ) => !isDateInRange(occ.date))
-    );
-
+  
+    const availableCars = carData.filter((car) => {
+      // Add null/undefined check for occupiedDates
+      if (!car.occupiedDates || !Array.isArray(car.occupiedDates)) {
+        return true; // If no occupiedDates, car is available
+      }
+      return car.occupiedDates.every((occ) => !isDateInRange(occ.date));
+    });
+  
     setFilteredCars(availableCars);
     setIsFiltered(true);
     setError("");

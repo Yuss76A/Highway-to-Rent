@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "../../styles/CarImageSlider.module.css";
 
 const CarImageSlider = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -16,20 +17,20 @@ const CarImageSlider = ({ images }) => {
   };
 
   return (
-    <div className="image-slider">
-      <button className="slider-button" onClick={handlePrev}>
+    <div className={styles['image-slider']}>
+      <button className={styles['slider-button']} onClick={handlePrev}>
         &#10094; {/* Left arrow */}
       </button>
       {images.length > 0 && (
         <img
-        src={images[currentIndex].image}
-        alt={images[currentIndex].description}
-        className="slider-image"
+          src={images[currentIndex].image}
+          alt={images[currentIndex].description}
+          className={styles['slider-image']}
         />
-    )}
-    <button className="slider-button" onClick={handleNext}>
+      )}
+      <button className={styles['slider-button']} onClick={handleNext}>
         &#10095;
-    </button>
+      </button>
     </div>
   );
 };

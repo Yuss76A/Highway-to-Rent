@@ -14,7 +14,7 @@ const CarInfo = ({ car }) => {
         <strong>Price per Day:</strong> {car.currency} {car.pricePerDay}
       </p>
       <p>
-        <strong>Max Passengers:</strong> {car.maxPassengers} passengers
+        <strong>Max Passengers:</strong> {car.maxPassengers} Passengers
       </p>
       <p className="description">{car.description}</p>
     </div>
