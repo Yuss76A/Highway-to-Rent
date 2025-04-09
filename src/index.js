@@ -7,12 +7,17 @@ import { UserProvider } from "./contexts/UserContext.js";
 import AuthForm from "./pages/auth/AuthForm.js";
 import GuestRoute from "./routes/GuestRoute.js";
 import NotFound from "./pages/NotFound";
+import BookingComponent from "./components/BookingComponent.js";
 
 const router = createBrowserRouter([
   {
       path: "/",
       element: <App />,
       children: [
+        {
+            path: "/",
+            element: <BookingComponent></BookingComponent>,
+        },
           {
               path: "auth",
               element: (

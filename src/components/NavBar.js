@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext"; 
 import styles from "../styles/NavBar.module.css";
-import { UserContext } from "../contexts/UserContext";
-
 
 const NavBar = () => {
   const { user, setUser } = useContext(UserContext);
@@ -41,6 +40,6 @@ const NavBar = () => {
         </ul>
       </nav>
     );
-  };
-  
-  export default NavBar;
+};
+
+export default NavBar;

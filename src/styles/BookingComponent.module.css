@@ -1,0 +1,131 @@
+.bookingContainer {
+    max-width: 450px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+.calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.calendarHeader h2 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #34495e;
+}
+
+.calendarHeader button {
+    background: #e67e22;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.calendarDays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+
+.calendarDay {
+    background: #7f8c8d;
+    color: #ecf0f1;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.calendarDay.selected {
+    background: #27ae60;
+}
+
+.calendarDay.overflow {
+    color: #bdc3c7;
+    background: #2c3e50;
+    cursor: pointer;
+}
+
+.calendarDay.overflow.selected {
+    background: rgba(39, 174, 96, 0.7);
+}
+
+.bookCarsButton {
+    margin-top: 20px;
+    background: #2980b9;
+    color: #ffffff;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1em;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.bookCarsButton:hover {
+    background-color: #3498db;
+    transform: scale(1.02);
+}
+
+.errorMessage {
+    color: #c0392b;
+    background-color: #f9d9d9;
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.bookButton {
+    display: inline-block;
+    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #2980b9;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 1rem auto;
+}
+
+.bookButton:hover {
+    background-color: #1f6391;
+    transform: translateY(-2px);
+}
+
+.bookButton:active {
+    background-color: #153b51;
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.bookButton:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.bookButton:focus {
+    outline: 2px solid #2980b9;
+    outline-offset: 2px;
+}
+
+.dateSwitcher {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.dateSwitcher:hover {
+    background-color: rgba(231, 110, 33, 0.5);
+}
