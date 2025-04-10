@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import BookingComponent from "./components/BookingComponent.js";
 import AllCars from "./components/AllCars.js";
 import BookedDates from "./components/BookedDates.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
   {
