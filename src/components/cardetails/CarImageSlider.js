@@ -1,26 +1,21 @@
 import React, { useState } from "react";
 import styles from "../../styles/CarImageSlider.module.css";
 
-const CarImageSlider = ({ images }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
+const CarImageSlider = ({ images, showNavigation = false }) => {
+  const [currentIndex] = useState(0); // We keep state for consistency
 
   return (
-    <div className={styles['image-slider']}>
-      <button className={styles['slider-button']} onClick={handlePrev}>
-        &#10094; {/* Left arrow */}
-      </button>
+    <div className={`${styles['image-slider']} ${showNavigation ? styles['show-navigation'] : ''}`}>
+      {showNavigation && (
+        <>
+          <button className={styles['slider-button']} onClick={() => {}}>
+            &#10094;
+          </button>
+          <button className={styles['slider-button']} onClick={() => {}}>
+            &#10095;
+          </button>
+        </>
+      )}
       {images.length > 0 && (
         <img
           src={images[currentIndex].image}
@@ -28,9 +23,6 @@ const CarImageSlider = ({ images }) => {
           className={styles['slider-image']}
         />
       )}
-      <button className={styles['slider-button']} onClick={handleNext}>
-        &#10095;
-      </button>
     </div>
   );
 };
