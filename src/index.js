@@ -9,6 +9,7 @@ import GuestRoute from "./routes/GuestRoute.js";
 import NotFound from "./pages/NotFound";
 import BookingComponent from "./components/BookingComponent.js";
 import AllCars from "./components/AllCars.js";
+import BookedDates from "./components/BookedDates.js";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
                       <AuthForm />
                   </GuestRoute>
               ),
+          },
+          {
+            path: "/my-rentals",
+            element: <BookedDates></BookedDates>,
           },
           {
               path: "*",

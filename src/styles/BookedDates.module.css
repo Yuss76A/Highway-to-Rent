@@ -1,0 +1,119 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    width: 100%;
+  }
+  
+  .header {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+    width: 100%;
+  }
+  
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: #3498db;
+  }
+  
+  .monthGroup {
+    margin-bottom: 2.5rem;
+  }
+  
+  .monthHeader {
+    color: #3498db;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    text-align: left;
+  }
+  
+  .message {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  .error {
+    color: #e74c3c;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .bookingsList {
+    display: grid;
+    gap: 1.5rem;
+  }
+  
+  .bookingCard {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .bookingCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .bookingInfo {
+    flex: 1;
+  }
+  
+  .bookingInfo h3 {
+    margin: 0 0 0.5rem 0;
+    color: #2c3e50;
+    font-size: 1.2rem;
+  }
+  
+  .bookingInfo p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 1rem;
+  }
+  
+  .cancelButton {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+    margin-left: 1rem;
+    white-space: nowrap;
+  }
+  
+  .cancelButton:hover {
+    background: #c0392b;
+  }
+  
+  @media (max-width: 600px) {
+    .bookingCard {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .cancelButton {
+      margin-left: 0;
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
