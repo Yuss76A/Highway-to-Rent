@@ -12,6 +12,7 @@ import AllCars from "./components/AllCars.js";
 import BookedDates from "./components/BookedDates.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AboutUs from "./pages/AboutUs";
+import Reviews from "./pages/Reviews.js"
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
             element: <BookedDates></BookedDates>,
           },
           {
+            path: "/reviews",
+            element: <Reviews />,
+          },
+          {
               path: "*",
               element: <NotFound />,
           },
@@ -69,4 +74,3 @@ createRoot(document.getElementById("root")).render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
