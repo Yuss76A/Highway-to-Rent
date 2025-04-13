@@ -11,6 +11,7 @@ import BookingComponent from "./components/BookingComponent.js";
 import AllCars from "./components/AllCars.js";
 import BookedDates from "./components/BookedDates.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AboutUs from "./pages/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,15 @@ const router = createBrowserRouter([
       element: <App />,
       children: [
         {
-            path: "/",
+          path: "", // Default route will render About Us
+          element: <AboutUs />,
+        },
+      {
+        path: "/about-us", // Add route for About Us
+        element: <AboutUs />,
+      },
+        {
+            path: "/booking",
             element: <BookingComponent></BookingComponent>,
         },
         {

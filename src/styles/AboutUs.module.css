@@ -1,0 +1,38 @@
+.about-us-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-title {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.about-us-content {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.about-us-content p {
+    margin: 15px 0;
+}
+
+/* Add media queries for responsive design */
+@media (max-width: 600px) {
+    .about-us-title {
+        font-size: 28px;
+    }
+
+    .about-us-content {
+        font-size: 16px;
+    }
+}

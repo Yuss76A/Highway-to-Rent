@@ -44,7 +44,9 @@ const NavBar = () => {
         {/* Collapsible content */}
         <div className={`collapse navbar-collapse ${styles.navLinksContainer}`} id="navbarContent">
           <div className={`navbar-nav ms-auto ${styles.navLinks}`}>
-            <Link className={`nav-link ${styles.navLink}`} to="/">Home</Link>
+            <Link className={`nav-link ${styles.navLink}`} to="/about-us">About Us</Link>
+            <Link className={`nav-link ${styles.navLink}`} to="/booking">Rent</Link>
+            
             
             {user ? (
               <>
