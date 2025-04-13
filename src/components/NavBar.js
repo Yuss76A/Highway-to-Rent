@@ -25,7 +25,7 @@ const NavBar = () => {
       <div className="container-fluid">
         {/* Left-aligned brand title */}
         <Link className={`navbar-brand ${styles.brand}`} to="/">
-          Happy Rental
+          Happy Rental Jönköping
         </Link>
 
         {/* Mobile toggle button */}

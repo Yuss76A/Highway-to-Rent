@@ -1,9 +1,13 @@
 import React from 'react';
 import styles from "../styles/AboutUs.module.css";
+import backgroundImage from '../assets/kalmar.png';
 
 const AboutUs = () => {
     return (
         <>
+            <div className={styles['image-container']}>
+                <img src={backgroundImage} alt="Background" className={styles['background-image']} />
+            </div>
             <div className={styles['about-us-container']}>
                 <h1 className={styles['about-us-title']}>About Us</h1>
                 <div className={styles['about-us-content']}>
@@ -12,6 +16,9 @@ const AboutUs = () => {
                     <p>Our dedicated team of 15 passionate individuals is here to support you every step of the way. We pride ourselves on offering exceptional customer service, with 24-hour assistance available to address any questions or issues that may arise during your rental journey. Your satisfaction is our top priority, and we strive to ensure a seamless experience for all our customers.</p>
                     <p>In addition to our growth in vehicles, we're excited about our plans for the near future. We aim to open a new office in the beautiful city of Umeå, where we will offer an additional fleet of four cars, making it even easier for visitors to access this stunning part of Sweden.</p>
                     <p>Whether you're planning a family getaway, a romantic retreat, or an adventure with friends, we're here to help you create unforgettable memories in Småland and beyond. Join us on this journey, and let Happy Rental be a part of your exploration.</p>
+                    <p>
+                        You can find our offices at Dvärggatan 15, 553 02 Jönköping. Our telephone number is 073-4587898. Our offices are open from 7 in the morning until 16:30. Please visit our <a href="/booking">rent page</a> for more information.
+                    </p>
                 </div>
             </div>
             
@@ -45,5 +52,6 @@ const AboutUs = () => {
         </>
     );
 };
+
 
 export default AboutUs;
