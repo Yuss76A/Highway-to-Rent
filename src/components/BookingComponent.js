@@ -14,7 +14,7 @@ const BookingComponent = ({ currentUser }) => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [loggedInUser, setLoggedInUser] = useState(currentUser);
+  
 
   const [carData, setCarData] = useState([]);
 

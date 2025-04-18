@@ -5,7 +5,7 @@ import { UserContext } from "./contexts/UserContext";
 import Footer from "./components/Footer";
 
 function App() {
-  const { user, setUser } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

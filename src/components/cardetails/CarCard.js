@@ -8,54 +8,61 @@ import { useNavigate } from "react-router-dom";
 const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  const [error, setError] = useState(null); // Proper state initialization
+  const [error, setError] = useState(null);
 
-  const handleBooking = async (carId, userId, selectedDateRange) => {
+  const handleBooking = async () => {
     if (!user) {
-      return navigate("/auth");
+      setError('You must be logged in to book a car.');
+      return navigate('/auth');
     }
-    
+
+    console.log('USER Object:', user);
+    console.log('USER ID: ', user.user ? user.user.id : "User ID is not available");
+
+    if (!user.user || !user.user.id) {  // Correct check for user ID
+      console.error('User ID is undefined. Unable to proceed with booking.');
+      setError('User data is not available. Please log in again.');
+      return;
+    }
+  
+    if (!selectedDateRange?.startDate) {
+      setError('Please select a date range.');
+      return;
+    }
+      
+    setError(null);
+    const baseURL = "https://carbookingbackend-df57468af270.herokuapp.com";
+    console.log('USER URL: ', `${baseURL}/carbooking/users/${user.user.id}/`); // Correct URL construction
+
     try {
-      const baseURL = "https://carbookingbackend-df57468af270.herokuapp.com";
-      const bookingEndpoint = `${baseURL}/carbooking/booked-dates/`;
-    
-      const carUrl = `${baseURL}/carbooking/cars/${carId}/`;
-      const userUrl = `${baseURL}/carbooking/users/${userId}/`;
-    
-      const startDate = selectedDateRange.startDate.toISOString().slice(0, 10);
-      const endDate = selectedDateRange.endDate 
-        ? selectedDateRange.endDate.toISOString().slice(0, 10)
-        : startDate;
-    
-      const response = await fetch(bookingEndpoint, {
+      const bookingRequestBody = {
+        car: `${baseURL}/carbooking/cars/${car.id}/`,
+        user: `${baseURL}/carbooking/users/${user.user.id}/`, // Correct user reference
+        date: selectedDateRange.startDate.toISOString().split('T')[0],
+      };
+  
+      console.log('Booking Request Body:', JSON.stringify(bookingRequestBody, null, 2));
+  
+      const response = await fetch(`${baseURL}/carbooking/booked-dates/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token ${user.token}`,
+          Authorization: `Token ${user.token}`, // Ensure user.token is accessible
         },
-        body: JSON.stringify({
-          car: carUrl,
-          user: userUrl,
-          start_date: startDate,
-          end_date: endDate,
-        }),
+        body: JSON.stringify(bookingRequestBody),
       });
-    
+  
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMessage = errorData.detail || errorData.message || "Booking failed";
-        setError(errorMessage); // Set error state
-        throw new Error(errorMessage);
+        const errorData = await response.json();
+        const errorMessage = errorData.detail || errorData.message || "Booking failed.";
+        setError(errorMessage);
+        return;
       }
-    
-      const data = await response.json();
-      setError(null); // Clear any previous errors
+  
       onBookingSuccess();
-      return data;
     } catch (error) {
       console.error("Booking error:", error);
       setError(error.message);
-      throw error;
     }
   };
 
@@ -67,7 +74,7 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
       {selectedDateRange && (
         <button
           className={styles['book-car-button']}
-          onClick={() => handleBooking(car.id, user?.id, selectedDateRange)}
+          onClick={handleBooking}
           disabled={!selectedDateRange.startDate}
         >
           Book Car
