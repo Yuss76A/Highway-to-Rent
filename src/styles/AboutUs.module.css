@@ -72,13 +72,46 @@
     color: #555;
 }
 
+.rental-process {
+    margin: 2rem 0;
+    text-align: center;
+    padding-bottom: 6rem; /* Ensure spacing between the rental process and footer */
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.process-step-left, .process-step-right {
+    width: 45%;
+    margin: 0.1rem; /* Reduced margin to bring steps closer together */
+    padding: 0.5rem; 
+    border-radius: 5px;
+}
+
+.process-step-left {
+    background-color: #f0f8ff;
+    align-self: flex-start;
+}
+
+.process-step-right {
+    background-color: #e0f7fa;
+    align-self: flex-end;
+}
+
+h3 {
+    margin-bottom: 0.5rem;
+}
+
 /* Add media queries for responsive design */
 @media (max-width: 600px) {
     .achievements-section {
-        flex-direction: column; /* Stack achievements vertically on small screens */
+        flex-direction: column;
     }
 
     .achievement {
-        margin: 10px 0; /* Vertical spacing on small screens */
+        margin: 10px 0;
     }
 }
