@@ -149,6 +149,21 @@
   margin-bottom: 1rem; /* Spacing for input */
 }
 
+.carImagesContainer {
+  display: flex;
+  overflow-x: auto; /* Horizontal scroll for extra images */
+  margin-bottom: 1rem; /* Space below the image container */
+}
+
+.carImage {
+  min-width: 100px; /* Maintain uniformity */
+  max-width: 120px; /* Control maximum width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px;
+  margin-right: 0.5rem; /* Space between images */
+  transition: transform 0.2s, opacity 0.2s; /* Animation on hover */
+}
+
 @media (max-width: 600px) {
   .bookingCard {
       flex-direction: column;
