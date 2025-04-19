@@ -32,7 +32,7 @@ const BookingComponent = ({ currentUser }) => {
           throw new Error("Failed to fetch car data.");
         }
 
-        const data = await response.json(); // Parse the JSON response
+        const data = await response.json();
 
         console.log("Fetching successful:", data);
         setCarData(data);
@@ -50,26 +50,32 @@ const BookingComponent = ({ currentUser }) => {
       day
     );
 
-    if (!selectedDates.startDate || selectedDates.endDate) {
-      // If no dates are selected or both are already set, reset to a single date
-      setSelectedDates({ startDate: selectedDate, endDate: null });
-    } else if (selectedDate.getTime() === selectedDates.startDate.getTime()) {
-      // If clicking the same date again, treat as a single-day selection
-      setSelectedDates({ startDate: selectedDate, endDate: selectedDate });
-    } else {
-      // Set the endDate if selecting a valid range
-      if (selectedDate > selectedDates.startDate) {
-        setSelectedDates({ ...selectedDates, endDate: selectedDate });
-      } else {
-        setSelectedDates({
-          startDate: selectedDate,
-          endDate: selectedDates.startDate,
-        });
-      }
+    // Prevent selection of dates in the past
+    if (selectedDate < new Date()) {
+        setError('You cannot select a past date.');
+        return;
     }
 
-    setError(""); // Clear any error message on date selection
-  };
+    if (!selectedDates.startDate || selectedDates.endDate) {
+        // If no dates are selected or both are already set, reset to a single date
+        setSelectedDates({ startDate: selectedDate, endDate: null });
+    } else if (selectedDate.getTime() === selectedDates.startDate.getTime()) {
+        // If clicking the same date again, treat as a single-day selection
+        setSelectedDates({ startDate: selectedDate, endDate: selectedDate });
+    } else {
+        // Set the endDate if selecting a valid range
+        if (selectedDate > selectedDates.startDate) {
+            setSelectedDates({ ...selectedDates, endDate: selectedDate });
+        } else {
+            setSelectedDates({
+                startDate: selectedDate,
+                endDate: selectedDates.startDate,
+            });
+        }
+    }
+
+    setError("");
+};
 
   const handleMonthChange = (increment) => {
     const newDate = new Date(

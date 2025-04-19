@@ -10,13 +10,11 @@ const OccupiedDatesDisplay = () => {
   const baseURL = 'https://carbookingbackend-df57468af270.herokuapp.com';
 
   useEffect(() => {
-    // Check if user is authenticated
     if (!user) {
       setLoading(false);
       return;
     }
 
-    // Fetch booked dates for the logged-in user
     const fetchBookedDates = async () => {
       try {
         const response = await fetch(`${baseURL}/carbooking/booked-dates/`, {
@@ -25,8 +23,10 @@ const OccupiedDatesDisplay = () => {
           },
         });
 
-        if (!response.ok) throw new Error('Failed to fetch bookings');
-        
+        if (!response.ok) {
+          throw new Error('Failed to fetch bookings');
+        }
+
         const data = await response.json();
         setBookings(data);
       } catch (err) {
@@ -50,8 +50,10 @@ const OccupiedDatesDisplay = () => {
         },
       });
 
-      if (!response.ok) throw new Error('Cancellation failed');
-      setBookings((prev) => prev.filter((booking) => booking.id !== bookingId));
+      if (!response.ok) {
+        throw new Error('Cancellation failed');
+      }
+      setBookings((prev) => prev.filter((booking) => booking.id !== bookingId)); // Update the bookings state
     } catch (err) {
       setError(err.message);
     }
@@ -63,8 +65,8 @@ const OccupiedDatesDisplay = () => {
 
   // Grouping bookings by month
   const groupedBookings = bookings.reduce((acc, booking) => {
-    const date = new Date(booking.date);
-    const monthYear = date.toLocaleString('en', { month: 'long', year: 'numeric' });
+    const startDate = new Date(booking.start_date); // Assume you have start_date instead of just booking.date
+    const monthYear = startDate.toLocaleString('en', { month: 'long', year: 'numeric' });
 
     if (!acc[monthYear]) {
       acc[monthYear] = [];
@@ -88,7 +90,8 @@ const OccupiedDatesDisplay = () => {
                 <div key={booking.id} className={styles.bookingCard}>
                   <div className={styles.bookingInfo}>
                     <h3>{booking.car_details?.name || 'Car Booking'}</h3>
-                    <p>{new Date(booking.date).toLocaleDateString()}</p>
+                    <p>Start Date: {new Date(booking.start_date).toLocaleDateString()}</p>
+                    <p>End Date: {new Date(booking.end_date).toLocaleDateString()}</p>
                   </div>
                   <button
                     onClick={() => handleCancelBooking(booking.id)}

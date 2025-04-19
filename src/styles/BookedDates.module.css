@@ -1,119 +1,178 @@
 .container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    width: 100%;
-  }
-  
-  .header {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    position: relative;
-    padding-bottom: 0.5rem;
-    width: 100%;
-  }
-  
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background: #3498db;
-  }
-  
-  .monthGroup {
-    margin-bottom: 2.5rem;
-  }
-  
-  .monthHeader {
-    color: #3498db;
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-    text-align: left;
-  }
-  
-  .message {
-    text-align: center;
-    padding: 2rem;
-    color: #666;
-    font-size: 1.1rem;
-  }
-  
-  .error {
-    color: #e74c3c;
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.1rem;
-  }
-  
-  .bookingsList {
-    display: grid;
-    gap: 1.5rem;
-  }
-  
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9; /* Light background for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 2rem; /* Increased size for better visibility */
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px; /* Slightly thicker underline */
+  background: #3498db;
+}
+
+.monthGroup {
+  margin-bottom: 2.5rem;
+}
+
+.monthHeader {
+  color: #3498db;
+  margin-bottom: 0.5rem; /* Reduced margin for better spacing */
+  font-size: 1.6rem; /* Increased size for better visibility */
+  text-align: left;
+}
+
+.message {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.error {
+  color: #e74c3c;
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+}
+
+.bookingsList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.bookingCard {
+  background: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items to top */
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative; /* To manage overlapping in future if needed */
+}
+
+.bookingCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bookingInfo {
+  flex: 1;
+}
+
+.bookingInfo h3 {
+  margin: 0 0 0.5rem 0;
+  color: #2c3e50;
+  font-size: 1.3rem; /* Increased size for better visibility */
+}
+
+.bookingInfo p {
+  margin: 0;
+  color: #7f8c8d;
+  font-size: 1rem;
+}
+
+.carImagesContainer {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scroll for car images */
+  margin-bottom: 1rem; /* Spacing for images */
+}
+
+.carImage {
+  min-width: 100px; /* Set minimum width for uniformity */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 4px;
+  margin-right: 0.5rem; /* Space between images */
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.carImage:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  opacity: 0.9; /* Slight opacity change */
+}
+
+.cancelButton {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+  margin-left: 1rem;
+  white-space: nowrap;
+}
+
+.cancelButton:hover {
+  background: #c0392b;
+}
+
+.editButton {
+  background: #3498db; /* Blue background for the edit button */
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.editButton:hover {
+  background: #2980b9; /* Darker blue on hover */
+}
+
+.editDateContainer {
+  margin-top: 1rem; /* Spacing for better layout */
+}
+
+.dateInputGroup {
+  margin-bottom: 1rem; /* Spacing for input */
+}
+
+@media (max-width: 600px) {
   .bookingCard {
-    background: white;
-    border-radius: 10px;
-    padding: 1.5rem;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  
-  .bookingCard:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  
-  .bookingInfo {
-    flex: 1;
-  }
-  
-  .bookingInfo h3 {
-    margin: 0 0 0.5rem 0;
-    color: #2c3e50;
-    font-size: 1.2rem;
-  }
-  
-  .bookingInfo p {
-    margin: 0;
-    color: #7f8c8d;
-    font-size: 1rem;
-  }
-  
-  .cancelButton {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background 0.2s;
-    margin-left: 1rem;
-    white-space: nowrap;
-  }
-  
-  .cancelButton:hover {
-    background: #c0392b;
-  }
-  
-  @media (max-width: 600px) {
-    .bookingCard {
       flex-direction: column;
-      align-items: flex-start;
+      align-items: flex-start; /* Align items to the start for mobile view */
     }
-    
+
     .cancelButton {
       margin-left: 0;
       margin-top: 1rem;
-      width: 100%;
-    }
+      width: 100%; /* Full width for better usability */
   }
+
+  .editButton {
+      width: 100%; /* Full width for better usability */
+      margin-top: 0.5rem; /* Spacing between cancel button and edit button */
+  }
+  
+  .carImagesContainer {
+      flex-direction: column; /* Stack images vertically on small screens */
+      align-items: center; /* Center align images */
+  }
+
+  .carImage {
+      min-width: 80%; /* Set a relative width for images on smaller screens */
+      margin-bottom: 0.5rem; /* Space between images */
+  }
+}

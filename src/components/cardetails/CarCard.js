@@ -16,53 +16,47 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
       return navigate('/auth');
     }
 
-    console.log('USER Object:', user);
-    console.log('USER ID: ', user.user ? user.user.id : "User ID is not available");
-
-    if (!user.user || !user.user.id) {  // Correct check for user ID
-      console.error('User ID is undefined. Unable to proceed with booking.');
+    if (!user.user || !user.user.id) {
       setError('User data is not available. Please log in again.');
       return;
     }
   
-    if (!selectedDateRange?.startDate) {
-      setError('Please select a date range.');
+    if (!selectedDateRange?.startDate || !selectedDateRange?.endDate) {
+      setError('Please select a start and end date.');
       return;
     }
       
     setError(null);
-    const baseURL = "https://carbookingbackend-df57468af270.herokuapp.com";
-    console.log('USER URL: ', `${baseURL}/carbooking/users/${user.user.id}/`); // Correct URL construction
-
+    
+    const start_date = selectedDateRange.startDate.toISOString().split('T')[0];
+    const end_date = selectedDateRange.endDate.toISOString().split('T')[0];
+    
+    const bookingRequestBody = {
+      car: `https://carbookingbackend-df57468af270.herokuapp.com/carbooking/cars/${car.id}/`,
+      user: `https://carbookingbackend-df57468af270.herokuapp.com/carbooking/users/${user.user.id}/`,
+      start_date,
+      end_date,
+    };
+  
     try {
-      const bookingRequestBody = {
-        car: `${baseURL}/carbooking/cars/${car.id}/`,
-        user: `${baseURL}/carbooking/users/${user.user.id}/`, // Correct user reference
-        date: selectedDateRange.startDate.toISOString().split('T')[0],
-      };
-  
-      console.log('Booking Request Body:', JSON.stringify(bookingRequestBody, null, 2));
-  
-      const response = await fetch(`${baseURL}/carbooking/booked-dates/`, {
+      const response = await fetch(`https://carbookingbackend-df57468af270.herokuapp.com/carbooking/booked-dates/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Token ${user.token}`, // Ensure user.token is accessible
+          Authorization: `Token ${user.token}`,
         },
         body: JSON.stringify(bookingRequestBody),
       });
   
       if (!response.ok) {
         const errorData = await response.json();
-        const errorMessage = errorData.detail || errorData.message || "Booking failed.";
-        setError(errorMessage);
+        setError(errorData.detail || errorData.message || "Booking failed.");
         return;
       }
   
       onBookingSuccess();
     } catch (error) {
-      console.error("Booking error:", error);
-      setError(error.message);
+      setError(error.message); 
     }
   };
 
@@ -75,7 +69,7 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
         <button
           className={styles['book-car-button']}
           onClick={handleBooking}
-          disabled={!selectedDateRange.startDate}
+          disabled={!selectedDateRange.startDate || !selectedDateRange.endDate}
         >
           Book Car
         </button>

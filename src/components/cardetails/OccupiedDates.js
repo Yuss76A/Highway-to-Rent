@@ -8,7 +8,7 @@ const ReservedDates = ({ dates }) => {
         <ul>
           {dates.map((date, index) => (
             <li key={index}>
-              {date.date} - {date.reserverInfo.name} {/* Update property to match your structure */}
+              {date.date} - {date.reserverInfo.name}
             </li>
           ))}
         </ul>
