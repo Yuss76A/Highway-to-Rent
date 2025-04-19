@@ -72,8 +72,12 @@ const ContactForm = () => {
         <div className={styles.contactContainer}>
             <div className={styles.contactCard}>
                 <h2 className={styles.title}>Contact Us</h2>
-                <p className={styles.subtitle}>Have questions about car bookings? Reach out to our team!</p>
                 
+                {/* Descriptive Text Section */}
+                <div className={styles.description}>
+                    <p>Please feel free to reach out to us with any questions you may have regarding car bookings. Our contact form is open to both registered users and those without an account. We look forward to assisting you!</p>
+                </div>
+
                 <form onSubmit={handleSubmit} className={styles.contactForm}>
                     <div className={styles.formGroup}>
                         <label htmlFor="name" className={styles.label}>Full Name*</label>
