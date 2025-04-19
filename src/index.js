@@ -12,7 +12,8 @@ import AllCars from "./components/AllCars.js";
 import BookedDates from "./components/BookedDates.js";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AboutUs from "./pages/AboutUs";
-import Reviews from "./pages/Reviews.js"
+import Reviews from "./pages/Reviews.js";
+import Contact from "./pages/Contact.js";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
           {
             path: "/reviews",
             element: <Reviews />,
+          },
+          {
+            path: "/contact",
+            element: <Contact />,
           },
           {
               path: "*",
