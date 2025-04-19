@@ -1,85 +1,141 @@
 .car-card {
-    width: 100%;
-    max-width: 600px;
-    margin: 1.5rem auto; 
-    border: 1px solid #ccc; 
-    border-radius: 10px; 
-    overflow: hidden;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); 
+  width: 100%;
+  max-width: 600px;
+  margin: 6rem auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+.image-slider {
+  position: relative;
+  width: 100%;
+  height: 350px;
+}
+
+.slider-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-bottom: 3px solid #2980b9;
+}
+
+.image-slider button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(51, 51, 51, 0.7);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.image-slider button:hover {
+  background: rgba(51, 51, 51, 0.9);
+}
+
+.image-slider button:first-child {
+  left: 15px;
+}
+
+.image-slider button:last-child {
+  right: 15px;
+}
+
+.car-info,
+.features,
+.rent-dates {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.car-info h2,
+.rent-dates h4 {
+  color: #2c3e50;
+}
+
+.features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.features ul li {
+  margin: 6px 0;
+}
+
+.rent-dates ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rent-dates ul li {
+  background-color: #e0e0e0;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.book-car-button {
+  display: block;
+  width: 90%;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #2980b9 0%, #2c3e50 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.book-car-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, #3498db 0%, #34495e 100%);
+}
+
+.error {
+  color: #e74c3c;
+  background-color: #fadbd8;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 0 20px 20px;
+  text-align: center;
+  font-size: 0.95rem;
+  border: 1px solid #f5b7b1;
+}
+
+.carGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carGrid {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  .image-slider {
-    position: relative;
-    width: 100%;
-    height: 350px; 
+}
+
+@media (max-width: 480px) {
+  .carGrid {
+    grid-template-columns: 1fr;
   }
-  
-  .slider-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    border-bottom: 3px solid #2980b9; 
-  }
-  
-  .image-slider button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(51, 51, 51, 0.7); 
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    padding: 10px; 
-    border-radius: 5px; 
-    transition: background 0.3s; 
-  }
-  
-  .image-slider button:hover {
-    background: rgba(51, 51, 51, 0.9); 
-  }
-  
-  .image-slider button:first-child {
-    left: 15px; 
-  }
-  
-  .image-slider button:last-child {
-    right: 15px; 
-  }
-  
-  .car-info,
-  .features,
-  .rent-dates {
-    padding: 20px; 
-    background-color: #f9f9f9; 
-  }
-  
-  .car-info h2 {
-    margin-bottom: 10px;
-    color: #2c3e50; 
-  }
-  
-  .description {
-    font-style: italic;
-    color: #555; 
-  }
-  
-  .features ul,
-  .rent-dates ul {
-    list-style: none;
-    padding: 0;
-    margin: 0; 
-  }
-  
-  .features ul li,
-  .rent-dates ul li {
-    margin: 6px 0; 
-  }
-  
-  .rent-dates h4 {
-    color: #2c3e50; 
-  }
-  
-  .no-reservations {
-    font-style: italic;
-    color: #999; 
-  }
+}

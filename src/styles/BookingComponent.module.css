@@ -1,132 +1,197 @@
+/* General Booking Container */
 .bookingContainer {
-    max-width: 450px;
+    max-width: 500px;
     margin: 0 auto;
-    text-align: center;
-    font-family: 'Helvetica Neue', sans-serif;
-    padding-bottom: 90px;
+    padding: 25px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
 }
 
+/* Calendar Header */
 .calendarHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .calendarHeader h2 {
-    font-size: 1.5em;
+    font-size: 1.4em;
     margin: 0;
-    color: #34495e;
+    color: #2d3748;
+    font-weight: 600;
+    letter-spacing: -0.5px;
 }
 
 .calendarHeader button {
-    background: #e67e22;
+    background: none;
     border: none;
     padding: 8px 12px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    color: #4a5568;
+    font-size: 1.1em;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.calendarHeader button:hover {
+    background: #f7fafc;
+    color: #2d3748;
+}
+
+/* Weekday Headers */
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-bottom: 10px;
+    text-align: center;
+    color: #718096;
+    font-size: 0.85em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Calendar Days Styles */
 .calendarDays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-}
-
-.calendarDay {
-    background: #7f8c8d;
-    color: #ecf0f1;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-.calendarDay.selected {
-    background: #27ae60;
-}
-
-.calendarDay.overflow {
-    color: #bdc3c7;
-    background: #2c3e50;
-    cursor: pointer;
-}
-
-.calendarDay.overflow.selected {
-    background: rgba(39, 174, 96, 0.7);
-}
-
-.bookCarsButton {
-    margin-top: 20px;
-    background: #2980b9;
-    color: #ffffff;
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 1.1em;
-    border-radius: 6px;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.bookCarsButton:hover {
-    background-color: #3498db;
-    transform: scale(1.02);
-}
-
-.errorMessage {
-    color: #c0392b;
-    background-color: #f9d9d9;
-    padding: 12px;
-    border-radius: 6px;
-    margin-top: 15px;
-    text-align: center;
-}
-
-.bookButton {
-    display: inline-block;
-    padding: 1rem 1.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #2980b9;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s, transform 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    margin: 1rem auto;
-}
-
-.bookButton:hover {
-    background-color: #1f6391;
-    transform: translateY(-2px);
-}
-
-.bookButton:active {
-    background-color: #153b51;
-    transform: translateY(1px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.bookButton:disabled {
-    background-color: #bdc3c7;
-    cursor: not-allowed;
-}
-
-.bookButton:focus {
-    outline: 2px solid #2980b9;
-    outline-offset: 2px;
-}
-
-.dateSwitcher {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
+    gap: 8px;
     margin-top: 5px;
 }
 
-.dateSwitcher:hover {
-    background-color: rgba(231, 110, 33, 0.5);
+.calendarDay {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    color: #2d3748;
+    position: relative;
+    background: transparent;
+    border: none;
+    font-size: 0.95em;
+}
+
+.calendarDay:hover:not(.selected):not(.overflow) {
+    background: #f7fafc;
+}
+
+.calendarDay.selected {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.calendarDay.overflow {
+    color: #cbd5e0;
+    pointer-events: none;
+}
+
+/* Range Selection Styles */
+.calendarDay.range:not(.selected) {
+    background: rgba(102, 126, 234, 0.1);
+    color: #2d3748;
+    border-radius: 0;
+}
+
+.calendarDay.range-start:not(.selected) {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+
+.calendarDay.range-end:not(.selected) {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+/* Today's Date Indicator */
+.calendarDay.today {
+    position: relative;
+}
+
+.calendarDay.today:after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: 5px;
+    height: 5px;
+    background: #667eea;
+    border-radius: 50%;
+}
+
+/* Book Cars Button */
+.bookCarsButton {
+    margin-top: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 14px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.1);
+}
+
+.bookCarsButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.2);
+}
+
+.bookCarsButton:active {
+    transform: translateY(0);
+}
+
+/* Message Styles */
+.errorMessage {
+    color: #e53e3e;
+    background-color: #fff5f5;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    border: 1px solid #fed7d7;
+}
+
+.successMessage {
+    color: #38a169;
+    background-color: #f0fff4;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.9em;
+    border: 1px solid #c6f6d5;
+}
+
+/* Filtered Cars Section */
+.filteredCars {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.filteredCars p {
+    color: #718096;
+    text-align: center;
+    font-size: 0.95em;
 }
