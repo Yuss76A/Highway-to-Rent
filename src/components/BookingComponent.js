@@ -14,6 +14,7 @@ const BookingComponent = ({ currentUser }) => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [infoVisible, setInfoVisible] = useState(false); // State for toggling info visibility
   
 
   const [carData, setCarData] = useState([]);
@@ -173,6 +174,23 @@ const BookingComponent = ({ currentUser }) => {
   };
   return (
     <div className={styles.bookingContainer}>
+      {/* Light Toggle Button */}
+      <div 
+        className={styles.infoToggle} 
+        onClick={() => setInfoVisible(!infoVisible)}
+        style={{ cursor: 'pointer', marginBottom: '1rem' }} // Optional styling for pointer
+      >
+        <div className={`${styles.light} ${infoVisible ? styles.on : styles.off}`}>
+          {infoVisible ? "Hide Info" : "Show Info"}
+        </div>
+      </div>
+  
+      {infoVisible && (
+        <div className={styles.infoText}>
+          <p>Be aware, we don’t ask for money in advance for the reservation of the car. The only thing you need to provide when you come is your username and the dates of reservation (start and end). If you want to cancel your booking, you need to contact our offices or send us an email 24 hours before. If you want to cancel your booking via phone, please contact us 1 hour before, via email 24 hours beforehand. If we see that the client doesn’t arrive, we will wait 15 minutes, and then the client will be charged an additional fee.</p>
+        </div>
+      )}
+  
       <div className={styles.calendarHeader}>
         <button className={styles.dateSwitcher} onClick={() => handleMonthChange(-1)}>
           <FaArrowLeft />
