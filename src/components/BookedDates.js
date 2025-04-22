@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "../styles/BookedDates.module.css";
 import { UserContext } from "../contexts/UserContext";
+import ConfirmationModal from '../pages/ConfirmationModal';
 
 const OccupiedDatesDisplay = () => {
   const [bookings, setBookings] = useState([]);
-  const [carDetails, setCarDetails] = useState({}); // Store car details separately
+  const [carDetails, setCarDetails] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [bookingToCancel, setBookingToCancel] = useState(null);
   const { user } = useContext(UserContext);
   const baseURL = 'https://carbookingbackend-df57468af270.herokuapp.com';
 
@@ -62,11 +65,16 @@ const OccupiedDatesDisplay = () => {
     fetchData();
   }, [user]);
 
-  const handleCancelBooking = async (bookingId, carName) => {
-    if (!window.confirm(`Are you sure you want to cancel the booking for ${carName}?`)) return;
+  const handleCancelClick = (bookingId, carName) => {
+    setBookingToCancel({ id: bookingId, name: carName });
+    setShowModal(true);
+  };
 
+  const handleConfirmCancel = async () => {
+    if (!bookingToCancel) return;
+    
     try {
-      const response = await fetch(`${baseURL}/carbooking/booked-dates/${bookingId}/`, {
+      const response = await fetch(`${baseURL}/carbooking/booked-dates/${bookingToCancel.id}/`, {
         method: 'DELETE',
         headers: {
           Authorization: `Token ${user.token}`,
@@ -76,9 +84,12 @@ const OccupiedDatesDisplay = () => {
       if (!response.ok) {
         throw new Error('Cancellation failed');
       }
-      setBookings((prev) => prev.filter((booking) => booking.id !== bookingId));
+      setBookings((prev) => prev.filter((booking) => booking.id !== bookingToCancel.id));
+      setShowModal(false);
+      setBookingToCancel(null);
     } catch (err) {
       setError(err.message);
+      setShowModal(false);
     }
   };
 
@@ -126,7 +137,7 @@ const OccupiedDatesDisplay = () => {
                       <p>End Date: {new Date(booking.end_date).toLocaleDateString()}</p>
                     </div>
                     <button
-                      onClick={() => handleCancelBooking(booking.id, car?.name)}
+                      onClick={() => handleCancelClick(booking.id, car?.name)}
                       className={styles.cancelButton}
                     >
                       Cancel Booking
@@ -138,6 +149,13 @@ const OccupiedDatesDisplay = () => {
           </div>
         ))
       )}
+      <ConfirmationModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        onConfirm={handleConfirmCancel}
+        title="Confirm Cancellation"
+        message={`Are you sure you want to cancel the booking for ${bookingToCancel?.name || 'this car'}?`}
+      />
     </div>
   );
 };
