@@ -55,6 +55,14 @@
     text-decoration: underline;
     background-color: rgba(255, 255, 255, 0.15);
   }
+
+
+/* Font Awesome icon color */
+  .navbar-toggler i {
+  font-size: 1.5rem; /* Adjust icon size */
+  color: white; /* Set icon color to white */
+  }
+
   
   /* Mobile responsiveness */
   @media (max-width: 991.98px) {
