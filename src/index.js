@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App.js";
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import { UserProvider } from "./contexts/UserContext.js";
-import AuthForm from "./pages/auth/AuthForm.js";
 import GuestRoute from "./routes/GuestRoute.js";
 import NotFound from "./pages/NotFound";
 import BookingComponent from "./components/BookingComponent.js";
@@ -14,6 +13,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import AboutUs from "./pages/AboutUs";
 import Reviews from "./pages/Reviews.js";
 import Contact from "./pages/Contact.js";
+import SignInForm from "./pages/auth/SignInForm.js";
+import SignUpForm from "./pages/auth/SignUpForm.js";
 
 const router = createBrowserRouter([
   {
@@ -37,13 +38,21 @@ const router = createBrowserRouter([
           element: <AllCars></AllCars>,
         },
           {
-              path: "auth",
+              path: "/signin",
               element: (
                   <GuestRoute>
-                      <AuthForm />
+                      <SignInForm />
                   </GuestRoute>
               ),
           },
+          {
+            path: "/signup",
+            element: (
+                <GuestRoute>
+                    <SignUpForm />
+                </GuestRoute>
+            ),
+        },
           {
             path: "/my-rentals",
             element: <BookedDates></BookedDates>,

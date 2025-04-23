@@ -36,20 +36,23 @@ const NavBar = () => {
           <div className={`navbar-nav ms-auto ${styles.navLinks}`}>
             <Link className={`nav-link ${styles.navLink}`} to="/about-us">About Us</Link>
             <Link className={`nav-link ${styles.navLink}`} to="/booking">Rent</Link>
+            <Link className={`nav-link ${styles.navLink}`} to="/browse-cars">All Cars</Link>
             
             {user ? (
               <>
-                <Link className={`nav-link ${styles.navLink}`} to="/browse-cars">All Cars</Link>
                 <Link className={`nav-link ${styles.navLink}`} to="/my-rentals">My Rentals</Link>
                 <button 
-                  className={`nav-link ${styles.logoutButton}`} 
+                  className={`nav-link ${styles.navLink}`} 
                   onClick={handleLogout}
                 >
                   Logout
                 </button>
               </>
             ) : (
-              <Link className={`nav-link ${styles.navLink}`} to="/auth">Login</Link>
+              <>
+                <Link className={`nav-link ${styles.navLink}`} to="/signin">Login</Link>
+                <Link className={`nav-link ${styles.navLink}`} to="/signup">Sign Up</Link>
+              </>
             )}
           </div>
         </div>

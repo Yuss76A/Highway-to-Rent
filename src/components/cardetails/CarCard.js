@@ -3,17 +3,31 @@ import CarImageSlider from "./CarImageSlider";
 import CarInfo from "./CarInfo";
 import styles from "../../styles/CarDetail.module.css";
 import { UserContext } from "../../contexts/UserContext"; 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [error, setError] = useState(null);
 
   const handleBooking = async () => {
     if (!user) {
-      setError('You must be logged in to book a car.');
-      return navigate('/auth');
+      // Save the booking details in session storage
+      sessionStorage.setItem('pendingBooking', JSON.stringify({
+        carId: car.id,
+        startDate: selectedDateRange.startDate,
+        endDate: selectedDateRange.endDate
+      }));
+      
+      // Redirect to sign in with return path
+      navigate('/signin', {
+        state: { 
+          from: location.pathname,
+          bookingIntent: true
+        }
+      });
+      return;
     }
 
     if (!user.user || !user.user.id) {

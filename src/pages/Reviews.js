@@ -52,6 +52,7 @@ export default function ReviewsPage() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission
     const token = localStorage.getItem('token'); // Retrieve token
+    console.log("Token before submission:", token);
     if (!token) {
         setError('Authentication required. Please log in.'); // Handle missing token
         return; // Exit early if token is not available
