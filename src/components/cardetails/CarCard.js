@@ -29,7 +29,7 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
       });
       return;
     }
-
+  
     if (!user.user || !user.user.id) {
       setError('User data is not available. Please log in again.');
       return;
@@ -64,13 +64,23 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
   
       if (!response.ok) {
         const errorData = await response.json();
-        setError(errorData.detail || errorData.message || "Booking failed.");
+        
+        // Check for different possible error formats
+        if (errorData.non_field_errors && errorData.non_field_errors[0].includes("already booked")) {
+          setError("This car is already booked for the selected dates.");
+        } else if (errorData.detail) {
+          setError(errorData.detail);
+        } else if (errorData.message) {
+          setError(errorData.message);
+        } else {
+          setError("Booking failed. Please try again.");
+        }
         return;
       }
   
       onBookingSuccess();
     } catch (error) {
-      setError(error.message); 
+      setError("An error occurred while processing your booking. Please try again.");
     }
   };
 

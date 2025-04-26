@@ -9,7 +9,6 @@ export default function ReviewsPage() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   
-  // State management
   const [reviews, setReviews] = useState([]);
   const [formData, setFormData] = useState({
     id: null,
@@ -27,16 +26,18 @@ export default function ReviewsPage() {
   const [deleting, setDeleting] = useState(false);
   const reviewsPerPage = 8;
 
-  // Fetch reviews with pagination
+  // Fetch reviews (works for both logged-in and logged-out users)
   const fetchReviews = useCallback(async () => {
     try {
       setLoading(true);
+      const config = user?.token ? {
+        headers: { Authorization: `Token ${user.token}` }
+      } : {};
+      
       const response = await axios.get(
         'https://carbookingbackend-df57468af270.herokuapp.com/reviews/',
         {
-          headers: { 
-            Authorization: `Token ${user?.token}`
-          },
+          ...config,
           params: {
             ordering: '-created_at',
             page: currentPage
@@ -51,7 +52,7 @@ export default function ReviewsPage() {
     } finally {
       setLoading(false);
     }
-  }, [user?.token, currentPage]);
+  }, [currentPage, user?.token]);
 
   useEffect(() => {
     fetchReviews();
@@ -118,12 +119,18 @@ export default function ReviewsPage() {
       fetchReviews();
       setCurrentPage(1);
     } catch (err) {
-      setError(err.response?.data?.detail || 'Operation failed');
+      setError(err.response?.data || 'Operation failed');
     }
   };
 
   // Review actions
   const handleEdit = (review) => {
+    if (!user) {
+      setError('Please sign in to edit reviews');
+      navigate('/signin');
+      return;
+    }
+    
     if (!review?.id) {
       setError('Invalid review selected');
       return;
@@ -138,6 +145,12 @@ export default function ReviewsPage() {
   };
 
   const handleDeleteClick = (id) => {
+    if (!user) {
+      setError('Please sign in to delete reviews');
+      navigate('/signin');
+      return;
+    }
+    
     if (!id) {
       setError('Invalid review selected');
       return;
@@ -165,7 +178,7 @@ export default function ReviewsPage() {
         setError('Review not found - it may have been already deleted');
         fetchReviews();
       } else {
-        setError(err.response?.data?.detail || 'Failed to delete review');
+        setError(err.response?.data || 'Failed to delete review');
       }
     } finally {
       setDeleting(false);
@@ -189,7 +202,6 @@ export default function ReviewsPage() {
     setError(null);
   };
 
-  // Helper functions
   const isReviewOwner = (reviewUserId) => {
     return user && user.user && reviewUserId === user.user.id;
   };
@@ -215,59 +227,71 @@ export default function ReviewsPage() {
     <div className={styles.reviewsContainer}>
       <h1>Customer Reviews</h1>
       
-      {/* Status messages */}
       {success && <div className={`${styles.alert} ${styles.success}`}>{success}</div>}
       {error && <div className={`${styles.alert} ${styles.error}`}>{error}</div>}
       
-      {/* Review form */}
-      <div className={styles.formSection}>
-        <h2>{editMode ? 'Edit Your Review' : 'Write a Review'}</h2>
-        <form onSubmit={handleSubmit}>
-          <div className={styles.formGroup}>
-            <label>Rating (1-5):</label>
-            <div className={styles.ratingInput}>
-              <input
-                type="number"
-                name="rating"
-                min="1"
-                max="5"
-                value={formData.rating}
+      {/* Show form only to logged-in users */}
+      {user ? (
+        <div className={styles.formSection}>
+          <h2>{editMode ? 'Edit Your Review' : 'Write a Review'}</h2>
+          <form onSubmit={handleSubmit}>
+            <div className={styles.formGroup}>
+              <label>Rating (1-5):</label>
+              <div className={styles.ratingInput}>
+                <input
+                  type="number"
+                  name="rating"
+                  min="1"
+                  max="5"
+                  value={formData.rating}
+                  onChange={handleChange}
+                  required
+                />
+                <StarRating rating={formData.rating} />
+              </div>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <label>Your Feedback:</label>
+              <textarea
+                name="comment"
+                value={formData.comment}
                 onChange={handleChange}
+                placeholder="Share your experience with our rental service..."
                 required
               />
-              <StarRating rating={formData.rating} />
             </div>
-          </div>
-          
-          <div className={styles.formGroup}>
-            <label>Your Feedback:</label>
-            <textarea
-              name="comment"
-              value={formData.comment}
-              onChange={handleChange}
-              placeholder="Share your experience with our rental service..."
-              required
-            />
-          </div>
-          
-          <div className={styles.formActions}>
-            <button type="submit" className={`${styles.btn} ${styles.primary}`}>
-              {editMode ? 'Update Review' : 'Submit Review'}
-            </button>
-            {editMode && (
-              <button type="button" className={`${styles.btn} ${styles.secondary}`} onClick={resetForm}>
-                Cancel
+            
+            <div className={styles.formActions}>
+              <button type="submit" className={`${styles.btn} ${styles.primary}`}>
+                {editMode ? 'Update Review' : 'Submit Review'}
               </button>
-            )}
-          </div>
-        </form>
-      </div>
+              {editMode && (
+                <button type="button" className={`${styles.btn} ${styles.secondary}`} onClick={resetForm}>
+                  Cancel
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
+      ) : (
+        <div className={styles.signInPrompt}>
+          <p>Want to share your experience? 
+            <button 
+              onClick={() => navigate('/signin')} 
+              className={styles.signInLink}
+            >
+              Sign in to leave a review
+            </button>
+          </p>
+        </div>
+      )}
       
-      {/* Reviews list */}
+      {/* Reviews list - visible to everyone */}
       <div className={styles.listSection}>
         <h2>Customer Feedback</h2>
         {reviews.length === 0 ? (
-          <p>No reviews yet. Be the first to share your experience!</p>
+          <p>No reviews yet. {!user && 'Sign in to be the first to review!'}</p>
         ) : (
           <>
             <div className={styles.reviewsList}>
@@ -284,7 +308,7 @@ export default function ReviewsPage() {
                     <small>
                       Posted by {review.user_full_name || 'Customer'} on {new Date(review.created_at).toLocaleDateString()}
                     </small>
-                    {isReviewOwner(review.user) && (
+                    {user && isReviewOwner(review.user) && (
                       <div className={styles.actions}>
                         <button 
                           className={`${styles.btn} ${styles.edit}`}

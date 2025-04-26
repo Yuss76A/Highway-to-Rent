@@ -243,6 +243,25 @@
   padding: 0 10px;
 }
 
+.signInPrompt {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.signInLink {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .formSection {
