@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-
 import CarCard from "./cardetails/CarCard";
-import styles from "../styles/BookingComponent.module.css"
+import styles from "../styles/BookingComponent.module.css";
 
 const BookingComponent = ({ currentUser }) => {
   const [selectedDates, setSelectedDates] = useState({
@@ -14,9 +13,7 @@ const BookingComponent = ({ currentUser }) => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [infoVisible, setInfoVisible] = useState(false); // State for toggling info visibility
-  
-
+  const [infoVisible, setInfoVisible] = useState(false);
   const [carData, setCarData] = useState([]);
 
   useEffect(() => {
@@ -34,8 +31,6 @@ const BookingComponent = ({ currentUser }) => {
         }
 
         const data = await response.json();
-
-        console.log("Fetching successful:", data);
         setCarData(data);
       } catch (error) {
         console.error("Error during fetch:", error);
@@ -51,32 +46,27 @@ const BookingComponent = ({ currentUser }) => {
       day
     );
 
-    // Prevent selection of dates in the past
     if (selectedDate < new Date()) {
-        setError('You cannot select a past date.');
-        return;
+      setError('You cannot select a past date.');
+      return;
     }
 
     if (!selectedDates.startDate || selectedDates.endDate) {
-        // If no dates are selected or both are already set, reset to a single date
-        setSelectedDates({ startDate: selectedDate, endDate: null });
+      setSelectedDates({ startDate: selectedDate, endDate: null });
     } else if (selectedDate.getTime() === selectedDates.startDate.getTime()) {
-        // If clicking the same date again, treat as a single-day selection
-        setSelectedDates({ startDate: selectedDate, endDate: selectedDate });
+      setSelectedDates({ startDate: selectedDate, endDate: selectedDate });
     } else {
-        // Set the endDate if selecting a valid range
-        if (selectedDate > selectedDates.startDate) {
-            setSelectedDates({ ...selectedDates, endDate: selectedDate });
-        } else {
-            setSelectedDates({
-                startDate: selectedDate,
-                endDate: selectedDates.startDate,
-            });
-        }
+      if (selectedDate > selectedDates.startDate) {
+        setSelectedDates({ ...selectedDates, endDate: selectedDate });
+      } else {
+        setSelectedDates({
+          startDate: selectedDate,
+          endDate: selectedDates.startDate,
+        });
+      }
     }
-
     setError("");
-};
+  };
 
   const handleMonthChange = (increment) => {
     const newDate = new Date(
@@ -94,17 +84,14 @@ const BookingComponent = ({ currentUser }) => {
 
     const days = [];
 
-    // Add previous month days
     for (let i = startOfMonth - 1; i >= 0; i--) {
       days.push({ day: daysInPreviousMonth - i, monthOffset: -1 });
     }
 
-    // Add current month days
     for (let i = 1; i <= daysInCurrentMonth; i++) {
       days.push({ day: i, monthOffset: 0 });
     }
 
-    // Add next month days
     const remainingSlots = 42 - days.length;
     for (let i = 1; i <= remainingSlots; i++) {
       days.push({ day: i, monthOffset: 1 });
@@ -120,12 +107,11 @@ const BookingComponent = ({ currentUser }) => {
       day
     );
 
-    return (   (selectedDates.startDate &&
+    return (
+      (selectedDates.startDate &&
         selectedDates.startDate.getTime() === date.getTime()) ||
-      // Check if endDate != null && is the tile, the endDate?
       (selectedDates.endDate &&
         selectedDates.endDate.getTime() === date.getTime()) ||
-      // Check if startDate && endDate != null && is the tile between the two?
       (selectedDates.startDate &&
         selectedDates.endDate &&
         date >= selectedDates.startDate &&
@@ -134,6 +120,7 @@ const BookingComponent = ({ currentUser }) => {
   };
 
   const days = generateCalendarDays();
+
   const handleFilterCars = () => {
     if (!selectedDates.startDate) {
       setError("Please select a valid date.");
@@ -141,7 +128,6 @@ const BookingComponent = ({ currentUser }) => {
       return;
     }
   
-    // If endDate is null, fall back to startDate for single-day booking
     const startDate = selectedDates.startDate;
     const endDate = selectedDates.endDate || selectedDates.startDate;
   
@@ -161,9 +147,8 @@ const BookingComponent = ({ currentUser }) => {
     };
   
     const availableCars = carData.filter((car) => {
-      // Add null/undefined check for occupiedDates
       if (!car.occupiedDates || !Array.isArray(car.occupiedDates)) {
-        return true; // If no occupiedDates, car is available
+        return true;
       }
       return car.occupiedDates.every((occ) => !isDateInRange(occ.date));
     });
@@ -172,13 +157,13 @@ const BookingComponent = ({ currentUser }) => {
     setIsFiltered(true);
     setError("");
   };
+
   return (
     <div className={styles.bookingContainer}>
-      {/* Light Toggle Button */}
       <div 
         className={styles.infoToggle} 
         onClick={() => setInfoVisible(!infoVisible)}
-        style={{ cursor: 'pointer', marginBottom: '1rem' }} // Optional styling for pointer
+        style={{ cursor: 'pointer', marginBottom: '1rem' }}
       >
         <div className={`${styles.light} ${infoVisible ? styles.on : styles.off}`}>
           {infoVisible ? "Hide Info" : "Show Info"}
@@ -187,7 +172,7 @@ const BookingComponent = ({ currentUser }) => {
   
       {infoVisible && (
         <div className={styles.infoText}>
-          <p>Be aware, we don’t ask for money in advance for the reservation of the car. The only thing you need to provide when you come is your username and the dates of reservation (start and end). If you want to cancel your booking, you need to contact our offices or send us an email 24 hours before. If you want to cancel your booking via phone, please contact us 1 hour before, via email 24 hours beforehand. If we see that the client doesn’t arrive, we will wait 15 minutes, and then the client will be charged an additional fee.</p>
+          <p>Be aware, we don't ask for money in advance for the reservation of the car. The only thing you need to provide when you come is your username and the dates of reservation (start and end). If you want to cancel your booking, you need to contact our offices or send us an email 24 hours before. If you want to cancel your booking via phone, please contact us 1 hour before, via email 24 hours beforehand. If we see that the client doesn't arrive, we will wait 15 minutes, and then the client will be charged an additional fee.</p>
         </div>
       )}
   
@@ -218,6 +203,7 @@ const BookingComponent = ({ currentUser }) => {
       </button>
   
       {error && <div className={styles.errorMessage}>{error}</div>}
+      {success && <div className={styles.successMessage}>{success}</div>}
   
       <div className={styles.filteredCars}>
         {filteredCars.length > 0 ? (
@@ -239,10 +225,6 @@ const BookingComponent = ({ currentUser }) => {
           ))
         ) : isFiltered && selectedDates.startDate ? (
           <p>No available cars for the selected dates.</p>
-        ) : success !== "" ? (
-          <p>{success}</p>
-        ) : error !== "" ? (
-          <p>{error}</p>
         ) : (
           <p>Please select a date for booking.</p>
         )}
@@ -250,4 +232,5 @@ const BookingComponent = ({ currentUser }) => {
     </div>
   );
 };
+
 export default BookingComponent;
