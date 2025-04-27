@@ -115,6 +115,16 @@
   background: #c0392b;
 }
 
+.reminderText {
+  font-size: 0.85rem;
+  color: #718096;
+  margin-top: 8px;
+  font-style: italic;
+  padding: 8px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
 @media (max-width: 600px) {
   .bookingCard {
     flex-direction: column;

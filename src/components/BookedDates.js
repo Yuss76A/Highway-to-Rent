@@ -21,25 +21,19 @@ const OccupiedDatesDisplay = () => {
 
     const fetchData = async () => {
       try {
-        // Fetch bookings first
         const bookingsResponse = await fetch(`${baseURL}/carbooking/booked-dates/`, {
           headers: {
             Authorization: `Token ${user.token}`,
           },
         });
 
-        if (!bookingsResponse.ok) {
-          throw new Error('Failed to fetch bookings');
-        }
-
+        if (!bookingsResponse.ok) throw new Error('Failed to fetch bookings');
         const bookingsData = await bookingsResponse.json();
         setBookings(bookingsData);
 
-        // Extract unique car URLs from bookings
         const carUrls = [...new Set(bookingsData.map(booking => booking.car))];
-        
-        // Fetch details for each car
         const carsData = {};
+        
         await Promise.all(
           carUrls.map(async (url) => {
             const response = await fetch(url, {
@@ -81,14 +75,12 @@ const OccupiedDatesDisplay = () => {
         },
       });
 
-      if (!response.ok) {
-        throw new Error('Cancellation failed');
-      }
-      setBookings((prev) => prev.filter((booking) => booking.id !== bookingToCancel.id));
+      if (!response.ok) throw new Error('Cancellation failed');
+      setBookings(prev => prev.filter(booking => booking.id !== bookingToCancel.id));
       setShowModal(false);
-      setBookingToCancel(null);
     } catch (err) {
       setError(err.message);
+    } finally {
       setShowModal(false);
     }
   };
@@ -97,15 +89,10 @@ const OccupiedDatesDisplay = () => {
   if (loading) return <div className={styles.message}>Loading your bookings...</div>;
   if (error) return <div className={styles.error}>{error}</div>;
 
-  // Grouping bookings by month
   const groupedBookings = bookings.reduce((acc, booking) => {
     const startDate = new Date(booking.start_date);
     const monthYear = startDate.toLocaleString('en', { month: 'long', year: 'numeric' });
-
-    if (!acc[monthYear]) {
-      acc[monthYear] = [];
-    }
-
+    if (!acc[monthYear]) acc[monthYear] = [];
     acc[monthYear].push(booking);
     return acc;
   }, {});
@@ -133,8 +120,12 @@ const OccupiedDatesDisplay = () => {
                           className={styles.carImage} 
                         />
                       )}
+                      <p>Reservation #: {booking.reservation_number}</p>
                       <p>Start Date: {new Date(booking.start_date).toLocaleDateString()}</p>
                       <p>End Date: {new Date(booking.end_date).toLocaleDateString()}</p>
+                      <p className={styles.reminderText}>
+                        Please bring the reservation number when picking up the car.
+                      </p>
                     </div>
                     <button
                       onClick={() => handleCancelClick(booking.id, car?.name)}
@@ -154,7 +145,7 @@ const OccupiedDatesDisplay = () => {
         onClose={() => setShowModal(false)}
         onConfirm={handleConfirmCancel}
         title="Confirm Cancellation"
-        message={`Are you sure you want to cancel the booking for ${bookingToCancel?.name || 'this car'}?`}
+        message={`Are you sure you want to cancel booking #${bookingToCancel?.id} for ${bookingToCancel?.name || 'this car'}?`}
       />
     </div>
   );

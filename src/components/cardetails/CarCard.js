@@ -5,7 +5,7 @@ import styles from "../../styles/CarDetail.module.css";
 import { UserContext } from "../../contexts/UserContext"; 
 import { useNavigate, useLocation } from "react-router-dom";
 
-const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
+const CarCard = ({ car, selectedDateRange, onBookingSuccess, currentUser }) => {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -29,12 +29,12 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
       });
       return;
     }
-  
+
     if (!user.user || !user.user.id) {
       setError('User data is not available. Please log in again.');
       return;
     }
-  
+
     if (!selectedDateRange?.startDate || !selectedDateRange?.endDate) {
       setError('Please select a start and end date.');
       return;
@@ -45,40 +45,42 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess }) => {
     const start_date = selectedDateRange.startDate.toISOString().split('T')[0];
     const end_date = selectedDateRange.endDate.toISOString().split('T')[0];
     
-    const bookingRequestBody = {
-      car: `https://carbookingbackend-df57468af270.herokuapp.com/carbooking/cars/${car.id}/`,
-      user: `https://carbookingbackend-df57468af270.herokuapp.com/carbooking/users/${user.user.id}/`,
-      start_date,
-      end_date,
-    };
-  
     try {
-      const response = await fetch(`https://carbookingbackend-df57468af270.herokuapp.com/carbooking/booked-dates/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${user.token}`,
-        },
-        body: JSON.stringify(bookingRequestBody),
-      });
-  
+      const response = await fetch(
+        "https://carbookingbackend-df57468af270.herokuapp.com/carbooking/booked-dates/", 
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Token ${user.token}`,
+          },
+          body: JSON.stringify({
+            car: `https://carbookingbackend-df57468af270.herokuapp.com/carbooking/cars/${car.id}/`,
+            start_date,
+            end_date,
+          }),
+        }
+      );
+
       if (!response.ok) {
         const errorData = await response.json();
         
-        // Check for different possible error formats
-        if (errorData.non_field_errors && errorData.non_field_errors[0].includes("already booked")) {
+        // Specific handling for "already booked" error
+        if (errorData.non_field_errors && 
+            errorData.non_field_errors.some(msg => msg.includes("already booked"))) {
           setError("This car is already booked for the selected dates.");
-        } else if (errorData.detail) {
+        } 
+        // Fallback to other error messages
+        else if (errorData.detail) {
           setError(errorData.detail);
-        } else if (errorData.message) {
-          setError(errorData.message);
         } else {
           setError("Booking failed. Please try again.");
         }
         return;
       }
-  
-      onBookingSuccess();
+
+      const data = await response.json();
+      onBookingSuccess(data.reservation_number);
     } catch (error) {
       setError("An error occurred while processing your booking. Please try again.");
     }

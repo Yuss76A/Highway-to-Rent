@@ -13,6 +13,7 @@ const BookingComponent = ({ currentUser }) => {
   const [isFiltered, setIsFiltered] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [reservationNumber, setReservationNumber] = useState("");
   const [infoVisible, setInfoVisible] = useState(false);
   const [carData, setCarData] = useState([]);
 
@@ -203,24 +204,36 @@ const BookingComponent = ({ currentUser }) => {
       </button>
   
       {error && <div className={styles.errorMessage}>{error}</div>}
-      {success && <div className={styles.successMessage}>{success}</div>}
+      {success && (
+        <div className={styles.successMessage}>
+          {success}
+          {reservationNumber && (
+            <div className={styles.reservationNumber}>
+              Reservation #: {reservationNumber}
+            </div>
+          )}
+        </div>
+      )}
   
       <div className={styles.filteredCars}>
         {filteredCars.length > 0 ? (
           filteredCars.map((car) => (
             <CarCard
-              onBookingSuccess={() => {
+              onBookingSuccess={(resNumber) => {
                 setSelectedDates({ startDate: null, endDate: null });
                 setFilteredCars([]);
                 setSuccess("Booking Successful!");
+                setReservationNumber(resNumber);
                 setTimeout(() => {
                   setSuccess("");
                   setError("");
+                  setReservationNumber("");
                 }, 5000);
               }}
               key={car.id}
               car={car}
               selectedDateRange={selectedDates}
+              currentUser={currentUser}
             />
           ))
         ) : isFiltered && selectedDates.startDate ? (
