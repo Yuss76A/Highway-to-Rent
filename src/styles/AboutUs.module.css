@@ -45,7 +45,6 @@
     margin-bottom: 100px;
 }
 
-
 .achievement {
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -70,6 +69,13 @@
 .achievement p {
     font-size: 16px;
     color: #555;
+}
+
+/* Add styles for achievement icons */
+.achievement-icon {
+    margin-right: 10px; /* Space between icon and title */
+    font-size: 28px; /* Adjust icon size as needed */
+    color: #007BFF; /* Customize the icon color */
 }
 
 .rental-process {
@@ -113,5 +119,9 @@ h3 {
 
     .achievement {
         margin: 10px 0;
+    }
+
+    .process-step-left, .process-step-right {
+        width: 90%; /* Make steps take full width on smaller screens */
     }
 }

@@ -5,45 +5,56 @@ import { UserContext } from '../contexts/UserContext';
 import styles from '../styles/Reviews.module.css';
 import ConfirmationModal from './ConfirmationModal';
 
+// API helper to handle requests with consistent error handling
+const api = {
+  getReviews: async (token, page) => {
+    const config = token ? { headers: { Authorization: `Token ${token}` } } : {};
+    return axios.get('https://carbookingbackend-df57468af270.herokuapp.com/reviews/', {
+      ...config,
+      params: { ordering: '-created_at', page },
+    });
+  },
+  createReview: async (token, data) =>
+    axios.post('https://carbookingbackend-df57468af270.herokuapp.com/reviews/', data, {
+      headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+    }),
+  updateReview: async (token, id, data) =>
+    axios.put(`https://carbookingbackend-df57468af270.herokuapp.com/reviews/${id}/`, data, {
+      headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+    }),
+  deleteReview: async (token, id) =>
+    axios.delete(`https://carbookingbackend-df57468af270.herokuapp.com/reviews/${id}/`, {
+      headers: { Authorization: `Token ${token}` },
+    }),
+};
+
 export default function ReviewsPage() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
-  
+
+  // State for reviews and pagination
   const [reviews, setReviews] = useState([]);
-  const [formData, setFormData] = useState({
-    id: null,
-    rating: 5,
-    comment: ''
-  });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const reviewsPerPage = 8;
+
+  // State for form and UI
+  const [formData, setFormData] = useState({ id: null, rating: 5, comment: '' });
+  const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState('');
-  const [editMode, setEditMode] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+
+  // State for delete modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState(null);
   const [deleting, setDeleting] = useState(false);
-  const reviewsPerPage = 8;
 
-  // Fetch reviews (works for both logged-in and logged-out users)
+  // Fetch reviews with pagination
   const fetchReviews = useCallback(async () => {
+    setLoading(true);
     try {
-      setLoading(true);
-      const config = user?.token ? {
-        headers: { Authorization: `Token ${user.token}` }
-      } : {};
-      
-      const response = await axios.get(
-        'https://carbookingbackend-df57468af270.herokuapp.com/reviews/',
-        {
-          ...config,
-          params: {
-            ordering: '-created_at',
-            page: currentPage
-          }
-        }
-      );
+      const response = await api.getReviews(user?.token, currentPage);
       setReviews(response.data.results);
       setTotalPages(Math.ceil(response.data.count / reviewsPerPage));
       setError(null);
@@ -58,99 +69,69 @@ export default function ReviewsPage() {
     fetchReviews();
   }, [fetchReviews]);
 
-  // Pagination handler
+  // Handle pagination
   const paginate = (pageNumber) => {
     const newPage = Math.max(1, Math.min(pageNumber, totalPages));
     setCurrentPage(newPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Form handlers
+  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: name === 'rating' ? parseInt(value) : value
-    });
+    setFormData({ ...formData, [name]: name === 'rating' ? parseInt(value) : value });
   };
 
+  // Handle form submission (create or update)
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!user) {
       setError('Please sign in to submit a review');
-      navigate('/signin', { 
-        state: { 
-          from: '/reviews',
-          message: 'Please sign in to submit a review'
-        } 
+      navigate('/signin', {
+        state: { from: '/reviews', message: 'Please sign in to submit a review' },
       });
       return;
     }
 
     try {
       if (editMode) {
-        await axios.put(
-          `https://carbookingbackend-df57468af270.herokuapp.com/reviews/${formData.id}/`,
-          formData,
-          {
-            headers: {
-              Authorization: `Token ${user.token}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
+        await api.updateReview(user.token, formData.id, formData);
         setSuccess('Review updated successfully!');
       } else {
-        await axios.post(
-          'https://carbookingbackend-df57468af270.herokuapp.com/reviews/',
-          formData,
-          {
-            headers: {
-              Authorization: `Token ${user.token}`,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
+        await api.createReview(user.token, formData);
         setSuccess('Review submitted successfully!');
       }
-      
       resetForm();
+      setCurrentPage(1); // Go back to first page to show new/updated review
       fetchReviews();
-      setCurrentPage(1);
     } catch (err) {
-      setError(err.response?.data || 'Operation failed');
+      setError(err.response?.data?.detail || 'Operation failed');
     }
   };
 
-  // Review actions
+  // Handle edit button click
   const handleEdit = (review) => {
     if (!user) {
       setError('Please sign in to edit reviews');
       navigate('/signin');
       return;
     }
-    
     if (!review?.id) {
       setError('Invalid review selected');
       return;
     }
-    setFormData({
-      id: review.id,
-      rating: review.rating,
-      comment: review.comment
-    });
+    setFormData({ id: review.id, rating: review.rating, comment: review.comment });
     setEditMode(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Handle delete button click
   const handleDeleteClick = (id) => {
     if (!user) {
       setError('Please sign in to delete reviews');
       navigate('/signin');
       return;
     }
-    
     if (!id) {
       setError('Invalid review selected');
       return;
@@ -159,16 +140,11 @@ export default function ReviewsPage() {
     setShowDeleteModal(true);
   };
 
+  // Confirm delete action
   const handleConfirmDelete = async () => {
     setDeleting(true);
     try {
-      const response = await axios.delete(
-        `https://carbookingbackend-df57468af270.herokuapp.com/reviews/${reviewToDelete}/`,
-        {
-          headers: { Authorization: `Token ${user.token}` }
-        }
-      );
-      
+      const response = await api.deleteReview(user.token, reviewToDelete);
       if (response.status === 204) {
         setSuccess('Review deleted successfully!');
         fetchReviews();
@@ -178,7 +154,7 @@ export default function ReviewsPage() {
         setError('Review not found - it may have been already deleted');
         fetchReviews();
       } else {
-        setError(err.response?.data || 'Failed to delete review');
+        setError(err.response?.data?.detail || 'Failed to delete review');
       }
     } finally {
       setDeleting(false);
@@ -187,50 +163,44 @@ export default function ReviewsPage() {
     }
   };
 
+  // Cancel delete action
   const handleCancelDelete = () => {
     setShowDeleteModal(false);
     setReviewToDelete(null);
   };
 
+  // Reset form to default state
   const resetForm = () => {
-    setFormData({
-      id: null,
-      rating: 5,
-      comment: ''
-    });
+    setFormData({ id: null, rating: 5, comment: '' });
     setEditMode(false);
     setError(null);
   };
 
-  const isReviewOwner = (reviewUserId) => {
-    return user && user.user && reviewUserId === user.user.id;
-  };
+  // Check if user owns the review
+  const isReviewOwner = (reviewUserId) => user && user.user && reviewUserId === user.user.id;
 
-  const StarRating = ({ rating }) => {
-    return (
-      <div className={styles.starRating}>
-        {[1, 2, 3, 4, 5].map((star) => (
-          <span 
-            key={star} 
-            className={star <= rating ? styles.filledStar : styles.emptyStar}
-          >
-            ★
-          </span>
-        ))}
-      </div>
-    );
-  };
+  // Star rating component
+  const StarRating = ({ rating }) => (
+    <div className={styles.starRating}>
+      {[1, 2, 3, 4, 5].map((star) => (
+        <span key={star} className={star <= rating ? styles.filledStar : styles.emptyStar}>
+          ★
+        </span>
+      ))}
+    </div>
+  );
 
   if (loading) return <div className={styles.loading}>Loading reviews...</div>;
 
   return (
     <div className={styles.reviewsContainer}>
       <h1>Customer Reviews</h1>
-      
+
+      {/* Success and error alerts */}
       {success && <div className={`${styles.alert} ${styles.success}`}>{success}</div>}
       {error && <div className={`${styles.alert} ${styles.error}`}>{error}</div>}
-      
-      {/* Show form only to logged-in users */}
+
+      {/* Review form for logged-in users */}
       {user ? (
         <div className={styles.formSection}>
           <h2>{editMode ? 'Edit Your Review' : 'Write a Review'}</h2>
@@ -250,7 +220,6 @@ export default function ReviewsPage() {
                 <StarRating rating={formData.rating} />
               </div>
             </div>
-            
             <div className={styles.formGroup}>
               <label>Your Feedback:</label>
               <textarea
@@ -261,13 +230,16 @@ export default function ReviewsPage() {
                 required
               />
             </div>
-            
             <div className={styles.formActions}>
               <button type="submit" className={`${styles.btn} ${styles.primary}`}>
                 {editMode ? 'Update Review' : 'Submit Review'}
               </button>
               {editMode && (
-                <button type="button" className={`${styles.btn} ${styles.secondary}`} onClick={resetForm}>
+                <button
+                  type="button"
+                  className={`${styles.btn} ${styles.secondary}`}
+                  onClick={resetForm}
+                >
                   Cancel
                 </button>
               )}
@@ -276,18 +248,16 @@ export default function ReviewsPage() {
         </div>
       ) : (
         <div className={styles.signInPrompt}>
-          <p>Want to share your experience? 
-            <button 
-              onClick={() => navigate('/signin')} 
-              className={styles.signInLink}
-            >
+          <p>
+            Want to share your experience?{' '}
+            <button onClick={() => navigate('/signin')} className={styles.signInLink}>
               Sign in to leave a review
             </button>
           </p>
         </div>
       )}
-      
-      {/* Reviews list - visible to everyone */}
+
+      {/* Reviews list for everyone */}
       <div className={styles.listSection}>
         <h2>Customer Feedback</h2>
         {reviews.length === 0 ? (
@@ -306,17 +276,18 @@ export default function ReviewsPage() {
                   <p className={styles.comment}>{review.comment}</p>
                   <div className={styles.reviewFooter}>
                     <small>
-                      Posted by {review.user_full_name || 'Customer'} on {new Date(review.created_at).toLocaleDateString()}
+                      Posted by {review.user_full_name || 'Customer'} on{' '}
+                      {new Date(review.created_at).toLocaleDateString()}
                     </small>
-                    {user && isReviewOwner(review.user) && (
+                    {isReviewOwner(review.user) && (
                       <div className={styles.actions}>
-                        <button 
+                        <button
                           className={`${styles.btn} ${styles.edit}`}
                           onClick={() => handleEdit(review)}
                         >
                           Edit
                         </button>
-                        <button 
+                        <button
                           className={`${styles.btn} ${styles.delete}`}
                           onClick={() => handleDeleteClick(review.id)}
                         >
@@ -328,7 +299,7 @@ export default function ReviewsPage() {
                 </div>
               ))}
             </div>
-            
+
             {/* Pagination controls */}
             {totalPages > 1 && (
               <div className={styles.pagination}>
@@ -337,20 +308,17 @@ export default function ReviewsPage() {
                   disabled={currentPage === 1}
                   className={styles.pageBtn}
                 >
-                  &laquo; Previous
+                  « Previous
                 </button>
-                
                 <span className={styles.pageInfo}>
-                  Page {currentPage} of {totalPages} | 
-                  Showing {reviews.length} reviews
+                  Page {currentPage} of {totalPages} | Showing {reviews.length} reviews
                 </span>
-                
                 <button
                   onClick={() => paginate(currentPage + 1)}
                   disabled={currentPage === totalPages}
                   className={styles.pageBtn}
                 >
-                  Next &raquo;
+                  Next »
                 </button>
               </div>
             )}

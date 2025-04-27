@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from "../styles/AboutUs.module.css";
 import backgroundImage from '../assets/kalmar.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrophy, faLeaf, faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 
 const AboutUs = () => {
     return (
@@ -57,26 +59,32 @@ const AboutUs = () => {
             {/* Notable Achievements Section */}
             <div className={styles['achievements-section']}>
                 <div className={styles['achievement']}>
+                    <FontAwesomeIcon icon={faTrophy} className={styles['achievement-icon']} />
                     <h3>2022</h3>
                     <p>Celebrated our first year in business with over 500 satisfied customers!</p>
                 </div>
                 <div className={styles['achievement']}>
+                    <FontAwesomeIcon icon={faTrophy} className={styles['achievement-icon']} />
                     <h3>2023</h3>
                     <p>Chosen as the best rental company in the Småland region!</p>
                 </div>
                 <div className={styles['achievement']}>
+                    <FontAwesomeIcon icon={faLeaf} className={styles['achievement-icon']} />
                     <h3>2024</h3>
                     <p>Expanding our fleet to include eco-friendly vehicles for a better future!</p>
                 </div>
                 <div className={styles['achievement']}>
+                    <FontAwesomeIcon icon={faTrophy} className={styles['achievement-icon']} />
                     <h3>2025</h3>
                     <p>Awarded Best Rental Services Company in Sweden!</p>
                 </div>
                 <div className={styles['achievement']}>
+                    <FontAwesomeIcon icon={faHandHoldingHeart} className={styles['achievement-icon']} />
                     <h3>2025</h3>
-                    <p>Successfully organized our first fundraising event for social causes, supporting local communities!</p>
+                    <p>Successfully organized our first fundraising event for social causes!</p>
                 </div>
                 <div className={styles['achievement']}>
+                    <FontAwesomeIcon icon={faLeaf} className={styles['achievement-icon']} />
                     <h3>2025</h3>
                     <p>Launched an initiative to promote sustainable tourism within the Småland region!</p>
                 </div>
