@@ -1,73 +1,94 @@
-/* AllCars.module.css */
-
 .allCarsContainer {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 2rem 5rem;
-    text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 2rem 5rem;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.pageTitle {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #2c3e50;
+  position: relative;
+  display: inline-block;
+}
+
+.pageTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+.carsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.carsList > * {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carsList > *:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .allCarsContainer {
+      padding: 1rem;
   }
   
   .pageTitle {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-    position: relative;
-    display: inline-block;
-  }
-  
-  .pageTitle::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: #3498db;
-    border-radius: 2px;
+      font-size: 2rem;
   }
   
   .carsList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
-    padding: 1rem;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .allCarsContainer {
-      padding: 1rem;
-    }
-    
-    .pageTitle {
-      font-size: 2rem;
-    }
-    
-    .carsList {
       grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    }
   }
-  
-  @media (max-width: 480px) {
-    .carsList {
+}
+
+@media (max-width: 480px) {
+  .carsList {
       grid-template-columns: 1fr;
-    }
   }
-  
-  /* Optional animation for cards */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  .carsList > * {
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
-  }
-  
-  /* Create staggered animation */
-  .carsList > *:nth-child(1) { animation-delay: 0.1s; }
-  .carsList > *:nth-child(2) { animation-delay: 0.2s; }
-  .carsList > *:nth-child(3) { animation-delay: 0.3s; }
-  .carsList > *:nth-child(4) { animation-delay: 0.4s; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.carsList > * {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.carsList > *:nth-child(1) { animation-delay: 0.1s; }
+.carsList > *:nth-child(2) { animation-delay: 0.2s; }
+.carsList > *:nth-child(3) { animation-delay: 0.3s; }
+.carsList > *:nth-child(4) { animation-delay: 0.4s; }
+
+/* Loading and error styles */
+.loader {
+  font-size: 1.5rem;
+  color: #3498db;
+  margin-top: 20px;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 20px;
+  font-size: 1.25rem;
+}

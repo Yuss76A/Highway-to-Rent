@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/AllCars.module.css"; // Make sure this path is correct
+import styles from "../styles/AllCars.module.css"; 
 import CarCard from "./cardetails/CarCard";
 
 const AllCars = () => {
   const [carData, setCarData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchCarData() {
@@ -18,12 +20,13 @@ const AllCars = () => {
         if (!response.ok) {
           throw new Error("Failed to fetch car data.");
         }
-
+        
         const data = await response.json();
-        console.log("Fetching successful:", data);
         setCarData(data);
       } catch (error) {
-        console.error("Error during fetch:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     }
     fetchCarData();
@@ -32,6 +35,8 @@ const AllCars = () => {
   return (
     <div className={styles.allCarsContainer}>
       <h1 className={styles.pageTitle}>Our Vehicle Collection</h1>
+      {loading && <p className={styles.loader}>Loading...</p>}
+      {error && <p className={styles.errorMessage}>{error}</p>}
       <div className={styles.carsList}>
         {carData.map((car) => (
           <CarCard key={car.id} car={car} />
