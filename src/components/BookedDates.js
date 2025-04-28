@@ -123,12 +123,15 @@ const OccupiedDatesDisplay = () => {
                       <p>Reservation #: {booking.reservation_number}</p>
                       <p>Start Date: {new Date(booking.start_date).toLocaleDateString()}</p>
                       <p>End Date: {new Date(booking.end_date).toLocaleDateString()}</p>
+                      <span className={`${styles.statusBadge} ${styles.upcomingBadge}`}>
+                        Upcoming
+                      </span>
                       <p className={styles.reminderText}>
                         Please bring the reservation number when picking up the car.
                       </p>
                     </div>
-                    <button
-                      onClick={() => handleCancelClick(booking.id, car?.name)}
+                    <button 
+                      onClick={() => handleCancelClick(booking.id, car?.name)} 
                       className={styles.cancelButton}
                     >
                       Cancel Booking

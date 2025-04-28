@@ -43,6 +43,9 @@
   padding: 2rem;
   color: #666;
   font-size: 1.2rem;
+  background-color: #eafaf1;
+  border-left: 5px solid #2ecc71;
+  border-radius: 5px;
 }
 
 .error {
@@ -50,6 +53,9 @@
   text-align: center;
   padding: 2rem;
   font-size: 1.2rem;
+  background-color: #fce4e4;
+  border-left: 5px solid #c0392b;
+  border-radius: 5px;
 }
 
 .bookingsList {
@@ -95,6 +101,11 @@
   height: auto;
   border-radius: 4px;
   margin-top: 1rem;
+  transition: transform 0.3s;
+}
+
+.bookingCard:hover .carImage {
+  transform: scale(1.05);
 }
 
 .cancelButton {
@@ -113,6 +124,27 @@
 
 .cancelButton:hover {
   background: #c0392b;
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.upcomingBadge {
+  background-color: #3498db;
+}
+
+.completedBadge {
+  background-color: #2ecc71;
+}
+
+.canceledBadge {
+  background-color: #e74c3c;
 }
 
 .reminderText {
