@@ -2,7 +2,17 @@ import React from 'react';
 import styles from "../styles/AboutUs.module.css";
 import backgroundImage from '../assets/kalmar.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrophy, faLeaf, faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
+import { 
+  faTrophy, 
+  faLeaf, 
+  faHandHoldingHeart,
+  faSignInAlt, 
+  faCalendarAlt, 
+  faCar, 
+  faClipboardCheck, 
+  faPhone, 
+  faSmile 
+} from '@fortawesome/free-solid-svg-icons';
 
 const AboutUs = () => {
     return (
@@ -92,29 +102,35 @@ const AboutUs = () => {
 
             {/* Rental Process Section */}
             <div className={styles['rental-process']}>
-                <h2>How It Works</h2>
+            <h2 className={styles['how-it-works-title']}>How It Works</h2>
                 <div className={styles['process-steps']}>
                     <div className={styles['process-step-left']}>
+                        <FontAwesomeIcon icon={faSignInAlt} className={styles['step-icon']} />
                         <h3>1. Sign In</h3>
-                        <p>First, sign in to your account. If you don’t have one, create one!</p>
+                        <p>First, sign in to your account. If you don't have one, create one!</p>
                     </div>
                     <div className={styles['process-step-right']}>
+                        <FontAwesomeIcon icon={faCalendarAlt} className={styles['step-icon']} />
                         <h3>2. Choose Dates</h3>
                         <p>Go to the rent page and choose your start and end date.</p>
                     </div>
                     <div className={styles['process-step-left']}>
+                        <FontAwesomeIcon icon={faCar} className={styles['step-icon']} />
                         <h3>3. Book a Car</h3>
                         <p>Book your favorite car from our available options.</p>
                     </div>
                     <div className={styles['process-step-right']}>
+                        <FontAwesomeIcon icon={faClipboardCheck} className={styles['step-icon']} />
                         <h3>4. View Rentals</h3>
                         <p>You can view your rented car in the 'My Rentals' section.</p>
                     </div>
                     <div className={styles['process-step-left']}>
+                        <FontAwesomeIcon icon={faPhone} className={styles['step-icon']} />
                         <h3>5. Need Help?</h3>
                         <p>If you have a problem after our working hours, no worries! Our telephone is connected to 24-hour assistance.</p>
                     </div>
                     <div className={styles['process-step-right']}>
+                        <FontAwesomeIcon icon={faSmile} className={styles['step-icon']} />
                         <h3>6. Enjoy Your Stay</h3>
                         <p>Enjoy your stay in Sweden!</p>
                     </div>
@@ -122,6 +138,6 @@ const AboutUs = () => {
             </div>
         </>
     );
-};
+}
 
 export default AboutUs;
