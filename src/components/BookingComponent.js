@@ -112,11 +112,37 @@ const BookingComponent = ({ currentUser }) => {
       (selectedDates.startDate &&
         selectedDates.startDate.getTime() === date.getTime()) ||
       (selectedDates.endDate &&
-        selectedDates.endDate.getTime() === date.getTime()) ||
-      (selectedDates.startDate &&
-        selectedDates.endDate &&
-        date >= selectedDates.startDate &&
-        date <= selectedDates.endDate)
+        selectedDates.endDate.getTime() === date.getTime())
+    );
+  };
+
+  const isInSelectionRange = (day, monthOffset) => {
+    const date = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + monthOffset,
+      day
+    );
+
+    return (
+      selectedDates.startDate &&
+      selectedDates.endDate &&
+      date > selectedDates.startDate &&
+      date < selectedDates.endDate
+    );
+  };
+
+  const isToday = (day, monthOffset) => {
+    const today = new Date();
+    const date = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + monthOffset,
+      day
+    );
+    
+    return (
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getFullYear() === today.getFullYear()
     );
   };
 
@@ -164,7 +190,6 @@ const BookingComponent = ({ currentUser }) => {
       <div 
         className={styles.infoToggle} 
         onClick={() => setInfoVisible(!infoVisible)}
-        style={{ cursor: 'pointer', marginBottom: '1rem' }}
       >
         <div className={`${styles.light} ${infoVisible ? styles.on : styles.off}`}>
           {infoVisible ? "Hide Info" : "Show Info"}
@@ -187,11 +212,21 @@ const BookingComponent = ({ currentUser }) => {
         </button>
       </div>
   
+      <div className={styles.weekDays}>
+        {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
+          <div key={day} className={styles.weekDay}>{day}</div>
+        ))}
+      </div>
+  
       <div className={styles.calendarDays}>
         {days.map(({ day, monthOffset }, index) => (
           <div
             key={index}
-            className={`${styles.calendarDay} ${isDateSelected(day, monthOffset) ? styles.selected : ''} ${monthOffset !== 0 ? styles.overflow : ''}`}
+            className={`${styles.calendarDay} 
+              ${isDateSelected(day, monthOffset) ? styles.selected : ''} 
+              ${isInSelectionRange(day, monthOffset) ? styles.inRange : ''}
+              ${monthOffset !== 0 ? styles.overflow : ''}
+              ${isToday(day, monthOffset) ? styles.today : ''}`}
             onClick={() => handleDateClick(day, monthOffset)}
           >
             {day}

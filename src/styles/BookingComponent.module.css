@@ -1,222 +1,196 @@
-/* BookingComponent.module.css */
-
 .bookingContainer {
-    max-width: 500px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
     margin: 0 auto;
-    padding: 25px;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  .infoToggle {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .infoToggle:hover {
+    background: rgba(255, 255, 255, 1);
+    cursor: pointer;
+  }
+  
+  .light {
+    font-weight: 500;
+    color: #4a6bff;
+  }
+  
+  .on {
+    color: #ff6b6b;
+  }
+  
+  .infoText {
     background: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    position: relative;
-    overflow: hidden;
-}
-
-/* Calendar Header */
-.calendarHeader {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .calendarHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.calendarHeader h2 {
-    font-size: 1.4em;
+    margin-bottom: 1rem;
+    background: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .calendarHeader h2 {
     margin: 0;
-    color: #2d3748;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
-
-.calendarHeader button {
-    background: none;
+    color: #333;
+    font-size: 1.2rem;
+  }
+  
+  .dateSwitcher {
+    background: #4a6bff;
+    color: white;
     border: none;
-    padding: 8px 12px;
-    cursor: pointer;
     border-radius: 50%;
-    transition: all 0.2s ease;
-    color: #4a5568;
-    font-size: 1.1em;
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.calendarHeader button:hover {
-    background: #f7fafc;
-    color: #2d3748;
-}
-
-/* Calendar Days Styles */
-.calendarDays {
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .dateSwitcher:hover {
+    background: #3a5bef;
+    transform: scale(1.1);
+  }
+  
+  .weekDays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    margin-top: 5px;
-}
-
-.calendarDay {
-    aspect-ratio: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-    font-weight: 500;
-    color: #2d3748;
-    position: relative;
-    background: transparent;
-    border: none;
-    font-size: 0.95em;
-}
-
-.calendarDay:hover:not(.selected):not(.overflow) {
-    background: #f7fafc;
-}
-
-.calendarDay.selected {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    font-weight: 600;
-    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
-}
-
-.calendarDay.overflow {
-    color: #cbd5e0;
-    pointer-events: none;
-}
-
-/* Info Toggle Styles */
-.infoToggle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: center;
+    color: #555;
+  }
   
-.light {
-    padding: 10px 15px;
-    background-color: #e0e0e0;
-    color: #333;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
+  .weekDay {
+    padding: 5px;
+  }
   
-.light.on {
-    background-color: #4caf50;
-    color: white;
-}
-
-.light.off {
-    background-color: #e0e0e0;
-    color: #333;
-}
-  
-/* Info Text Styling */
-.infoText {
-    margin-top: 10px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Book Cars Button */
-.bookCarsButton {
-    margin-top: 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    padding: 14px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 1em;
-    border-radius: 12px;
-    font-weight: 600;
+  .calendarDays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.1);
-}
-
-.bookCarsButton:hover {
+  }
+  
+  .calendarDay {
+    background: white;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #eee;
+  }
+  
+  .calendarDay:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .selected {
+    background: #4a6bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .inRange {
+    background: #e0e7ff;
+    color: #4a6bff;
+  }
+  
+  .overflow {
+    opacity: 0.5;
+    color: #999;
+  }
+  
+  .today {
+    border: 2px solid #4a6bff;
+    font-weight: bold;
+  }
+  
+  .bookCarsButton {
+    background: #4a6bff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1rem;
+  }
+  
+  .bookCarsButton:hover {
+    background: #3a5bef;
     transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(102, 126, 234, 0.2);
-}
-
-/* Message Styles */
-.errorMessage {
-    color: #e53e3e;
-    background-color: #fff5f5;
-    padding: 12px 16px;
+    box-shadow: 0 5px 15px rgba(74, 107, 255, 0.4);
+  }
+  
+  .errorMessage {
+    color: #ff6b6b;
+    background: white;
+    padding: 1rem;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 1rem;
     text-align: center;
-    font-size: 0.9em;
-    border: 1px solid #fed7d7;
-}
-
-.successMessage {
-    color: #38a169;
-    background-color: #f0fff4;
-    padding: 12px 16px;
+    font-weight: 500;
+  }
+  
+  .successMessage {
+    color: #06d6a0;
+    background: white;
+    padding: 1rem;
     border-radius: 8px;
-    margin-top: 20px;
+    margin-top: 1rem;
     text-align: center;
-    font-size: 0.9em;
-    border: 1px solid #c6f6d5;
-    animation: fadeIn 0.3s ease-in-out;
+    font-weight: 500;
   }
   
   .reservationNumber {
     font-weight: bold;
-    margin-top: 8px;
-    font-size: 1.1em;
-    color: #2d3748;
+    margin-top: 0.5rem;
+    color: #333;
   }
   
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+  .filteredCars {
+    margin-top: 2rem;
+    padding-bottom: 6rem;
   }
-
-/* Filtered Cars Section */
-.filteredCars {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.filteredCars p {
-    color: #718096;
+  
+  .filteredCars p {
     text-align: center;
-    font-size: 0.95em;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 600px) {
-    .bookingContainer {
-        padding: 15px;
-    }
-
-    .infoText {
-        margin-top: 10px;
-        margin-bottom: 15px;
-        padding: 10px;
-    }
-
-    .bookCarsButton {
-        margin-top: 15px;
-        margin-bottom: 60px;
-        padding: 12px;
-        font-size: 0.9em;
-    }
-
-    .filteredCars {
-        margin-top: 20px;
-    }
-}
+    color: #666;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+   }
