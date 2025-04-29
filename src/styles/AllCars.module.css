@@ -1,15 +1,22 @@
+/* ===== BASE STYLES ===== */
 .allCarsContainer {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem 2rem 5rem;
+  padding: 3rem 2rem;
   text-align: center;
-  background-color: #f9f9f9;
+  background: linear-gradient(-45deg, #f5f7fa, #e4e8ec, #f0f4f8, #e8ecf0);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  min-height: 100vh;
 }
 
+/* ===== TITLE STYLES ===== */
 .pageTitle {
   font-size: 2.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   color: #2c3e50;
+  text-shadow: 0 0 10px rgba(52, 152, 219, 0.3);
+  font-weight: 700;
   position: relative;
   display: inline-block;
 }
@@ -17,52 +24,86 @@
 .pageTitle::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
+  width: 100px;
   height: 4px;
-  background: #3498db;
+  background: linear-gradient(90deg, #3498db, #9b59b6);
   border-radius: 2px;
+  animation: underlinePulse 2s infinite;
 }
 
+/* ===== CAR LIST ===== */
 .carsList {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
   gap: 2rem;
   padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .carsList > * {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  border: none;
+  border-radius: 15px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: white;
 }
 
 .carsList > *:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .allCarsContainer {
-      padding: 1rem;
-  }
-  
-  .pageTitle {
-      font-size: 2rem;
-  }
-  
-  .carsList {
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  }
+/* ===== LOADING & ERROR STATES ===== */
+.loader {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  margin: 2rem auto;
 }
 
-@media (max-width: 480px) {
-  .carsList {
-      grid-template-columns: 1fr;
-  }
+.loader:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #3498db;
+  border-color: #3498db transparent #3498db transparent;
+  animation: loaderSpin 1.2s linear infinite;
+}
+
+.errorMessage {
+  color: #e74c3c;
+  margin-top: 20px;
+  font-size: 1.25rem;
+  background: rgba(231, 76, 60, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes underlinePulse {
+  0% { width: 100px; opacity: 1; }
+  50% { width: 150px; opacity: 0.7; }
+  100% { width: 100px; opacity: 1; }
+}
+
+@keyframes loaderSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @keyframes fadeIn {
@@ -79,16 +120,29 @@
 .carsList > *:nth-child(2) { animation-delay: 0.2s; }
 .carsList > *:nth-child(3) { animation-delay: 0.3s; }
 .carsList > *:nth-child(4) { animation-delay: 0.4s; }
+.carsList > *:nth-child(5) { animation-delay: 0.5s; }
+.carsList > *:nth-child(6) { animation-delay: 0.6s; }
+.carsList > *:nth-child(7) { animation-delay: 0.7s; }
+.carsList > *:nth-child(8) { animation-delay: 0.8s; }
+.carsList > *:nth-child(9) { animation-delay: 0.9s; }
 
-/* Loading and error styles */
-.loader {
-  font-size: 1.5rem;
-  color: #3498db;
-  margin-top: 20px;
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 1024px) {
+  .carsList {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
 }
 
-.errorMessage {
-  color: red;
-  margin-top: 20px;
-  font-size: 1.25rem;
+@media (max-width: 768px) {
+  .allCarsContainer {
+    padding: 2rem 1rem;
+  }
+  
+  .pageTitle {
+    font-size: 2rem;
+  }
+  
+  .carsList {
+    grid-template-columns: 1fr; /* 1 column on mobile */
+  }
 }

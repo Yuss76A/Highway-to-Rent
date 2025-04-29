@@ -12,15 +12,10 @@ const AllCars = () => {
       try {
         const response = await fetch(
           "https://carbookingbackend-df57468af270.herokuapp.com/carbooking/cars/",
-          {
-            method: "GET",
-          }
+          { method: "GET" }
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch car data.");
-        }
-        
+        if (!response.ok) throw new Error("Failed to fetch car data.");
         const data = await response.json();
         setCarData(data);
       } catch (error) {
@@ -35,13 +30,22 @@ const AllCars = () => {
   return (
     <div className={styles.allCarsContainer}>
       <h1 className={styles.pageTitle}>Our Vehicle Collection</h1>
-      {loading && <p className={styles.loader}>Loading...</p>}
-      {error && <p className={styles.errorMessage}>{error}</p>}
-      <div className={styles.carsList}>
-        {carData.map((car) => (
-          <CarCard key={car.id} car={car} />
-        ))}
-      </div>
+      
+      {loading ? (
+        <div className={styles.loader}></div>
+      ) : error ? (
+        <p className={styles.errorMessage}>{error}</p>
+      ) : (
+        <div className={styles.carsList}>
+          {carData.map((car, index) => (
+            <CarCard 
+              key={car.id} 
+              car={car} 
+              style={{ animationDelay: `${index * 0.1}s` }}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
