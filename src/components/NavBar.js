@@ -41,12 +41,13 @@ const NavBar = () => {
             {user ? (
               <>
                 <Link className={`nav-link ${styles.navLink}`} to="/my-rentals">My Rentals</Link>
-                <button 
+                <Link 
                   className={`nav-link ${styles.navLink}`} 
+                  to="#"
                   onClick={handleLogout}
                 >
                   Logout
-                </button>
+                </Link>
               </>
             ) : (
               <>
