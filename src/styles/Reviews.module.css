@@ -456,19 +456,19 @@
   }
 
   .pagination {
-    position: relative; /* Changed from fixed/sticky */
-    margin: 2rem auto 3rem; /* Pulls up the buttons */
+    position: relative;
+    margin: 2rem auto 3rem;
     padding: 1rem;
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 90%; /* Slightly narrower for better mobile fit */
+    width: 90%;
     max-width: 400px; /* Prevents becoming too wide */
   }
 
   .pageBtn {
-    width: 45%; /* Better button proportions */
-    margin: 0 auto; /* Center buttons */
+    width: 45%;
+    margin: 0 auto;
     padding: 0.8rem;
   }
 
@@ -486,5 +486,5 @@
 
 /* Footer clearance */
 .reviewsList {
-  padding-bottom: 40px; /* Increased space */
+  padding-bottom: 80px; /* Increased space */
 }
