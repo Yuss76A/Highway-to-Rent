@@ -15,6 +15,7 @@ const BookingComponent = ({ currentUser }) => {
   const [success, setSuccess] = useState("");
   const [reservationNumber, setReservationNumber] = useState("");
   const [infoVisible, setInfoVisible] = useState(false);
+  const [howToBookVisible, setHowToBookVisible] = useState(false);
   const [carData, setCarData] = useState([]);
 
   useEffect(() => {
@@ -187,21 +188,44 @@ const BookingComponent = ({ currentUser }) => {
 
   return (
     <div className={styles.bookingContainer}>
-      <div 
-        className={styles.infoToggle} 
-        onClick={() => setInfoVisible(!infoVisible)}
-      >
-        <div className={`${styles.light} ${infoVisible ? styles.on : styles.off}`}>
-          {infoVisible ? "Hide Info" : "Show Info"}
+      <div className={styles.infoButtonsContainer}>
+        <div 
+          className={styles.infoToggle} 
+          onClick={() => setInfoVisible(!infoVisible)}
+        >
+          <div className={`${styles.light} ${infoVisible ? styles.on : styles.off}`}>
+            {infoVisible ? "Hide Info" : "Show Info"}
+          </div>
+        </div>
+
+        <div 
+          className={styles.infoToggle} 
+          onClick={() => setHowToBookVisible(!howToBookVisible)}
+        >
+          <div className={`${styles.light} ${howToBookVisible ? styles.on : styles.off}`}>
+            {howToBookVisible ? "Hide Guide" : "How to Book"}
+          </div>
         </div>
       </div>
-  
+
       {infoVisible && (
         <div className={styles.infoText}>
           <p>Be aware, we don't ask for money in advance for the reservation of the car. The only thing you need to provide when you come is your username and the dates of reservation (start and end). If you want to cancel your booking, you need to contact our offices or send us an email 24 hours before. If you want to cancel your booking via phone, please contact us 1 hour before, via email 24 hours beforehand. If we see that the client doesn't arrive, we will wait 15 minutes, and then the client will be charged an additional fee.</p>
         </div>
       )}
-  
+
+      {howToBookVisible && (
+        <div className={styles.infoText}>
+          <p>
+            1. Select your dates<br />
+            2. Click "Book Cars"<br />
+            3. Choose from available cars<br />
+            4. Get booking code<br />
+            Booked cars appear in "My Rentals"
+          </p>
+        </div>
+      )}
+
       <div className={styles.calendarHeader}>
         <button className={styles.dateSwitcher} onClick={() => handleMonthChange(-1)}>
           <FaArrowLeft />
@@ -211,13 +235,13 @@ const BookingComponent = ({ currentUser }) => {
           <FaArrowRight />
         </button>
       </div>
-  
+
       <div className={styles.weekDays}>
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
           <div key={day} className={styles.weekDay}>{day}</div>
         ))}
       </div>
-  
+
       <div className={styles.calendarDays}>
         {days.map(({ day, monthOffset }, index) => (
           <div
@@ -233,11 +257,11 @@ const BookingComponent = ({ currentUser }) => {
           </div>
         ))}
       </div>
-  
+
       <button className={styles.bookCarsButton} onClick={handleFilterCars}>
         Book Cars
       </button>
-  
+
       {error && <div className={styles.errorMessage}>{error}</div>}
       {success && (
         <div className={styles.successMessage}>
@@ -249,7 +273,7 @@ const BookingComponent = ({ currentUser }) => {
           )}
         </div>
       )}
-  
+
       <div className={styles.filteredCars}>
         {filteredCars.length > 0 ? (
           filteredCars.map((car) => (

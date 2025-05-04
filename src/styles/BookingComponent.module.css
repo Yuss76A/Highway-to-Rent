@@ -6,6 +6,13 @@
     max-width: 800px;
     margin: 0 auto;
   }
+
+  .infoButtonsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
   
   .infoToggle {
     background: rgba(255, 255, 255, 0.8);
