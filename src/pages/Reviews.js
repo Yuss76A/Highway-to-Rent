@@ -5,7 +5,7 @@ import { UserContext } from '../contexts/UserContext';
 import styles from '../styles/Reviews.module.css';
 import ConfirmationModal from './ConfirmationModal';
 
-// API helper to handle requests with consistent error handling
+// API helper
 const api = {
   getReviews: async (token, page) => {
     const config = token ? { headers: { Authorization: `Token ${token}` } } : {};
@@ -32,25 +32,22 @@ export default function ReviewsPage() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // State for reviews and pagination
+  // State management
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const reviewsPerPage = 8;
-
-  // State for form and UI
   const [formData, setFormData] = useState({ id: null, rating: 5, comment: '' });
   const [editMode, setEditMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState('');
-
-  // State for delete modal
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [reviewToDelete, setReviewToDelete] = useState(null);
   const [deleting, setDeleting] = useState(false);
 
-  // Fetch reviews with pagination
+  // Fetch reviews
   const fetchReviews = useCallback(async () => {
     setLoading(true);
     try {
@@ -65,127 +62,129 @@ export default function ReviewsPage() {
     }
   }, [currentPage, user?.token]);
 
-  useEffect(() => {
-    fetchReviews();
-  }, [fetchReviews]);
+  useEffect(() => { fetchReviews(); }, [fetchReviews]);
 
-  // Handle pagination
+  // Pagination function
   const paginate = (pageNumber) => {
     const newPage = Math.max(1, Math.min(pageNumber, totalPages));
     setCurrentPage(newPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handle form input changes
+  // Form handling
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: name === 'rating' ? parseInt(value) : value });
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'rating' ? (value === '' ? '' : Math.max(1, Math.min(5, parseInt(value) || ''))) : value
+    }));
   };
 
-  // Handle form submission (create or update)
+  const handleBlur = (e) => {
+    if (e.target.name === 'rating' && formData.rating === '') {
+      setFormData(prev => ({ ...prev, rating: 5 }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-      setError('Please sign in to submit a review');
-      navigate('/signin', {
-        state: { from: '/reviews', message: 'Please sign in to submit a review' },
-      });
+      navigate('/signin', { state: { from: '/reviews', message: 'Please sign in to submit a review' } });
       return;
     }
 
     try {
+      setIsSubmitting(true);
+      setError(null);
+      setSuccess('');
+
+      const submissionData = {
+        ...formData,
+        rating: Number(formData.rating)
+      };
+
       if (editMode) {
-        await api.updateReview(user.token, formData.id, formData);
+        await api.updateReview(user.token, formData.id, submissionData);
         setSuccess('Review updated successfully!');
       } else {
-        await api.createReview(user.token, formData);
+        await api.createReview(user.token, submissionData);
         setSuccess('Review submitted successfully!');
       }
+      
       resetForm();
-      setCurrentPage(1); // Go back to first page to show new/updated review
       fetchReviews();
     } catch (err) {
-      setError(err.response?.data?.detail || 'Operation failed');
+      if (err.response?.data) {
+        const backendErrors = err.response.data;
+        
+        // Handle Django REST framework validation errors
+        if (backendErrors.rating) {
+          const ratingError = Array.isArray(backendErrors.rating) 
+            ? backendErrors.rating[0] 
+            : backendErrors.rating;
+          setError(`Rating: ${ratingError}`);
+        } 
+        else if (backendErrors.comment) {
+          const commentError = Array.isArray(backendErrors.comment) 
+            ? backendErrors.comment[0] 
+            : backendErrors.comment;
+          setError(`Comment: ${commentError}`);
+        } 
+        else if (backendErrors.detail) {
+          setError(backendErrors.detail);
+        }
+        else {
+          setError('Please check your input and try again');
+        }
+      } else {
+        setError(err.message || 'An unexpected error occurred');
+      }
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  // Handle edit button click
+  // Review actions
   const handleEdit = (review) => {
-    if (!user) {
-      setError('Please sign in to edit reviews');
-      navigate('/signin');
-      return;
-    }
-    if (!review?.id) {
-      setError('Invalid review selected');
-      return;
-    }
+    if (!user) return navigate('/signin');
     setFormData({ id: review.id, rating: review.rating, comment: review.comment });
     setEditMode(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handle delete button click
   const handleDeleteClick = (id) => {
-    if (!user) {
-      setError('Please sign in to delete reviews');
-      navigate('/signin');
-      return;
-    }
-    if (!id) {
-      setError('Invalid review selected');
-      return;
-    }
+    if (!user) return navigate('/signin');
     setReviewToDelete(id);
     setShowDeleteModal(true);
   };
 
-  // Confirm delete action
   const handleConfirmDelete = async () => {
     setDeleting(true);
     try {
-      const response = await api.deleteReview(user.token, reviewToDelete);
-      if (response.status === 204) {
-        setSuccess('Review deleted successfully!');
-        fetchReviews();
-      }
+      await api.deleteReview(user.token, reviewToDelete);
+      setSuccess('Review deleted successfully!');
+      fetchReviews();
     } catch (err) {
-      if (err.response?.status === 404) {
-        setError('Review not found - it may have been already deleted');
-        fetchReviews();
-      } else {
-        setError(err.response?.data?.detail || 'Failed to delete review');
-      }
+      setError(err.response?.data?.detail || 'Failed to delete review');
     } finally {
       setDeleting(false);
       setShowDeleteModal(false);
-      setReviewToDelete(null);
     }
   };
 
-  // Cancel delete action
-  const handleCancelDelete = () => {
-    setShowDeleteModal(false);
-    setReviewToDelete(null);
-  };
-
-  // Reset form to default state
+  // Helpers
   const resetForm = () => {
     setFormData({ id: null, rating: 5, comment: '' });
     setEditMode(false);
     setError(null);
   };
 
-  // Check if user owns the review
-  const isReviewOwner = (reviewUserId) => user && user.user && reviewUserId === user.user.id;
+  const isReviewOwner = (reviewUserId) => user?.user?.id === reviewUserId;
 
-  // Star rating component
   const StarRating = ({ rating }) => (
     <div className={styles.starRating}>
       {[1, 2, 3, 4, 5].map((star) => (
-        <span key={star} className={star <= rating ? styles.filledStar : styles.emptyStar}>
-          ★
-        </span>
+        <span key={star} className={star <= rating ? styles.filledStar : styles.emptyStar}>★</span>
       ))}
     </div>
   );
@@ -196,11 +195,11 @@ export default function ReviewsPage() {
     <div className={styles.reviewsContainer}>
       <h1>Customer Reviews</h1>
 
-      {/* Success and error alerts */}
+      {/* Alerts */}
       {success && <div className={`${styles.alert} ${styles.success}`}>{success}</div>}
       {error && <div className={`${styles.alert} ${styles.error}`}>{error}</div>}
 
-      {/* Review form for logged-in users */}
+      {/* Review Form */}
       {user ? (
         <div className={styles.formSection}>
           <h2>{editMode ? 'Edit Your Review' : 'Write a Review'}</h2>
@@ -213,12 +212,18 @@ export default function ReviewsPage() {
                   name="rating"
                   min="1"
                   max="5"
-                  value={formData.rating}
+                  value={formData.rating || ''}
                   onChange={handleChange}
+                  onBlur={handleBlur}
                   required
                 />
-                <StarRating rating={formData.rating} />
+                <StarRating rating={Number(formData.rating) || 0} />
               </div>
+              {error?.startsWith('Rating:') && (
+                <span className={styles.fieldError}>
+                  {error.replace('Rating:', '').trim()}
+                </span>
+              )}
             </div>
             <div className={styles.formGroup}>
               <label>Your Feedback:</label>
@@ -226,20 +231,26 @@ export default function ReviewsPage() {
                 name="comment"
                 value={formData.comment}
                 onChange={handleChange}
-                placeholder="Share your experience with our rental service..."
+                placeholder="Share your experience..."
                 required
+                minLength={1}
               />
+              {error?.startsWith('Comment:') && (
+                <span className={styles.fieldError}>
+                  {error.replace('Comment:', '').trim()}
+                </span>
+              )}
             </div>
             <div className={styles.formActions}>
-              <button type="submit" className={`${styles.btn} ${styles.primary}`}>
-                {editMode ? 'Update Review' : 'Submit Review'}
+              <button 
+                type="submit" 
+                className={`${styles.btn} ${styles.primary}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Submitting...' : editMode ? 'Update' : 'Submit'}
               </button>
               {editMode && (
-                <button
-                  type="button"
-                  className={`${styles.btn} ${styles.secondary}`}
-                  onClick={resetForm}
-                >
+                <button type="button" className={`${styles.btn} ${styles.secondary}`} onClick={resetForm}>
                   Cancel
                 </button>
               )}
@@ -248,8 +259,7 @@ export default function ReviewsPage() {
         </div>
       ) : (
         <div className={styles.signInPrompt}>
-          <p>
-            Want to share your experience?{' '}
+          <p>Want to share your experience?{' '}
             <button onClick={() => navigate('/signin')} className={styles.signInLink}>
               Sign in to leave a review
             </button>
@@ -257,7 +267,7 @@ export default function ReviewsPage() {
         </div>
       )}
 
-      {/* Reviews list for everyone */}
+      {/* Reviews List */}
       <div className={styles.listSection}>
         <h2>Customer Feedback</h2>
         {reviews.length === 0 ? (
@@ -266,7 +276,7 @@ export default function ReviewsPage() {
           <>
             <div className={styles.reviewsList}>
               {reviews.map((review) => (
-                <div key={`review-${review.id}`} className={styles.reviewCard}>
+                <div key={review.id} className={styles.reviewCard}>
                   <div className={styles.reviewHeader}>
                     <div className={styles.ratingContainer}>
                       <span className={styles.ratingNumber}>{review.rating}/5</span>
@@ -281,16 +291,10 @@ export default function ReviewsPage() {
                     </small>
                     {isReviewOwner(review.user) && (
                       <div className={styles.actions}>
-                        <button
-                          className={`${styles.btn} ${styles.edit}`}
-                          onClick={() => handleEdit(review)}
-                        >
+                        <button className={`${styles.btn} ${styles.edit}`} onClick={() => handleEdit(review)}>
                           Edit
                         </button>
-                        <button
-                          className={`${styles.btn} ${styles.delete}`}
-                          onClick={() => handleDeleteClick(review.id)}
-                        >
+                        <button className={`${styles.btn} ${styles.delete}`} onClick={() => handleDeleteClick(review.id)}>
                           Delete
                         </button>
                       </div>
@@ -300,7 +304,6 @@ export default function ReviewsPage() {
               ))}
             </div>
 
-            {/* Pagination controls */}
             {totalPages > 1 && (
               <div className={styles.pagination}>
                 <button
@@ -311,7 +314,7 @@ export default function ReviewsPage() {
                   « Previous
                 </button>
                 <span className={styles.pageInfo}>
-                  Page {currentPage} of {totalPages} | Showing {reviews.length} reviews
+                  Page {currentPage} of {totalPages}
                 </span>
                 <button
                   onClick={() => paginate(currentPage + 1)}
@@ -326,10 +329,10 @@ export default function ReviewsPage() {
         )}
       </div>
 
-      {/* Delete confirmation modal */}
+      {/* Delete Modal */}
       <ConfirmationModal
         isOpen={showDeleteModal}
-        onClose={handleCancelDelete}
+        onClose={() => setShowDeleteModal(false)}
         onConfirm={handleConfirmDelete}
         message="Are you sure you want to delete this review?"
         confirmText={deleting ? 'Deleting...' : 'Yes'}
