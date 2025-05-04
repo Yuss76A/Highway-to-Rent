@@ -12,12 +12,20 @@ function SignUpForm() {
     name: "",
     email: "",
     password: "",
+    confirmPassword: "" // Only keep this new field
   });
 
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Only keep password match check
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
     try {
       const response = await axios.post(
         "https://carbookingbackend-df57468af270.herokuapp.com/carbooking/register/",
@@ -66,6 +74,14 @@ function SignUpForm() {
           name="password"
           placeholder="Password"
           value={formData.password}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          value={formData.confirmPassword}
           onChange={handleChange}
           required
         />

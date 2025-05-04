@@ -126,3 +126,10 @@
 .authForm p a:hover {
   text-decoration: underline;
 }
+
+/* Error Message Styles */
+.error {
+  color: #ff4d4d;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
