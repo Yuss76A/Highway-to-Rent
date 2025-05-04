@@ -12,7 +12,7 @@ function SignUpForm() {
     name: "",
     email: "",
     password: "",
-    confirmPassword: "" // Only keep this new field
+    confirmPassword: ""
   });
 
   const [error, setError] = useState("");
@@ -20,7 +20,6 @@ function SignUpForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Only keep password match check
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
       return;
