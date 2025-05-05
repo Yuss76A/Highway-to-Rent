@@ -1,152 +1,187 @@
-/* Modern Contact Form Styles */
+/* Modern Contact Form Styles with Enhanced Error Handling */
 .contactContainer {
-    max-width: 800px;
-    margin: 2.8rem auto;
-    padding: 0 1rem 6rem;
-  }
-  
+  max-width: 800px;
+  margin: 2.8rem auto;
+  padding: 0 1rem 6rem;
+}
+
+.contactCard {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contactCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  position: relative;
+}
+
+.title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(to right, #3498db, #2ecc71);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.description {
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  position: relative;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #ecf0f1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background-color: #f9f9f9;
+}
+
+.input:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  background-color: white;
+}
+
+/* Error State Styles */
+.input.errorInput {
+  border-color: #ff3860;
+  background-color: #fff5f7;
+}
+
+.input.errorInput:focus {
+  box-shadow: 0 0 0 3px rgba(255, 56, 96, 0.2);
+}
+
+.errorText {
+  color: #ff3860;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.submitBtn {
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  color: white;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.submitBtn:disabled {
+  opacity: 0.7;
+  transform: none !important;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s ease-in-out infinite;
+}
+
+/* Status Messages */
+.statusMessage {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+  color: #27ae60;
+}
+
+.statusMessage.success {
+  background-color: rgba(46, 204, 113, 0.1);
+  border-left: 4px solid #2ecc71;
+}
+
+.statusMessage.error {
+  background-color: rgba(255, 56, 96, 0.1);
+  color: #ff3860;
+  border-left: 4px solid #ff3860;
+}
+
+/* Animations */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .contactCard {
-    background: white;
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .contactCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
   }
   
   .title {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    position: relative;
+      font-size: 1.5rem;
   }
   
-  .title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(to right, #3498db, #2ecc71);
-    margin: 0.5rem auto 0;
-    border-radius: 2px;
-  }
-  
-  .description {
-    text-align: center;
-    color: #7f8c8d;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-  
-  .contactForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .formGroup {
-    position: relative;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #2c3e50;
-    font-weight: 500;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 1rem;
-    border: 2px solid #ecf0f1;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background-color: #f9f9f9;
-  }
-  
-  .input:focus {
-    border-color: #3498db;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-    background-color: white;
-  }
-  
-  .textarea {
-    min-height: 150px;
-    resize: vertical;
+  .input, .textarea {
+      padding: 0.8rem;
   }
   
   .submitBtn {
-    background: linear-gradient(135deg, #3498db, #2ecc71);
-    color: white;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+      padding: 0.8rem;
   }
-  
-  .submitBtn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
-  }
-  
-  .submitBtn:disabled {
-    opacity: 0.7;
-    transform: none !important;
-  }
-  
-  .spinner {
-    width: 20px;
-    height: 20px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 1s ease-in-out infinite;
-  }
-  
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  .statusMessage {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
-  .statusMessage.success {
-    background-color: rgba(46, 204, 113, 0.1);
-    color: #27ae60;
-    border-left: 4px solid #2ecc71;
-  }
-  
-  .statusMessage.error {
-    background-color: rgba(231, 76, 60, 0.1);
-    color: #e74c3c;
-    border-left: 4px solid #e74c3c;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .contactCard {
-      padding: 1.5rem;
-    }
-    
-    .title {
-      font-size: 1.5rem;
-    }
-  }
+}
