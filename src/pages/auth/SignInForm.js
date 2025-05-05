@@ -27,21 +27,20 @@ function SignInForm() {
         "https://carbookingbackend-df57468af270.herokuapp.com/carbooking/login/",
         {
           email: formData.email,
-          password: formData.password,
-          username: formData.email,
+          password: formData.password
+          // No username field needed
         }
       );
 
-      // Save user data
+      // Save user data and token
       localStorage.setItem("user", JSON.stringify(response.data));
       setUser(response.data);
 
-      // Check if this was a booking-related login
+      // Handle booking redirect if needed
       if (location.state?.bookingIntent) {
         const pendingBooking = JSON.parse(sessionStorage.getItem('pendingBooking'));
         sessionStorage.removeItem('pendingBooking');
         
-        // Redirect back to booking with preserved dates
         navigate(`/booking?carId=${pendingBooking.carId}`, {
           state: { 
             preselectedDates: {
@@ -51,11 +50,13 @@ function SignInForm() {
           }
         });
       } else {
-        // Normal login redirect
         navigate(location.state?.from || "/");
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Login failed. Please try again.");
+      // Improved error handling
+      const errorMessage = err.response?.data?.detail || 
+                         "Login failed. Please check your credentials.";
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
