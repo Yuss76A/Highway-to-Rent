@@ -10,6 +10,7 @@ const OccupiedDatesDisplay = () => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [bookingToCancel, setBookingToCancel] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
   const { user } = useContext(UserContext);
   const baseURL = 'https://carbookingbackend-df57468af270.herokuapp.com';
 
@@ -77,7 +78,11 @@ const OccupiedDatesDisplay = () => {
 
       if (!response.ok) throw new Error('Cancellation failed');
       setBookings(prev => prev.filter(booking => booking.id !== bookingToCancel.id));
+      setSuccessMessage(`Booking #${bookingToCancel.id} for ${bookingToCancel.name} was successfully canceled.`);
       setShowModal(false);
+      setTimeout(() => {
+        setSuccessMessage(null);
+      }, 5000);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -100,6 +105,11 @@ const OccupiedDatesDisplay = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Your Bookings</h1>
+      {successMessage && (
+        <div className={styles.successAlert}>
+          {successMessage}
+        </div>
+      )}
       {Object.keys(groupedBookings).length === 0 ? (
         <div className={styles.message}>You have no active bookings</div>
       ) : (
