@@ -70,7 +70,7 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess, currentUser }) => {
             errorData.non_field_errors.some(msg => msg.includes("already booked"))) {
           setError("This car is already booked for the selected dates.");
         } 
-        // Fallback to other error messages
+        
         else if (errorData.detail) {
           setError(errorData.detail);
         } else {

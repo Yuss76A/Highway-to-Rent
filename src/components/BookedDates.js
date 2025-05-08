@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "../styles/BookedDates.module.css";
 import { UserContext } from "../contexts/UserContext";
 import ConfirmationModal from '../pages/ConfirmationModal';
+import EditBookingModal from './EditBookingModal'; 
 
 const OccupiedDatesDisplay = () => {
   const [bookings, setBookings] = useState([]);
@@ -13,6 +14,13 @@ const OccupiedDatesDisplay = () => {
   const [successMessage, setSuccessMessage] = useState(null);
   const { user } = useContext(UserContext);
   const baseURL = 'https://carbookingbackend-df57468af270.herokuapp.com';
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+
+  const handleEditClick = (booking) => {
+    setSelectedBooking(booking);
+    setShowEditModal(true);
+  };
 
   useEffect(() => {
     if (!user) {
@@ -102,6 +110,38 @@ const OccupiedDatesDisplay = () => {
     return acc;
   }, {});
 
+  const handleUpdateBooking = async (bookingId, startDate, endDate) => {
+    try {
+      const response = await fetch(`${baseURL}/carbooking/booked-dates/${bookingId}/`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${user.token}`,
+        },
+        body: JSON.stringify({ start_date: startDate, end_date: endDate }),
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert("Failed to update booking: " + (errorData.detail || "Unknown error"));
+        return;
+      }
+      const updatedBooking = await response.json();
+      setBookings(prev =>
+        prev.map(b => (b.id === bookingId ? updatedBooking : b))
+      );
+
+      setSuccessMessage("Reservation updated successfully.");
+      
+      setTimeout(() => {
+        setSuccessMessage(null);
+      },3000);
+
+      setShowEditModal(false);
+    } catch (err) {
+      alert("Error updating booking: " + err.message);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Your Bookings</h1>
@@ -146,6 +186,12 @@ const OccupiedDatesDisplay = () => {
                     >
                       Cancel Booking
                     </button>
+                    <button
+                    onClick={() => handleEditClick(booking)}
+                    className={styles.editButton}
+                    >
+                      Edit
+                    </button>
                   </div>
                 );
               })}
@@ -153,6 +199,13 @@ const OccupiedDatesDisplay = () => {
           </div>
         ))
       )}
+      {showEditModal && selectedBooking && (
+      <EditBookingModal
+        booking={selectedBooking}
+        onClose={() => setShowEditModal(false)}
+        onSave={handleUpdateBooking}
+      />
+    )}
       <ConfirmationModal
         isOpen={showModal}
         onClose={() => setShowModal(false)}
@@ -160,7 +213,7 @@ const OccupiedDatesDisplay = () => {
         title="Confirm Cancellation"
         message={`Are you sure you want to cancel booking #${bookingToCancel?.id} for ${bookingToCancel?.name || 'this car'}?`}
       />
-    </div>
+ </div>
   );
 };
 
