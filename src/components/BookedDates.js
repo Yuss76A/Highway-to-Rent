@@ -112,6 +112,8 @@ const OccupiedDatesDisplay = () => {
 
   const handleUpdateBooking = async (bookingId, startDate, endDate) => {
     try {
+      setError(null);
+      
       const response = await fetch(`${baseURL}/carbooking/booked-dates/${bookingId}/`, {
         method: 'PATCH',
         headers: {
@@ -120,31 +122,41 @@ const OccupiedDatesDisplay = () => {
         },
         body: JSON.stringify({ start_date: startDate, end_date: endDate }),
       });
+  
       if (!response.ok) {
         const errorData = await response.json();
-        alert("Failed to update booking: " + (errorData.detail || "Unknown error"));
+        const errorMessage = errorData.non_field_errors?.[0] || errorData.detail || "These dates are already booked";
+        
+        setError(errorMessage);
+        
+        // Auto-close modal after 3 seconds if it's a booking conflict error
+        if (errorMessage.includes("already booked")) {
+          setTimeout(() => {
+            setShowEditModal(false);
+            setError(null); // Clear the error when closing
+          }, 3000);
+        }
         return;
       }
+  
       const updatedBooking = await response.json();
-      setBookings(prev =>
-        prev.map(b => (b.id === bookingId ? updatedBooking : b))
-      );
-
-      setSuccessMessage("Reservation updated successfully.");
-      
-      setTimeout(() => {
-        setSuccessMessage(null);
-      },3000);
-
+      setBookings(prev => prev.map(b => b.id === bookingId ? updatedBooking : b));
+      setSuccessMessage("Booking updated successfully!");
+      setTimeout(() => setSuccessMessage(null), 3000);
       setShowEditModal(false);
     } catch (err) {
-      alert("Error updating booking: " + err.message);
+      setError("Network error. Please try again.");
     }
   };
 
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>Your Bookings</h1>
+      {error && (
+        <div className={styles.errorAlert}>
+        {error}
+        </div>
+      )}
       {successMessage && (
         <div className={styles.successAlert}>
           {successMessage}

@@ -44,6 +44,16 @@
     cursor: pointer;
     flex: 1;
   }
+
+  .errorMessage {
+    color: #d32f2f;
+    background-color: #fde8e8;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border-left: 3px solid #d32f2f;
+    font-size: 14px;
+  }
   
   .saveButton {
     padding: 8px 16px;
