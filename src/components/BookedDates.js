@@ -133,7 +133,7 @@ const OccupiedDatesDisplay = () => {
         if (errorMessage.includes("already booked")) {
           setTimeout(() => {
             setShowEditModal(false);
-            setError(null); // Clear the error when closing
+            setError(null);
           }, 3000);
         }
         return;

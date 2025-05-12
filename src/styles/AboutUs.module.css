@@ -73,15 +73,15 @@
 
 /* Add styles for achievement icons */
 .achievement-icon {
-    margin-right: 10px; /* Space between icon and title */
-    font-size: 28px; /* Adjust icon size as needed */
-    color: #007BFF; /* Customize the icon color */
+    margin-right: 10px;
+    font-size: 28px;
+    color: #007BFF;
 }
 
 .rental-process {
     margin: 2rem 0;
     text-align: center;
-    padding-bottom: 6rem; /* Ensure spacing between the rental process and footer */
+    padding-bottom: 6rem;
 }
 
 .process-steps {
@@ -92,7 +92,7 @@
 
 .process-step-left, .process-step-right {
     width: 45%;
-    margin: 0.1rem; /* Reduced margin to bring steps closer together */
+    margin: 0.1rem;
     padding: 0.5rem; 
     border-radius: 5px;
 }
@@ -199,6 +199,6 @@ h3 {
     }
 
     .process-step-left, .process-step-right {
-        width: 90%; /* Make steps take full width on smaller screens */
+        width: 90%;
     }
 }

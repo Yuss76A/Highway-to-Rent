@@ -24,7 +24,7 @@ const ContactForm = () => {
             ...prev,
             [name]: value
         }));
-        // Clear field error when typing
+
         if (fieldErrors[name]) {
             setFieldErrors(prev => ({ ...prev, [name]: '' }));
         }
@@ -34,7 +34,7 @@ const ContactForm = () => {
         const errors = {};
         let isValid = true;
 
-        // Name validation (matches model's MinLengthValidator(2))
+
         if (!formData.name.trim()) {
             errors.name = 'Name is required';
             isValid = false;
@@ -43,7 +43,7 @@ const ContactForm = () => {
             isValid = false;
         }
 
-        // Email validation
+        
         if (!formData.email.trim()) {
             errors.email = 'Email is required';
             isValid = false;
@@ -52,7 +52,7 @@ const ContactForm = () => {
             isValid = false;
         }
 
-        // Message validation (matches serializer's validate_message)
+        
         if (!formData.message.trim()) {
             errors.message = 'Message cannot be empty';
             isValid = false;
@@ -67,7 +67,7 @@ const ContactForm = () => {
         setIsLoading(true);
         setStatusMessage({ text: '', type: '' });
 
-        // Client-side validation first
+        
         if (!validateForm()) {
             setIsLoading(false);
             return;
@@ -81,7 +81,7 @@ const ContactForm = () => {
                 type: 'success'
             });
             
-            // Reset form
+            
             setFormData({
                 name: '',
                 email: '',
@@ -93,9 +93,7 @@ const ContactForm = () => {
             const newFieldErrors = { name: '', email: '', message: '' };
             
             if (error.response) {
-                // Handle Django/DRF validation errors
                 if (error.response.data) {
-                    // Handle field errors (from serializer)
                     if (typeof error.response.data === 'object' && !Array.isArray(error.response.data)) {
                         Object.keys(error.response.data).forEach(field => {
                             if (field in newFieldErrors) {
@@ -107,7 +105,6 @@ const ContactForm = () => {
                         setFieldErrors(newFieldErrors);
                         errorMsg = 'Please correct the highlighted fields';
                     } 
-                    // Handle general errors
                     else if (typeof error.response.data === 'string') {
                         errorMsg = error.response.data;
                     } else if (error.response.data.detail) {

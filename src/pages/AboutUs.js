@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "../styles/AboutUs.module.css";
-import backgroundImage from '../assets/kalmar.png';
+import backgroundImage from '../assets/car.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faTrophy, 
