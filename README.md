@@ -131,3 +131,61 @@ The icons used for the site were sourced from [Font Awesome](https://fontawesome
 ## Structure
 
 The website’s architecture is divided into frontend and backend components. The frontend will be developed using [React](https://react.dev/), complemented by custom [CSS](https://en.wikipedia.org/wiki/CSS) for styling, and [React Bootstrap](https://react-bootstrap.netlify.app/) to ensure a cohesive and modern design. The backend will be implemented with [Django Rest Framework](https://www.django-rest-framework.org/), responsible for managing all data and efficiently passing it to the frontend as required. This setup aims to provide a reliable, scalable, and user-friendly system.
+
+### Database Models
+
+#### Car Model
+
+| Object             | Field                |
+|--------------------|----------------------|
+| name               | CharField            |
+| type               | CharField (choices)  |
+| price_per_day      | IntegerField         |
+| currency           | CharField            |
+| max_capacity       | IntegerField         |
+| description        | TextField            |
+
+#### CarImage Model
+
+| Object     | Field             |
+|------------|-------------------|
+| image      | CloudinaryField   |
+| caption    | CharField         |
+| car        | ForeignKey        |
+
+#### BookedDate Model
+
+| Object            | Field                   |
+|-------------------|-------------------------|
+| car               | ForeignKey              |
+| user              | ForeignKey              |
+| start_date        | DateField               |
+| end_date          | DateField               |
+| reservation_number| CharField               |
+
+#### User Model
+
+| Object     | Field                  |
+|------------|------------------------|
+| email      | EmailField             |
+| full_name  | CharField              |
+| username   | CharField (optional)   |
+
+#### Contact Model
+
+| Object    | Field                      |
+|-----------|----------------------------|
+| name      | CharField                  |
+| email     | EmailField                 |
+| message   | TextField                  |
+| created_at| DateTimeField              |
+
+#### Review Model
+
+| Object    | Field                      |
+|-----------|----------------------------|
+| user      | ForeignKey                 |
+| rating    | IntegerField               |
+| comment   | TextField                  |
+| created_at| DateTimeField              |
+
