@@ -70,7 +70,7 @@ Welcome to Happy Rental Jönköping! This is a small, local company dedicated to
 
 ### Agile Aproach
 
-The project was organized with associated user stories and tasks using GitHub Projects. You can find the project at [Car Rental booking App] (https://github.com/users/Yuss76A/projects/10/views/1).
+The project was organized with associated user stories and tasks using GitHub Projects. You can find the project at [Car Rental booking App](https://github.com/users/Yuss76A/projects/10/views/1).
 
 * Here, you can see the user stories that I previously shared, but in a more detailed form, which were developed from those initial stories. Up to user story number 9, they mainly focused on the backend functionalities. Additionally, I created stories related to the frontend, which are explicitly labeled as "front end" in the titles. I included these front-end stories to ensure I didn’t forget any important aspects during the development process, even if some of them might overlap with the backend stories. This way, I aimed to cover all the key features and avoid missing anything crucial while building the project.
 
@@ -79,3 +79,47 @@ The project was organized with associated user stories and tasks using GitHub Pr
 ### Fonts
 
 Arial, sans-serif, and Georgia were chosen as the primary fonts for the project because they are classic, widely supported, and ensure good readability across different devices and browsers. These fonts provide a clean and professional look, making the content easy to read and visually accessible. Since they are system fonts, they also help improve page load times and maintain consistency without relying on external font libraries, which is beneficial for the overall performance and reliability of the website.
+
+### Colours
+
+Colours for the website where selected using [Coolors](http://coolors.co "Coolors").
+
+![Colour Palette](public/documentation/screenshots/colourpallete.png)
+
+![Colour Palette](public/documentation/screenshots/colourpallete1.png)
+
+* #333 (Dark Gray) - Used for main headings and titles (e.g., .about-us-title, .pageTitle) to provide a strong, neutral contrast for readability.
+* #555 (Medium Gray) - Body text and content descriptions, offering a softer contrast for readability without being too harsh.
+* #2c3e50 - Used for main titles and headings (e.g., .pageTitle) to give a dark, professional tone and for overall navigation header text.
+* #d32f2f - Indicates errors, warning states, and alert messages (e.g., .errorMessage, .error, .cancelButton hover). Conveys urgency and failure status.
+* #27ae60 - Success notifications and positive status indicators (e.g., .successAlert, .statusMessage.success).
+* #3498db - Emphasizes interactive elements such as icons, links, buttons.
+* #f0f8ff - Background colors for sections like "how-it-works" and rental process steps. Creates a calm, welcoming environment.
+* #f9f9f9 - Background for form sections, containers, and buttons to provide a neutral, clean interface.
+* #f8f9fa -  Light backgrounds and border colors for containers, input fields, and layout elements, maintaining a minimalistic and clean look.
+* #c3cfd9 - Used mainly for background gradients in containers, adding subtle visual interest without distracting from content.
+* #718096 (Grayish Blue) - Muted text or secondary information like reminder texts.
+* #ffffff (White) - Backgrounds for text boxes, buttons, cards, and containers, ensuring high contrast for text readability.
+* #000000 (Black) - Not explicitly used in the CSS provided, but typically used for textual emphasis when needed.
+
+
+### Navbar and Footer Colours
+
+Navbar:
+* Background: A linear gradient with shades of blue: linear-gradient(135deg, #2874a6 0%, #239b56 100%)
+* Text and icons (brand, links, toggler icon): White (#ffffff), with transition effects for hover interactions
+
+Footer:
+* Background: Same as the navbar gradient: linear-gradient(135deg, #2874a6 0%, #239b56 100%)
+* Text: White (#ffffff) for links and copyright text
+* Hover Effects: Links change to pure white for emphasis, with underline or color transition (color: white; text-decoration: underline;)
+* Responsive footer: Slightly darker gradient for smaller screens: linear-gradient(135deg, #1a5276 0%, #186a3b 100%)
+
+Summary:
+* Navbar and footer share a consistent blue-green gradient color scheme with white text and icons.
+
+![Navbar and Footer Colour](public/documentation/screenshots/navbarfooter.png).
+
+Colours Information Text:
+
+- I have made an effort to carefully note and keep track of all the colors used throughout the project. I aimed to clearly explain the purpose of each color and the reasons for their selection. However, given the size and complexity of the project, there is a possibility that I may have unintentionally overlooked mentioning some colors. I apologize if I missed any details, and I appreciate your understanding.
