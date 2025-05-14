@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <footer className={styles['fixed-footer']}>
             <nav>
-                <Link to="/reviews" className={styles['footer-link']}>Reviews</Link>
+                <Link to="/privacy" className={styles['footer-link']}>Privacy Policy</Link>
                 <Link to="/contact" className={styles['footer-link']}>Contact Us</Link>
             </nav>
             <div className={styles['social-links']}>

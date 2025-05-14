@@ -15,6 +15,7 @@ import Reviews from "./pages/Reviews.js";
 import Contact from "./pages/Contact.js";
 import SignInForm from "./pages/auth/SignInForm.js";
 import SignUpForm from "./pages/auth/SignUpForm.js";
+import PrivacyPolicy from "./pages/PrivacyPolicy.js";
 
 const router = createBrowserRouter([
   {
@@ -22,11 +23,11 @@ const router = createBrowserRouter([
       element: <App />,
       children: [
         {
-          path: "", // Default route will render About Us
+          path: "",
           element: <AboutUs />,
         },
       {
-        path: "/about-us", // Add route for About Us
+        path: "/about-us",
         element: <AboutUs />,
       },
         {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
           {
             path: "/contact",
             element: <Contact />,
+          },
+          {
+            path: "/privacy",
+            element: <PrivacyPolicy />,
           },
           {
               path: "*",

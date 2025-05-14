@@ -189,3 +189,42 @@ The website’s architecture is divided into frontend and backend components. Th
 | comment   | TextField                  |
 | created_at| DateTimeField              |
 
+### React Components Example
+
+The front end of this project was built using React, specifically version 19.1.0. React enables the development of reusable components that manage their own states and can be combined to create complex user interfaces. These components facilitate dynamic and interactive features on the site, enhancing user experience. The main components developed for this project are listed below. These components will be discussed in more detail in the features section of this readme.
+
+### Navbar
+
+Implements a responsive navigation bar that displays links based on user authentication status, including logout functionality.
+
+### Footer
+
+Creates a footer with navigation links and social media icons, along with a copyright notice, providing site-wide footer content and links.
+
+### About Us 
+
+Combines company history, achievements, and rental process details with engaging visuals and icons, providing visitors with comprehensive information about the business and how to get started.
+
+### Rent
+
+Provides a dynamic calendar interface for users to select rental dates, filters available cars based on those dates, and facilitates the booking process with real-time feedback and car details display.
+
+### All Cars
+
+Displays detailed information about a specific car, including model name, price per day, maximum passengers, and description, with fallback values for missing data for better user experience.
+
+### My Rentals
+
+Manages and displays the user's booked dates, allowing them to view, edit, or cancel reservations, with real-time data fetching and state management for bookings and car details.
+
+### Reviews 
+
+Manages user reviews with functionalities to create, update, delete, and paginate reviews, including form validation, error handling, and integration with backend API, offering a complete review management system.
+
+### Contact
+
+Provides a user-friendly contact form with validation, submitting messages via API, and displaying success or error notifications to facilitate communication between users and the service.
+
+### Private Policy
+
+Presents a comprehensive overview of how user data is collected, used, shared, and protected, ensuring transparency and building trust with visitors about their privacy and data security.

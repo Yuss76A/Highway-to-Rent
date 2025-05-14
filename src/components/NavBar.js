@@ -37,6 +37,9 @@ const NavBar = () => {
             <Link className={`nav-link ${styles.navLink}`} to="/about-us">About Us</Link>
             <Link className={`nav-link ${styles.navLink}`} to="/booking">Rent</Link>
             <Link className={`nav-link ${styles.navLink}`} to="/browse-cars">All Cars</Link>
+            <Link className={`nav-link ${styles.navLink}`} to="/reviews">
+              <i className="fas fa-star me-1"></i> Reviews
+            </Link>
             
             {user ? (
               <>
