@@ -132,7 +132,6 @@ function SignInForm() {
 
       <div className={styles.authFooter}>
         <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
-        <p><Link to="/forgot-password">Forgot password?</Link></p>
       </div>
     </div>
   );

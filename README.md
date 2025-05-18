@@ -228,3 +228,37 @@ Provides a user-friendly contact form with validation, submitting messages via A
 ### Private Policy
 
 Presents a comprehensive overview of how user data is collected, used, shared, and protected, ensuring transparency and building trust with visitors about their privacy and data security.
+
+### Wireframes
+
+Wireframes have been created using [Balsamic](https://balsamiq.com "Balsamic"). Wireframes provide a foundational visual overview of the website’s intended layout and structure. Please note that the final implementation may include slight adjustments to optimize user experience and design aesthetics.
+
+**About Us Page Wireframe**
+![Home Page Wireframe](public/documentation/screenshots/aboutuspage.png)
+
+**Rent Page Wireframe**
+![Rent Page Wireframe](public/documentation/screenshots/rentpage.png)
+
+**All Cars Page Wireframe**
+![All Cars Page Wireframe](public/documentation/screenshots/allcarspage.png)
+
+**Reviews Page Wireframe**
+![Reviews Page Wireframe](public/documentation/screenshots/reviewspage.png)
+
+**My Rentals Page Wireframe**
+![My Rentals Page Wireframe](public/documentation/screenshots/myrentalspage.png)
+
+**Private Policy Page Wireframe**
+![Private Policy Page Wireframe](public/documentation/screenshots/privatepolicypage.png)
+
+**Contact Us Page Wireframe**
+![Contact Us Page Wireframe](public/documentation/screenshots/contactpage.png)
+
+**Sign In Page Wireframe**
+![Sign In Page Wireframe](public/documentation/screenshots/signin.png)
+
+**Sign Up Page Wireframe**
+![Sign Up Page Wireframe](public/documentation/screenshots/signuppage.png)
+
+**Review Page Logout Mode Wireframe**
+![Review Page Logout Mode Wireframe](public/documentation/screenshots/reviewslogoutmode.png)
