@@ -234,34 +234,34 @@ Presents a comprehensive overview of how user data is collected, used, shared, a
 Wireframes have been created using [Balsamic](https://balsamiq.com "Balsamic"). Wireframes provide a foundational visual overview of the website’s intended layout and structure. Please note that the final implementation may include slight adjustments to optimize user experience and design aesthetics.
 
 **About Us Page Wireframe**
-![Home Page Wireframe](public/documentation/screenshots/aboutuspage.png)
+![Home Page Wireframe](public/documentation/wireframes/aboutuspage.png)
 
 **Rent Page Wireframe**
-![Rent Page Wireframe](public/documentation/screenshots/rentpage.png)
+![Rent Page Wireframe](public/documentation/wireframes/rentpage.png)
 
 **All Cars Page Wireframe**
-![All Cars Page Wireframe](public/documentation/screenshots/allcarspage.png)
+![All Cars Page Wireframe](public/documentation/wireframes/allcarspage.png)
 
 **Reviews Page Wireframe**
-![Reviews Page Wireframe](public/documentation/screenshots/reviewspage.png)
+![Reviews Page Wireframe](public/documentation/wireframes/reviewspage.png)
 
 **My Rentals Page Wireframe**
-![My Rentals Page Wireframe](public/documentation/screenshots/myrentalspage.png)
+![My Rentals Page Wireframe](public/documentation/wireframes/myrentalspage.png)
 
 **Private Policy Page Wireframe**
-![Private Policy Page Wireframe](public/documentation/screenshots/privatepolicypage.png)
+![Private Policy Page Wireframe](public/documentation/wireframes/privatepolicypage.png)
 
 **Contact Us Page Wireframe**
-![Contact Us Page Wireframe](public/documentation/screenshots/contactpage.png)
+![Contact Us Page Wireframe](public/documentation/wireframes/contactpage.png)
 
 **Sign In Page Wireframe**
-![Sign In Page Wireframe](public/documentation/screenshots/signin.png)
+![Sign In Page Wireframe](public/documentation/wireframes/signin.png)
 
 **Sign Up Page Wireframe**
-![Sign Up Page Wireframe](public/documentation/screenshots/signuppage.png)
+![Sign Up Page Wireframe](public/documentation/wireframes/signuppage.png)
 
 **Review Page Logout Mode Wireframe**
-![Review Page Logout Mode Wireframe](public/documentation/screenshots/reviewslogoutmode.png)
+![Review Page Logout Mode Wireframe](public/documentation/wireframes/reviewslogoutmode.png)
 
 ## Features
 
@@ -317,6 +317,7 @@ The Reviews page displays feedback from all customers, allowing everyone—inclu
 ![Reviews Page Mobile Mode LoggedOut](public/documentation/screenshots/reviewsmobileloggedout.png)
 
 ### My Rentals Page
+
 This page provides a comprehensive view of all your active and upcoming bookings. You can see detailed information for each reservation, including the start and end dates, a picture of the car, and your unique reservation number. The reservations are organized by month and year, making it easy to navigate through your upcoming trips. The interface allows you to manage your bookings with options to edit or cancel, giving you full control and clear visibility over your rentals. When editing a booking, if the car you choose is already booked for the new dates, an error message will be displayed, and the change will not be processed. It’s all designed to be simple, transparent, and convenient for you.
 
 **My Rentals Page**
@@ -324,3 +325,55 @@ This page provides a comprehensive view of all your active and upcoming bookings
 
 **My Rentals Page Mobile Mode**
 ![My Rentals Page Mobile Mode](public/documentation/screenshots/myrentalsmobile.png)
+
+### Private Policy
+
+This page outlines how Happy Rental collects, uses, shares, and protects your personal information. It details the types of data we gather when you rent a vehicle, including personal details, payment information, and technical data. It explains how your data helps us manage reservations, improve our services, and comply with legal requirements. The policy also emphasizes our commitment to data security and your rights to access, update, or delete your information. For any privacy-related questions, you can find contact details and learn more about how we safeguard your data. Overall, this page ensures transparency and builds trust by clearly communicating our privacy practices.
+
+**Private Policy Page**
+![Private Policy Page](public/documentation/screenshots/privatepolicydesktop.png)
+
+**Private Policy Page Mobile Mode**
+![Private Policy Page Mobile Mode](public/documentation/screenshots/privatepolicymobile.png)
+
+### Conta Us Page
+
+This contact form allows users, whether registered or not, to easily reach out with questions or comments about our car booking services. It includes fields for full name, email, and message, with validation to ensure the user provides all necessary information correctly. When a user submits the form, the data is sent to our backend, and the user receives feedback confirming whether their message was successfully sent or if there was an error. The design emphasizes simplicity and user-friendliness, enabling efficient communication and helping us improve customer engagement.
+
+**Contact Us Page**
+![Contact Us Page](public/documentation/screenshots/contactusdesktop.png)
+
+**Contact Us Page Mobile Mode**
+![Contact Us Page Mobile Mode](public/documentation/screenshots/contactusmobile.png)
+
+### Navbar
+
+The navbar has a classic, clean design that blends well with the overall style of the site. Its background features a vibrant gradient from deep blue to lush green, which reflects the company's support for sustainable vehicles and eco-friendly initiatives. The color scheme—rich greens and blues—creates a fresh, natural, and trustworthy feel, emphasizing the company's commitment to environmental responsibility.
+
+The layout is straightforward and easy to navigate, with links for key pages like "About Us," "Rent," "All Cars," and "Reviews." When users are logged in, a "Logout" button appears, providing a clear way to sign out. If not logged in, users see options to "Login" or "Sign Up." 
+
+Importantly, while anyone can browse the "Rent" and "Reviews" pages, they need to be registered and logged in to make bookings or leave reviews, maintaining a secure and user-focused service.
+
+The design ensures a seamless experience across devices, with responsive adjustments for smaller screens, including stylish burger menus that fit neatly into mobile views. Overall, the color palette and layout reinforce the brand’s focus on sustainability while offering a professional and inviting interface for all users.
+
+**Navbar**
+![Navbar](public/documentation/screenshots/loggedinnavbar.png)
+
+**Navbar Logged Out**
+![Navbar Logged Out ](public/documentation/screenshots/loggedoutnavbardesktop.png)
+
+**Navbar Mobile**
+![Navbar Mobile](public/documentation/screenshots/mobilenavbar.png)
+
+**Navbar Mobile Logged Out**
+![Navbar Mobile Logged Out](public/documentation/screenshots/loggedoutnavbar.png)
+
+### Footer
+
+The footer is a fixed, full-width component positioned at the bottom of the page, providing easy access to important links and social media profiles. Its background features a gradient from deep blue to lush green, reflecting the company's focus on sustainability and eco-friendly initiatives. The footer includes links to the Privacy Policy and Contact page, helping users find essential information quickly. Social media icons for Instagram, Facebook, TikTok, and Twitter are prominently displayed, encouraging visitors to connect with us on various platforms. The overall design ensures clarity and accessibility across all devices, with responsiveness tailored for smaller screens. It’s styled with smooth hover effects and a subtle shadow to distinguish it from the main content, maintaining a professional and trustworthy appearance.
+
+**Footer**
+![Navbar Page](public/documentation/screenshots/footer.png)
+
+**Footer Mobile**
+![Footer Mobile](public/documentation/screenshots/footermobile.png)
