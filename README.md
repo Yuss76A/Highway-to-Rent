@@ -377,3 +377,24 @@ The footer is a fixed, full-width component positioned at the bottom of the page
 
 **Footer Mobile**
 ![Footer Mobile](public/documentation/screenshots/footermobile.png)
+
+### Rating
+
+Logged-in users can rate the company on a scale from 0 to 5 stars. The rating is visually displayed with stars filled in gold or yellow, providing a clear and attractive overview. For example, if a user gives a rating of 2 out of 5, two stars will be filled, and the remaining three stars will be empty, making the feedback easy to understand at a glance.
+
+**Rating**
+![Rating](public/documentation/screenshots/ratingstars.png)
+
+### Review Link Navbar
+
+The navigation bar includes a direct link to the Reviews page, marked with a star icon. This makes it easy for users to quickly access customer feedback and see honest reviews from others. The star icon helps draw attention to this section, encouraging visitors to explore what others think about our service. Whether you're looking for insights or want to share your own experience, this link provides a convenient shortcut at the top of the site.
+
+**Review Link**
+![Review Link](public/documentation/screenshots/reviewlink.png)
+
+### Social Media Links
+
+The footer includes icons linking to the company's official social media profiles—Instagram, Facebook, TikTok, and Twitter. These icons provide visitors with quick access to follow or engage with the company on various platforms. Each link opens in a new tab to ensure users remain on the website while exploring the social content. Incorporating these links helps increase online visibility and encourages community interaction, aligning with the brand’s modern and professional look.
+
+**Social Media**
+![Social Media](public/documentation/screenshots/socialmedia.png)
