@@ -262,3 +262,65 @@ Wireframes have been created using [Balsamic](https://balsamiq.com "Balsamic"). 
 
 **Review Page Logout Mode Wireframe**
 ![Review Page Logout Mode Wireframe](public/documentation/screenshots/reviewslogoutmode.png)
+
+## Features
+
+### About Us Page
+
+This page thoughtfully combines essential information about the company's journey, milestones, and operational procedures. It features a detailed overview of the company's history, highlighting key achievements such as awards, expansion milestones, and sustainability initiatives, which build trust and credibility. The "How It Works" section guides users through the rental process step-by-step, making it easy for new customers to understand how to utilize the service. Together, these elements create an informative, engaging, and professional presentation of our brand's story and operational excellence.
+
+**About Us Page**
+![About Us Page](public/documentation/screenshots/aboutus1.png)
+
+**About Us Page**
+![About Us Page](public/documentation/screenshots/aboutus2.png)
+
+**About Us Page**
+![About Us Page](public/documentation/screenshots/aboutus3.png)
+
+### Rent Page
+
+The Booking Component offers a user-friendly way to choose your rental dates. Once you select your desired dates and click the "Book Cars" button, the available cars will appear below the calendar. You also can toggle additional information about the rental process. If some cars are already booked for those dates, they won’t be available for selection. The seamless design provides a smooth experience from selecting dates to finalizing your reservation—making everything simple, clear, and enjoyable for you.
+
+Additionally, when you successfully book a car, you will receive a unique reservation code. This code is randomly generated each time and serves as your personal confirmation. It helps you easily manage and reference your booking, ensuring a hassle-free experience from start to finish.
+
+**Rent Page**
+![Rent Page](public/documentation/screenshots/rentpagedesktop.png)
+
+**Rent Page Mobile Mode**
+![Rent Page Mobile Mode](public/documentation/screenshots/rentpagemobile.png)
+
+### All Cars Page
+
+The All Cars Page showcases the company's entire fleet of vehicles in a clean, organized grid layout, with three cars displayed per row. Visitors can view detailed information about each car, including pictures, prices, and other specs—all fetched dynamically from the backend Django server. This comprehensive listing makes it easy for users to explore the full selection of available vehicles, helping them find the perfect car for their needs. The page also features loading indicators during data retrieval and handles errors smoothly, providing a seamless browsing experience.
+
+**All Cars Page**
+![All Cars Page](public/documentation/screenshots/allcarsdesktop.png)
+
+**All Cars Page Mobile Mode**
+![All Cars Page Mobile Mode](public/documentation/screenshots/allcarsmobile.png)
+
+### Reviews Page
+
+The Reviews page displays feedback from all customers, allowing everyone—including visitors who are not signed in—to read honest reviews about our services. Reviews are submitted anonymously to protect user privacy. Registered users can leave their own reviews, as well as edit or delete their feedback at any time. If you're not logged in, you can still browse the reviews to get a sense of others' experiences, but sharing your own feedback requires signing in. This setup encourages transparency while maintaining user privacy and control over their submissions.
+
+**Reviews Page**
+![Reviews Page](public/documentation/screenshots/reviewsloggeddesktop.png)
+
+**Reviews Page Mobile Mode**
+![Reviews Page Mobile Mode](public/documentation/screenshots/reviewsmobile.png)
+
+**Reviews Page LoggedOut**
+![Reviews Page LoggedOut](public/documentation/screenshots/reviewsdesktoploggedout.png)
+
+**Reviews Page Mobile Mode LoggedOut**
+![Reviews Page Mobile Mode LoggedOut](public/documentation/screenshots/reviewsmobileloggedout.png)
+
+### My Rentals Page
+This page provides a comprehensive view of all your active and upcoming bookings. You can see detailed information for each reservation, including the start and end dates, a picture of the car, and your unique reservation number. The reservations are organized by month and year, making it easy to navigate through your upcoming trips. The interface allows you to manage your bookings with options to edit or cancel, giving you full control and clear visibility over your rentals. When editing a booking, if the car you choose is already booked for the new dates, an error message will be displayed, and the change will not be processed. It’s all designed to be simple, transparent, and convenient for you.
+
+**My Rentals Page**
+![My Rentals Page](public/documentation/screenshots/myrentalsdesktop.png)
+
+**My Rentals Page Mobile Mode**
+![My Rentals Page Mobile Mode](public/documentation/screenshots/myrentalsmobile.png)
