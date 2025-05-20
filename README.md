@@ -346,6 +346,26 @@ This contact form allows users, whether registered or not, to easily reach out w
 **Contact Us Page Mobile Mode**
 ![Contact Us Page Mobile Mode](public/documentation/screenshots/contactusmobile.png)
 
+### Sign Up Page
+
+This component features a clean, modern design that invites new users to create an account by entering their name, email, and password. It includes validation to ensure passwords match and provides real-time feedback to guide users. A friendly prompt — "If you already have an account, sign in" — offers a quick way for returning users to navigate to the login page. The registration process is integrated with Django's built-in authentication system, which handles user creation and validation seamlessly in the background. The form’s simple and user-friendly layout encourages new registrations with an effortless onboarding experience.
+
+**Sign Up Page**
+![Sign Up Page](public/documentation/screenshots/signupformdesktop.png)
+
+**Sign Up Page Mobile**
+![Sign Up Page Mobile](public/documentation/screenshots/signupformmobile.png)
+
+### Login Page ( Sign In)
+
+This component provides a sleek and straightforward interface that allows users to access their accounts by entering their email and password. It communicates with the backend, which is built on Django’s robust authentication system, to verify credentials securely. When login is successful, user information and authentication tokens are stored locally, and the user is redirected back to their previous activity or the homepage. The form is designed for simplicity and clarity, offering helpful feedback for invalid credentials and ensuring a smooth, efficient login experience for every user.
+
+**Login Page**
+![Login Page](public/documentation/screenshots/logindesktop.png)
+
+**Login Page Mobile**
+![Login Page Mobile](public/documentation/screenshots/loginmobile.png)
+
 ### Navbar
 
 The navbar has a classic, clean design that blends well with the overall style of the site. Its background features a vibrant gradient from deep blue to lush green, which reflects the company's support for sustainable vehicles and eco-friendly initiatives. The color scheme—rich greens and blues—creates a fresh, natural, and trustworthy feel, emphasizing the company's commitment to environmental responsibility.

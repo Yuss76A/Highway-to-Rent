@@ -69,6 +69,7 @@
 
 .authForm button {
   width: 100%;
+  margin-bottom: 2rem;
   padding: 0.8rem;
   background-color: #007bff;
   color: #ffffff;
