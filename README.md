@@ -418,3 +418,21 @@ The footer includes icons linking to the company's official social media profile
 
 **Social Media**
 ![Social Media](public/documentation/screenshots/socialmedia.png)
+
+### CRUD Functionality
+
+User Authentication
+Users can register for an account and log in to access features like creating reviews and bookings. Logged-in users can also update or delete their own reviews and bookings.
+
+Reviews
+Logged-in users can create reviews with ratings and comments for cars. They can edit or delete their own reviews as needed.
+
+Permissions & Security
+The system ensures users can only modify their own content, while admin users have full control. Error handling and validation are included to improve user experience.
+
+Car Listings & Bookings
+Admin users can add new cars, edit existing cars, or delete cars from the system.
+Regular users can browse available cars and make bookings. Users can view or cancel their current bookings. The system checks to prevent double bookings for the same car during overlapping dates.
+
+Contact Messages
+Users can send messages via a contact form by providing their full name, email, and message content. These messages are stored in the system, and only admins can view or delete them to respond accordingly.
