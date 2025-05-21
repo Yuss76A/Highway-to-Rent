@@ -46,11 +46,16 @@ function SignInForm() {
             preselectedDates: {
               startDate: new Date(pendingBooking.startDate),
               endDate: new Date(pendingBooking.endDate)
-            }
+            },
+            welcome_message: response.data.welcome_message
           }
         });
       } else {
-        navigate(location.state?.from || "/");
+        navigate(location.state?.from || "/", {
+          state: {
+            welcome_message: response.data.welcome_message
+          }
+        });
       }
     } catch (err) {
       // Improved error handling

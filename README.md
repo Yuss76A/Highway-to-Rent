@@ -422,6 +422,16 @@ The footer includes icons linking to the company's official social media profile
 **Social Media**
 ![Social Media](public/documentation/screenshots/socialmedia.png)
 
+### Welcome Message
+
+The welcome message pops up in the center of the screen with a green background that matches the overall page theme. It catches your attention right away by being prominent and nicely centered. After a couple of seconds, it automatically disappears, so it doesn’t stay on the screen too long. The idea is to give users a quick, friendly confirmation that they have logged in or been welcomed, making the experience feel smooth and natural. This small notification helps users know that their action was successful without disturbing their flow.
+
+**Welcome Message**
+![Welcome Message](public/documentation/screenshots/welcomedesktop.png)
+
+**Welcome Message Mobile**
+![Welcome Message Mobile](public/documentation/screenshots/welcomemobile.png)
+
 ### CRUD Functionality
 
 User Authentication

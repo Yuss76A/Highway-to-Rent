@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar";
 import { Outlet } from "react-router-dom";
 import { UserContext } from "./contexts/UserContext";
 import Footer from "./components/Footer";
+import WelcomeNotification from "./components/WelcomeNotification";
 
 function App() {
   const { setUser } = useContext(UserContext);
@@ -25,6 +26,7 @@ function App() {
   return (
     <>
       <NavBar />
+      <WelcomeNotification />
       <Outlet />     
       <Footer />
     </>
