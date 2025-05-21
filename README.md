@@ -278,6 +278,9 @@ This page thoughtfully combines essential information about the company's journe
 **About Us Page**
 ![About Us Page](public/documentation/screenshots/aboutus3.png)
 
+**About Us Page Mobile**
+![About Us Page Mobile](public/documentation/screenshots/aboutusmobile.png)
+
 ### Rent Page
 
 The Booking Component offers a user-friendly way to choose your rental dates. Once you select your desired dates and click the "Book Cars" button, the available cars will appear below the calendar. You also can toggle additional information about the rental process. If some cars are already booked for those dates, they won’t be available for selection. The seamless design provides a smooth experience from selecting dates to finalizing your reservation—making everything simple, clear, and enjoyable for you.

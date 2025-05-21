@@ -190,15 +190,76 @@ h3 {
 
 /* Add media queries for responsive design */
 @media (max-width: 600px) {
+    /* Image container adjustments */
+    .image-container {
+        height: 23vh; /* Smaller height on mobile */
+        margin-bottom: 10px; /* Less space below */
+    }
+
+    /* About Us section styling */
+    .about-us-container {
+        margin-top: 0; /* No extra top margin */
+        padding: 20px 15px; /* Tighter padding */
+    }
+    
+    .about-us-title {
+        font-size: 28px; /* Smaller heading */
+        margin-bottom: 15px;
+    }
+    
+    .about-us-content {
+        font-size: 16px; /* Slightly smaller text */
+    }
+
+    /* Achievements section (grid → column) */
     .achievements-section {
         flex-direction: column;
+        gap: 10px; /* Reduce gap between items */
     }
 
     .achievement {
         margin: 10px 0;
+        padding: 15px; /* Slightly less padding */
     }
 
-    .process-step-left, .process-step-right {
+    /* Rental process steps (full width) */
+    .process-step-left, 
+    .process-step-right {
         width: 90%;
+        margin: 8px 0; /* Reduce vertical spacing */
+    }
+}
+
+/* Tablet (601px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .image-container {
+        height: 30vh;
+        margin-bottom: 15px;
+    }
+    .about-us-container {
+        margin-top: -10px;
+        padding: 25px 20px;
+    }
+    .about-us-title {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+    .about-us-content {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+    .achievements-section {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    .achievement {
+        margin: 12px 0;
+        padding: 18px;
+    }
+    .process-step-left, 
+    .process-step-right {
+        width: 85%;
+        margin: 10px 0;
+        padding: 15px;
     }
 }
