@@ -465,3 +465,39 @@ HTML testing was completed by running the website through [W3C HTML Validator](h
 
 The validator gave an informational warning about the trailing slashes on void elements (like <meta>, <link>, etc.). This is just a note because, in HTML5, the trailing slash is optional and doesn't impact how browsers interpret the code. It’s a stylistic preference, and since the code remains valid and works correctly, these warnings can be safely ignored. There’s no actual issue with the current code; it’s just a validation note, not a problem affecting functionality.
 
+### CSS Validation
+
+**CSS Validation**
+![CSS Validation](public/documentation/screenshots/cssvalidator.png)
+
+The CSS validation passed without any errors.
+
+### Manual Testing
+
+Throughout the development process and upon final completion, manual testing was performed. The outcomes are summarized in the table below.
+
+| Feature Tested                                 | Feature Description                                                                 | Testing Completed                                                  | Expected Outcome                                                                                      | Result       |
+|------------------------------------------------|-------------------------------------------------------------------------------------|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|--------------|
+| Registration                                         | Register a new user with a unique email.                      | Fill registration form with valid data.                   | User should be created successfully.                          | As expected  |
+| Login                                                  | Log in with registered email and password.                      | Enter correct credentials.                                | Logged in successfully, user details displayed.           | As expected  |
+| Login with wrong credentials                           | Try logging in with wrong email or password.                    | Receive error message about user not found.               | Error message shown: user not found. | As expected  |
+| Rent page                                              | Check if the calendar displays correctly.                        | Open rent page and view the calendar.                     | Calendar displays properly with correct dates.              | As expected  |
+| Rent page                                              | Two buttons: "How to Book" and "Show Info".                     | Click each button separately.                                | "How to Book" shows booking instructions; "Show Info" displays additional info. | As expected  |
+| Rent page                                              | Cannot select past days to book.                                | Try to select dates before today.                            | Past dates are disabled and cannot be selected.             | As expected  |
+| Rent page                                              | Select a day and book a car, receive reservation code.          | Choose a date, confirm booking.                                | Reservation code displayed successfully.                     | As expected  |
+| Welcome message                                        | Welcome message displayed in the center when logged in.        | Log in and view the screen.                                    | Message appears centered as expected.                          | As expected  |
+| Rent page                                              | Cannot book a car if it's already booked by another user for selected dates. | Select dates overlapping existing booking and try to book. | Booking is blocked with an error message.                     | As expected  |
+| Navbar links                                           | Navbar links change correctly based on login status.            | Log in and out, check the links in the navbar.                | Links display appropriately for logged in and logged out states. | As expected  |
+| Footer links                                             | Footer links work as expected.                                    | Click each footer link.                                         | Links redirect to correct pages or sections.                      | As expected  |
+| Reviews page                                             | Reviews are displayed correctly.                                   | Visit the reviews page.                                          | All reviews show properly with correct details.                    | As expected  |
+| Reviews pagination                                       | Pagination switches correctly after 8 reviews.                   | Navigate through pages.                                          | Next pages load with correct reviews and total page count.       | As expected  |
+| Rating system                                              | Max 5 stars, filling stars in gold based on rating.               | User rates 2 stars.                                              | 2 stars appear filled in gold, remaining 3 are empty.            | As expected  |
+| Review comment date                                        | Dates in review comments display correctly.                        | View reviews with comments.                                      | Dates show accurately as expected.                                | As expected  |
+| User review management                                      | User can delete or edit their own reviews.                         | Edit or delete a review they created.                            | Review updates or disappears successfully.                        | As expected  |
+| User authorization                                            | Only logged-in users can add reviews and book cars.              | Try to review or book without logging in.                        | Action is blocked; prompts to log in are shown.                   | As expected  |
+| Reviews access                                                | Not logged users can view and read reviews.                        | Visit the reviews page without logging in.                        | Reviews display properly; read-only access works as expected.  | As expected  |
+| User bookings                                                 | User can see their bookings with start/end dates, image of the car and reservation number. | Log in and view My Rentals.                                      | Booking display correctly with all details.                     | As expected  |
+| Edit and delete bookings                                      | Buttons work correctly; user can edit or delete.                 | Edit a booking; try to set dates overlapping existing bookings. | Error message shown if dates are already booked; edit/update succeeds if dates are free. | As expected  |
+| All cars displayed                                              | All cars show with name, price, and description.                 | Visit the cars list page.                                          | Everything displays correctly as expected.                         | As expected  |
+| Contact page                                                    | Contact page works as expected.                                    | Submit a message. | Message sent successfully and confirmation message displayed. | As expected  |
+| Admin actions                                                     | Admin can read emails, modify bookings, manage cars, delete users, reviews, bookings, and contact messages. | Perform admin tasks like viewing emails, editing data, deleting entries. | All actions complete successfully; data updates reflect correctly. | As expected  |
