@@ -4,6 +4,8 @@
 
 Welcome to Happy Rental Jönköping! This is a small, local company dedicated to providing car and RV van rentals in the beautiful city of Jönköping, located in the scenic region of Småland, Sweden. The goal of this app is to make it easy for visitors and residents alike to rent vehicles and discover all the wonderful sights that this area has to offer. With this platform, users can conveniently explore Jönköping and its surroundings, enjoying their days in this amazing part of Sweden. I’m excited to share the features and ideas behind this project with you!
 
+![Responsive](public/documentation/screenshots/responsive.png)
+
 ### User Stories
 
 #### Navigating the Site
@@ -449,3 +451,17 @@ Regular users can browse available cars and make bookings. Users can view or can
 
 Contact Messages
 Users can send messages via a contact form by providing their full name, email, and message content. These messages are stored in the system, and only admins can view or delete them to respond accordingly.
+
+## Testing
+
+### Front End
+
+#### HTML Testing
+
+HTML testing was completed by running the website through [W3C HTML Validator](https://validator.w3.org/). The results were as follows:
+
+**HTML Validation**
+![HTML Validation](public/documentation/screenshots/htmltest.png)
+
+The validator gave an informational warning about the trailing slashes on void elements (like <meta>, <link>, etc.). This is just a note because, in HTML5, the trailing slash is optional and doesn't impact how browsers interpret the code. It’s a stylistic preference, and since the code remains valid and works correctly, these warnings can be safely ignored. There’s no actual issue with the current code; it’s just a validation note, not a problem affecting functionality.
+

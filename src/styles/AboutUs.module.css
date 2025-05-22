@@ -192,41 +192,41 @@ h3 {
 @media (max-width: 600px) {
     /* Image container adjustments */
     .image-container {
-        height: 23vh; /* Smaller height on mobile */
-        margin-bottom: 10px; /* Less space below */
+        height: 23vh;
+        margin-bottom: 10px;
     }
 
     /* About Us section styling */
     .about-us-container {
-        margin-top: 0; /* No extra top margin */
-        padding: 20px 15px; /* Tighter padding */
+        margin-top: 0;
+        padding: 20px 15px;
     }
     
     .about-us-title {
-        font-size: 28px; /* Smaller heading */
+        font-size: 28px;
         margin-bottom: 15px;
     }
     
     .about-us-content {
-        font-size: 16px; /* Slightly smaller text */
+        font-size: 16px;
     }
 
     /* Achievements section (grid → column) */
     .achievements-section {
         flex-direction: column;
-        gap: 10px; /* Reduce gap between items */
+        gap: 10px;
     }
 
     .achievement {
         margin: 10px 0;
-        padding: 15px; /* Slightly less padding */
+        padding: 15px;
     }
 
     /* Rental process steps (full width) */
     .process-step-left, 
     .process-step-right {
         width: 90%;
-        margin: 8px 0; /* Reduce vertical spacing */
+        margin: 8px 0;
     }
 }
 
