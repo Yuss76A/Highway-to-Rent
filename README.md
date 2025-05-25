@@ -504,3 +504,6 @@ Throughout the development process and upon final completion, manual testing was
 
 I have listed all the features I manually tested and observed during the testing process. If I happened to forget something, that can happen — tracking every detail can be challenging. I apologize in advance for any oversights and appreciate your understanding.
 
+### Python Linter
+
+To validate all python code used in this project, each file was evaluated using the [CI Python Linter](https://pep8ci.herokuapp.com/).
