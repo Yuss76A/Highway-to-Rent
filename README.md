@@ -633,3 +633,138 @@ Even though Django already has a built-in User model, I decided to create my own
 * [Font Awesome](https://fontawesome.com/)  
   For icons, included via CDN with the script tag:
   `<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>`
+
+### Databases
+
+* [PostgreSQL](https://www.postgresql.org/) 
+Used as the main database, hosted via NeonDB.
+
+### Tools
+
+* [GitHub](https://github.com "GitHub") — Version control and project hosting.
+* [Gitpod](https://gitpod.io "Gitpod") — Cloud-based development environment.
+* [Balsamiq](https://balsamiq.com "Balsamiq") — Wireframing and UI design.
+* [Coolors](https://coolors.co "Coolors") — Color palette generation.
+* [Chrome DevTools](https://developer.chrome.com/docs/devtools "DevTools") — Browser debugging and inspection.
+* [Gunicorn](https://gunicorn.org "Gunicorn") — WSGI server for deploying Django.
+* [Cloudinary](https://cloudinary.com/ "Cloudinary") — Image hosting and management.
+* [Heroku](https://heroku.com "Heroku") — Cloud platform for deployment.
+* [Psycopg](https://wiki.postgresql.org/wiki/Psycopg "Psycopg") — PostgreSQL database adapter for Python.
+
+## Development and Deployment
+
+### Development
+
+#### Cloudinary
+
+1. Navigate to [Cloudinary](https://cloudinary.com/ "Cloudinary") and create an account.
+2. Log in.
+3. Navigate to your dashboard and copy the API Enviroment variable.
+4. Keep a note of this variable as you will need to add it to your env.py file in your project.
+
+### Requirements
+
+The project relies on the following packages:
+
+* asgiref==3.8.1
+* astroid==3.3.10
+* certifi==2025.1.31
+* charset-normalizer==3.4.1
+* cloudinary==1.43.0
+* dill==0.4.0
+* dj-database-url==0.5.0
+* Django==3.2.25
+* django-cloudinary-storage==0.3.0
+* django-cors-headers==4.5.0
+* djangorestframework==3.12.4
+* flake8==7.2.0
+* gunicorn==23.0.0
+* idna==3.10
+* isort==6.0.1
+* mccabe==0.7.0
+* packaging==24.2
+* pillow==11.1.0
+* platformdirs==4.3.8
+* psycopg2-binary==2.9.10
+* pycodestyle==2.13.0
+* pyflakes==3.3.2
+* pylint==3.3.7
+* pytz==2025.2
+* requests==2.32.3
+* setuptools==78.1.0
+* six==1.17.0
+* sqlparse==0.5.3
+* tomlkit==0.13.2
+* urllib3==2.3.0
+
+Keep your requirements.txt up-to-date by running:
+
+pip freeze > requirements.txt
+
+This command captures all currently installed packages and their exact versions, making it easy to recreate the environment elsewhere.
+
+To install all dependencies listed in your requirements file, use:
+
+pip3 install -r requirements.txt
+
+Note: Depending on your system and Python environment, you might need to use pip instead of pip3. Always verify with your Python documentation.
+
+### Deployment
+
+#### Backend
+
+##### env File
+
+Create an env.py file in the root folder of your project. This file is used to securely store sensitive variables and must be added to your .gitignore to prevent it from being published publicly.
+
+To set up your environment:
+
+Add the following variables, replacing the placeholder values with your actual credentials:
+
+# env.py
+
+* DATABASE_URL: The connection string for your database (e.g., ElephantSQL, NeonDB). You can find this in your database provider’s dashboard after creating your database.
+
+* SECRET_KEY: Your Django secret key. Generate a secure key using Django Secret Key Generator. This key is crucial for cryptographic signing and should be kept secret.
+
+* CLOUDINARY_URL: Your Cloudinary API environment variable. Remove the prefix before cloudinary:// and keep only the portion with your credentials (cloudinary://<api_key>:<api_secret>@<cloud_name>).
+
+* DEV: Set to "1" during development to enable debug mode. In production, remove this line or set to an empty string, so your app runs with debug mode disabled.
+
+* ALLOWED_HOST: Your development URL (e.g., localhost) or your production URL (e.g., your deployed app’s domain). This restricts access to your site.
+
+* Note: Replace placeholder values with your actual credentials, but do not commit env.py to your repository.
+
+This project was deployed using [Heroku](https://www.heroku.com "Heroku") by following the steps detailed below.
+
+##### Heroku Backend
+
+1. Navigate to Heroku website and sign up or log in.
+2. From your dashboard, click New > Create new app.
+3. Assign a unique name to your app, select your region, then click Create app.
+4. Go to the Settings tab.
+5. Scroll down to Config Vars and click Reveal Config Vars.
+6. Add the required environment variables, ensuring they match your credentials (replace the example values below with your actual data):
+* CLOUDINARY_URL	your Cloudinary API URL	Your Cloudinary credentials (remove the prefix if needed)
+* DATABASE_URL	your database URL	Your PostgreSQL connection string (e.g., NeonDB, ElephantSQL)
+* ALLOWED_HOST	your deployed site URL	Without https:// (e.g., yourapp.herokuapp.com)
+* CLIENT_ORIGIN	your frontend URL	The live URL of your frontend app
+* CLIENT_ORIGIN_DEV	your local URL	Typically http://localhost:3000
+* SECRET_KEY	your secret key	Generate a unique secret key for production (keep it private)
+* DEVELOPMENT	1	Set to "1" during development to enable debug mode
+
+#### Frontend
+
+#### Deploying from a Github Repository
+
+1. Go to the Deploy tab in your Heroku dashboard.
+2. Choose GitHub - Connect as your deployment method and authorize Heroku to access your GitHub account when prompted.
+3. Select your GitHub account from the dropdown menu if it isn't already selected.
+4. Search for your project repository and click Connect to link it to Heroku.
+5. Scroll down to the Deploy section, where you can choose between Automatic Deploys and Manual Deploy.
+- Automatic Deploys will update your app each time you push changes to the selected branch.
+- Manual Deploy requires you to click a button each time you want to deploy.
+6. Pick your preferred deployment option and select the branch you want to deploy from.
+7. If you selected Automatic Deploys, click Enable Automatic Deploys to activate continuous deployment.
+- If you chose Manual Deploy, hit Deploy Branch to start the deployment.
+8. Wait for the deployment process to complete. Once finished, you'll see a confirmation message saying Your app was successfully deployed, along with a button to view your live site.
