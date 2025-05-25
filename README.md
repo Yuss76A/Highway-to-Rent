@@ -602,3 +602,34 @@ Extensive manual testing was conducted across all CRUD operations within the bac
 ### Why I created a custom User model
 
 Even though Django already has a built-in User model, I decided to create my own. I wanted to make the email the main way users log in, and I needed to add some extra fields like full name. By making a custom User model, I can handle user info exactly how I want and make sure the login process fits my app’s requirements better. It gives me more control over user data and how authentication works.
+
+## Technologies Used
+
+### Languages
+
+
+* [HTML](https://en.wikipedia.org/wiki/HTML "HTML")  
+  Used for structuring the web pages and defining the layout of the user interface.
+
+* [CSS](https://en.wikipedia.org/wiki/CSS "CSS")  
+  Used for styling the web pages, including layout, colors, fonts, and responsiveness.
+
+* [JavaScript](https://en.wikipedia.org/wiki/JavaScript "JavaScript")  
+  Implements client-side functionality, interactivity, and dynamic content updates in the frontend.
+
+* [Python](https://en.wikipedia.org/wiki/Python_(programming_language) "Python")  
+  Used for backend development with Django, handling data, authentication, and API creation.
+
+### Libraries & Framework
+
+### Libraries & Frameworks
+
+* [Django](https://en.wikipedia.org/wiki/Django_(web_framework) "Django")  
+  A high-level Python web framework used to develop the backend API, manage database models, handle user authentication, and serve data to the frontend.
+
+* [React Bootstrap v4.6](https://react-bootstrap-v4.netlify.app/ "React Bootstrap")  
+  A React component library that integrates Bootstrap's styles and components, enabling building responsive, styled user interfaces quickly.
+
+* [Font Awesome](https://fontawesome.com/)  
+  For icons, included via CDN with the script tag:
+  `<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>`
