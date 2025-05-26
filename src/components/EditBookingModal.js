@@ -28,7 +28,15 @@ const EditBookingModal = ({ booking, onClose, onSave, error }) => {
   }, [error, onClose]);
 
   const handleSave = () => {
-    // Frontend validation
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (new Date(startDate) < today || new Date(endDate) < today) {
+      setLocalError("Cannot book or modify dates in the past");
+      return;
+    }
+
     if (!startDate || !endDate) {
       setLocalError('Please select both dates');
       return;
