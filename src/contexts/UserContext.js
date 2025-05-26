@@ -31,10 +31,10 @@ export const UserProvider = ({ children }) => {
         token,
       }));
 
-      console.log('Logged-in User:', { id: userData.id, name: userData.name, token });
+      
       return response.data;
     } catch (error) {
-      console.error('Login failed:', error);
+      
       throw new Error('Login failed. Please check your credentials.');
     }
   };
@@ -42,14 +42,14 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
-    console.log('User logged out');
+    
   };
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
-      console.log('User retrieved from local storage:', JSON.parse(savedUser));
+      
     }
   }, []);
 

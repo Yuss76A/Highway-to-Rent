@@ -35,7 +35,7 @@ const BookingComponent = ({ currentUser }) => {
         const data = await response.json();
         setCarData(data);
       } catch (error) {
-        console.error("Error during fetch:", error);
+        setError("Failed to load car data. Please refresh.");
       }
     }
     fetchCarData();
