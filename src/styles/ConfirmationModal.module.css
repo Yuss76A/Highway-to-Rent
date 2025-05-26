@@ -28,6 +28,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .confirmButton {
@@ -35,6 +36,24 @@
     color: white;
 }
 
+.confirmButton:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
 .cancelButton {
     background: #e0e0e0;
+}
+
+.cancelButton:hover {
+    background: #bdbdbd;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.confirmButton:focus,
+.cancelButton:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
 }
