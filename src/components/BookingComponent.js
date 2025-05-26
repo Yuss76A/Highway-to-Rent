@@ -203,7 +203,7 @@ const BookingComponent = ({ currentUser }) => {
           onClick={() => setHowToBookVisible(!howToBookVisible)}
         >
           <div className={`${styles.light} ${howToBookVisible ? styles.on : styles.off}`}>
-            {howToBookVisible ? "Hide Guide" : "How to Book"}
+            {howToBookVisible ? "Hide How to Book Guide" : "How to Book"}
           </div>
         </div>
       </div>
@@ -217,11 +217,11 @@ const BookingComponent = ({ currentUser }) => {
       {howToBookVisible && (
         <div className={styles.infoText}>
           <p>
-            1. Select your dates<br />
+            1. Select your dates "From start to end date"<br />
             2. Click "Book Cars"<br />
             3. Choose from available cars<br />
             4. Get booking code<br />
-            Booked cars appear in "My Rentals"
+            Booked cars appear in "My Rentals", where you can find also your reservation code.
           </p>
         </div>
       )}

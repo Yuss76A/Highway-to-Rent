@@ -71,12 +71,6 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.bookingCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bookingInfo {
@@ -118,10 +112,6 @@
 .errorAlert::before {
   content: "⚠️";
   margin-right: 8px;
-}
-
-.bookingCard:hover .carImage {
-  transform: scale(1.05);
 }
 
 .cancelButton, .editButton{
