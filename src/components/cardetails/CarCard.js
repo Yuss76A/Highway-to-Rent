@@ -88,17 +88,19 @@ const CarCard = ({ car, selectedDateRange, onBookingSuccess, currentUser }) => {
 
   return (
     <div className={styles['car-card']}>
-      {error && <div className={styles.error}>{error}</div>}
       <CarImageSlider images={car.images} />
       <CarInfo car={car} />
       {selectedDateRange && (
-        <button
-          className={styles['book-car-button']}
-          onClick={handleBooking}
-          disabled={!selectedDateRange.startDate || !selectedDateRange.endDate}
-        >
-          Book Car
-        </button>
+        <>
+          <button
+            className={styles['book-car-button']}
+            onClick={handleBooking}
+            disabled={!selectedDateRange.startDate || !selectedDateRange.endDate}
+          >
+            Book Car
+          </button>
+          {error && <div className={styles.error}>{error}</div>}
+        </>
       )}
     </div>
   );

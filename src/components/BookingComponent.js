@@ -49,7 +49,7 @@ const BookingComponent = ({ currentUser }) => {
     );
 
     if (selectedDate < new Date()) {
-      setError('You cannot select a past date.');
+      setError("You cannot select a past date.");
       return;
     }
 
@@ -112,8 +112,7 @@ const BookingComponent = ({ currentUser }) => {
     return (
       (selectedDates.startDate &&
         selectedDates.startDate.getTime() === date.getTime()) ||
-      (selectedDates.endDate &&
-        selectedDates.endDate.getTime() === date.getTime())
+      (selectedDates.endDate && selectedDates.endDate.getTime() === date.getTime())
     );
   };
 
@@ -150,37 +149,34 @@ const BookingComponent = ({ currentUser }) => {
   const days = generateCalendarDays();
 
   const handleFilterCars = () => {
-    if (!selectedDates.startDate) {
-      setError("Please select a valid date.");
+    if (!selectedDates.startDate || !selectedDates.endDate) {
+      setError("Please select both start and end dates.");
       setIsFiltered(false);
       return;
     }
-  
+
     const startDate = selectedDates.startDate;
-    const endDate = selectedDates.endDate || selectedDates.startDate;
-  
+    const endDate = selectedDates.endDate;
+
+    if (endDate < startDate) {
+      setError("End date cannot be before start date.");
+      setIsFiltered(false);
+      return;
+    }
+
     const isDateInRange = (occupiedDate) => {
       const occupied = new Date(occupiedDate);
       occupied.setHours(0, 0, 0, 0);
-  
-      let fallsIntoRange = true;
-  
-      if (endDate.getTime() !== startDate.getTime()) {
-        fallsIntoRange = occupied >= startDate && occupied <= endDate;
-      } else {
-        fallsIntoRange = occupied.getTime() === startDate.getTime();
-      }
-  
-      return fallsIntoRange;
+      return occupied >= startDate && occupied <= endDate;
     };
-  
+
     const availableCars = carData.filter((car) => {
       if (!car.occupiedDates || !Array.isArray(car.occupiedDates)) {
         return true;
       }
       return car.occupiedDates.every((occ) => !isDateInRange(occ.date));
     });
-  
+
     setFilteredCars(availableCars);
     setIsFiltered(true);
     setError("");
@@ -210,7 +206,15 @@ const BookingComponent = ({ currentUser }) => {
 
       {infoVisible && (
         <div className={styles.infoText}>
-          <p>Be aware, we don't ask for money in advance for the reservation of the car. The only thing you need to provide when you come is your username and the dates of reservation (start and end). If you want to cancel your booking, you need to contact our offices or send us an email 24 hours before. If you want to cancel your booking via phone, please contact us 1 hour before, via email 24 hours beforehand. If we see that the client doesn't arrive, we will wait 15 minutes, and then the client will be charged an additional fee.</p>
+          <p>
+            Be aware, we don't ask for money in advance for the reservation of the car. 
+            The only thing you need to provide when you come is your username and the 
+            dates of reservation (start and end). If you want to cancel your booking, 
+            you need to contact our offices or send us an email 24 hours before. If you 
+            want to cancel your booking via phone, please contact us 1 hour before, via 
+            email 24 hours beforehand. If we see that the client doesn't arrive, we will 
+            wait 15 minutes, and then the client will be charged an additional fee.
+          </p>
         </div>
       )}
 
@@ -227,18 +231,31 @@ const BookingComponent = ({ currentUser }) => {
       )}
 
       <div className={styles.calendarHeader}>
-        <button className={styles.dateSwitcher} onClick={() => handleMonthChange(-1)}>
+        <button 
+          className={styles.dateSwitcher} 
+          onClick={() => handleMonthChange(-1)}
+        >
           <FaArrowLeft />
         </button>
-        <h2>{currentDate.toLocaleString("default", { month: "long", year: "numeric" })}</h2>
-        <button className={styles.dateSwitcher} onClick={() => handleMonthChange(1)}>
+        <h2>
+          {currentDate.toLocaleString("default", { 
+            month: "long", 
+            year: "numeric" 
+          })}
+        </h2>
+        <button 
+          className={styles.dateSwitcher} 
+          onClick={() => handleMonthChange(1)}
+        >
           <FaArrowRight />
         </button>
       </div>
 
       <div className={styles.weekDays}>
         {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
-          <div key={day} className={styles.weekDay}>{day}</div>
+          <div key={day} className={styles.weekDay}>
+            {day}
+          </div>
         ))}
       </div>
 
@@ -258,11 +275,15 @@ const BookingComponent = ({ currentUser }) => {
         ))}
       </div>
 
-      <button className={styles.bookCarsButton} onClick={handleFilterCars}>
+      <button 
+        className={styles.bookCarsButton} 
+        onClick={handleFilterCars}
+      >
         Book Cars
       </button>
 
       {error && <div className={styles.errorMessage}>{error}</div>}
+      
       {success && (
         <div className={styles.successMessage}>
           {success}
@@ -295,10 +316,10 @@ const BookingComponent = ({ currentUser }) => {
               currentUser={currentUser}
             />
           ))
-        ) : isFiltered && selectedDates.startDate ? (
+        ) : isFiltered && selectedDates.startDate && selectedDates.endDate ? (
           <p>No available cars for the selected dates.</p>
         ) : (
-          <p>Please select a date for booking.</p>
+          <p>Please select both start and end dates for booking.</p>
         )}
       </div>
     </div>
