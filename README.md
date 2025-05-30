@@ -178,34 +178,34 @@ Presents a comprehensive overview of how user data is collected, used, shared, a
 
 Wireframes have been created using [Balsamic](https://balsamiq.com "Balsamic"). Wireframes provide a foundational visual overview of the website’s intended layout and structure. Please note that the final implementation may include slight adjustments to optimize user experience and design aesthetics.
 
-**About Us Page Wireframe**
+**About Us Page Wireframe** <br>
 ![Home Page Wireframe](public/documentation/wireframes/aboutuspage.png)
 
-**Rent Page Wireframe**
+**Rent Page Wireframe** <br>
 ![Rent Page Wireframe](public/documentation/wireframes/rentpage.png)
 
-**All Cars Page Wireframe**
+**All Cars Page Wireframe** <br>
 ![All Cars Page Wireframe](public/documentation/wireframes/allcarspage.png)
 
-**Reviews Page Wireframe**
+**Reviews Page Wireframe** <br>
 ![Reviews Page Wireframe](public/documentation/wireframes/reviewspage.png)
 
-**My Rentals Page Wireframe**
+**My Rentals Page Wireframe** <br>
 ![My Rentals Page Wireframe](public/documentation/wireframes/myrentalspage.png)
 
-**Private Policy Page Wireframe**
+**Private Policy Page Wireframe** <br>
 ![Private Policy Page Wireframe](public/documentation/wireframes/privatepolicypage.png)
 
-**Contact Us Page Wireframe**
+**Contact Us Page Wireframe** <br>
 ![Contact Us Page Wireframe](public/documentation/wireframes/contactpage.png)
 
-**Sign In Page Wireframe**
+**Sign In Page Wireframe** <br>
 ![Sign In Page Wireframe](public/documentation/wireframes/signin.png)
 
-**Sign Up Page Wireframe**
+**Sign Up Page Wireframe** <br>
 ![Sign Up Page Wireframe](public/documentation/wireframes/signuppage.png)
 
-**Review Page Logout Mode Wireframe**
+**Review Page Logout Mode Wireframe** <br>
 ![Review Page Logout Mode Wireframe](public/documentation/wireframes/reviewslogoutmode.png)
 
 ## Features
@@ -214,16 +214,16 @@ Wireframes have been created using [Balsamic](https://balsamiq.com "Balsamic"). 
 
 This page thoughtfully combines essential information about the company's journey, milestones, and operational procedures. It features a detailed overview of the company's history, highlighting key achievements such as awards, expansion milestones, and sustainability initiatives, which build trust and credibility. The "How It Works" section guides users through the rental process step-by-step, making it easy for new customers to understand how to utilize the service. Together, these elements create an informative, engaging, and professional presentation of our brand's story and operational excellence.
 
-**About Us Page**
+**About Us Page** <br>
 ![About Us Page](public/documentation/screenshots/aboutus1.png)
 
-**About Us Page**
+**About Us Page** <br>
 ![About Us Page](public/documentation/screenshots/aboutus2.png)
 
-**About Us Page**
+**About Us Page** <br>
 ![About Us Page](public/documentation/screenshots/aboutus3.png)
 
-**About Us Page Mobile**
+**About Us Page Mobile** <br>
 ![About Us Page Mobile](public/documentation/screenshots/aboutusmobile.png)
 
 ### Rent Page
@@ -232,20 +232,20 @@ The Booking Component offers a user-friendly way to choose your rental dates. On
 
 Additionally, when you successfully book a car, you will receive a unique reservation code. This code is randomly generated each time and serves as your personal confirmation. It helps you easily manage and reference your booking, ensuring a hassle-free experience from start to finish.
 
-**Rent Page**
+**Rent Page** <br>
 ![Rent Page](public/documentation/screenshots/rentpagedesktop.png)
 
-**Rent Page Mobile Mode**
+**Rent Page Mobile Mode** <br>
 ![Rent Page Mobile Mode](public/documentation/screenshots/rentpagemobile.png)
 
 ### All Cars Page
 
 The All Cars Page showcases the company's entire fleet of vehicles in a clean, organized grid layout, with three cars displayed per row. Visitors can view detailed information about each car, including pictures, prices, and other specs—all fetched dynamically from the backend Django server. This comprehensive listing makes it easy for users to explore the full selection of available vehicles, helping them find the perfect car for their needs. The page also features loading indicators during data retrieval and handles errors smoothly, providing a seamless browsing experience.
 
-**All Cars Page**
+**All Cars Page** <br>
 ![All Cars Page](public/documentation/screenshots/allcarsdesktop.png)
 
-**All Cars Page Mobile Mode**
+**All Cars Page Mobile Mode** <br>
 ![All Cars Page Mobile Mode](public/documentation/screenshots/allcarsmobile.png)
 
 ### Reviews Page
@@ -255,63 +255,63 @@ The Reviews page displays feedback from all customers, allowing everyone—inclu
 **Reviews Page**
 ![Reviews Page](public/documentation/screenshots/reviewsloggeddesktop.png)
 
-**Reviews Page Mobile Mode**
+**Reviews Page Mobile Mode** <br>
 ![Reviews Page Mobile Mode](public/documentation/screenshots/reviewsmobile.png)
 
-**Reviews Page LoggedOut**
+**Reviews Page LoggedOut** <br>
 ![Reviews Page LoggedOut](public/documentation/screenshots/reviewsdesktoploggedout.png)
 
-**Reviews Page Mobile Mode LoggedOut**
+**Reviews Page Mobile Mode LoggedOut** <br>
 ![Reviews Page Mobile Mode LoggedOut](public/documentation/screenshots/reviewsmobileloggedout.png)
 
 ### My Rentals Page
 
 This page provides a comprehensive view of all your active and upcoming bookings. You can see detailed information for each reservation, including the start and end dates, a picture of the car, and your unique reservation number. The reservations are organized by month and year, making it easy to navigate through your upcoming trips. The interface allows you to manage your bookings with options to edit or cancel, giving you full control and clear visibility over your rentals. When editing a booking, if the car you choose is already booked for the new dates, an error message will be displayed, and the change will not be processed. It’s all designed to be simple, transparent, and convenient for you.
 
-**My Rentals Page**
+**My Rentals Page** <br>
 ![My Rentals Page](public/documentation/screenshots/myrentalsdesktop.png)
 
-**My Rentals Page Mobile Mode**
+**My Rentals Page Mobile Mode** <br>
 ![My Rentals Page Mobile Mode](public/documentation/screenshots/myrentalsmobile.png)
 
 ### Private Policy
 
 This page outlines how Happy Rental collects, uses, shares, and protects your personal information. It details the types of data we gather when you rent a vehicle, including personal details, payment information, and technical data. It explains how your data helps us manage reservations, improve our services, and comply with legal requirements. The policy also emphasizes our commitment to data security and your rights to access, update, or delete your information. For any privacy-related questions, you can find contact details and learn more about how we safeguard your data. Overall, this page ensures transparency and builds trust by clearly communicating our privacy practices.
 
-**Private Policy Page**
+**Private Policy Page** <br>
 ![Private Policy Page](public/documentation/screenshots/privatepolicydesktop.png)
 
-**Private Policy Page Mobile Mode**
+**Private Policy Page Mobile Mode** <br>
 ![Private Policy Page Mobile Mode](public/documentation/screenshots/privatepolicymobile.png)
 
 ### Conta Us Page
 
 This contact form allows users, whether registered or not, to easily reach out with questions or comments about our car booking services. It includes fields for full name, email, and message, with validation to ensure the user provides all necessary information correctly. When a user submits the form, the data is sent to our backend, and the user receives feedback confirming whether their message was successfully sent or if there was an error. The design emphasizes simplicity and user-friendliness, enabling efficient communication and helping us improve customer engagement.
 
-**Contact Us Page**
+**Contact Us Page** <br>
 ![Contact Us Page](public/documentation/screenshots/contactusdesktop.png)
 
-**Contact Us Page Mobile Mode**
+**Contact Us Page Mobile Mode** <br>
 ![Contact Us Page Mobile Mode](public/documentation/screenshots/contactusmobile.png)
 
 ### Sign Up Page
 
 This component features a clean, modern design that invites new users to create an account by entering their name, email, and password. It includes validation to ensure passwords match and provides real-time feedback to guide users. A friendly prompt — "If you already have an account, sign in" — offers a quick way for returning users to navigate to the login page. The registration process is integrated with Django's built-in authentication system, which handles user creation and validation seamlessly in the background. The form’s simple and user-friendly layout encourages new registrations with an effortless onboarding experience.
 
-**Sign Up Page**
+**Sign Up Page** <br>
 ![Sign Up Page](public/documentation/screenshots/signupformdesktop.png)
 
-**Sign Up Page Mobile**
+**Sign Up Page Mobile** <br>
 ![Sign Up Page Mobile](public/documentation/screenshots/signupformmobile.png)
 
 ### Login Page ( Sign In)
 
 This component provides a sleek and straightforward interface that allows users to access their accounts by entering their email and password. It communicates with the backend, which is built on Django’s robust authentication system, to verify credentials securely. When login is successful, user information and authentication tokens are stored locally, and the user is redirected back to their previous activity or the homepage. The form is designed for simplicity and clarity, offering helpful feedback for invalid credentials and ensuring a smooth, efficient login experience for every user.
 
-**Login Page**
+**Login Page** <br>
 ![Login Page](public/documentation/screenshots/logindesktop.png)
 
-**Login Page Mobile**
+**Login Page Mobile** <br>
 ![Login Page Mobile](public/documentation/screenshots/loginmobile.png)
 
 ### Navbar
@@ -324,57 +324,57 @@ Importantly, while anyone can browse the "Rent" and "Reviews" pages, they need t
 
 The design ensures a seamless experience across devices, with responsive adjustments for smaller screens, including stylish burger menus that fit neatly into mobile views. Overall, the color palette and layout reinforce the brand’s focus on sustainability while offering a professional and inviting interface for all users.
 
-**Navbar**
+**Navbar** <br> 
 ![Navbar](public/documentation/screenshots/loggedinnavbar.png)
 
-**Navbar Logged Out**
+**Navbar Logged Out** <br>
 ![Navbar Logged Out ](public/documentation/screenshots/loggedoutnavbardesktop.png)
 
-**Navbar Mobile**
+**Navbar Mobile** <br>
 ![Navbar Mobile](public/documentation/screenshots/mobilenavbar.png)
 
-**Navbar Mobile Logged Out**
+**Navbar Mobile Logged Out** <br>
 ![Navbar Mobile Logged Out](public/documentation/screenshots/loggedoutnavbar.png)
 
 ### Footer
 
 The footer is a fixed, full-width component positioned at the bottom of the page, providing easy access to important links and social media profiles. Its background features a gradient from deep blue to lush green, reflecting the company's focus on sustainability and eco-friendly initiatives. The footer includes links to the Privacy Policy and Contact page, helping users find essential information quickly. Social media icons for Instagram, Facebook, TikTok, and Twitter are prominently displayed, encouraging visitors to connect with us on various platforms. The overall design ensures clarity and accessibility across all devices, with responsiveness tailored for smaller screens. It’s styled with smooth hover effects and a subtle shadow to distinguish it from the main content, maintaining a professional and trustworthy appearance.
 
-**Footer**
+**Footer** <br>
 ![Navbar Page](public/documentation/screenshots/footer.png)
 
-**Footer Mobile**
+**Footer Mobile** <br>
 ![Footer Mobile](public/documentation/screenshots/footermobile.png)
 
 ### Rating
 
 Logged-in users can rate the company on a scale from 0 to 5 stars. The rating is visually displayed with stars filled in gold or yellow, providing a clear and attractive overview. For example, if a user gives a rating of 2 out of 5, two stars will be filled, and the remaining three stars will be empty, making the feedback easy to understand at a glance.
 
-**Rating**
+**Rating** <br>
 ![Rating](public/documentation/screenshots/ratingstars.png)
 
 ### Review Link Navbar
 
 The navigation bar includes a direct link to the Reviews page, marked with a star icon. This makes it easy for users to quickly access customer feedback and see honest reviews from others. The star icon helps draw attention to this section, encouraging visitors to explore what others think about our service. Whether you're looking for insights or want to share your own experience, this link provides a convenient shortcut at the top of the site.
 
-**Review Link**
+**Review Link** <br>
 ![Review Link](public/documentation/screenshots/reviewlink.png)
 
 ### Social Media Links
 
 The footer includes icons linking to the company's official social media profiles—Instagram, Facebook, TikTok, and Twitter. These icons provide visitors with quick access to follow or engage with the company on various platforms. Each link opens in a new tab to ensure users remain on the website while exploring the social content. Incorporating these links helps increase online visibility and encourages community interaction, aligning with the brand’s modern and professional look.
 
-**Social Media**
+**Social Media** <br>
 ![Social Media](public/documentation/screenshots/socialmedia.png)
 
 ### Welcome Message
 
 The welcome message pops up in the center of the screen with a green background that matches the overall page theme. It catches your attention right away by being prominent and nicely centered. After a couple of seconds, it automatically disappears, so it doesn’t stay on the screen too long. The idea is to give users a quick, friendly confirmation that they have logged in or been welcomed, making the experience feel smooth and natural. This small notification helps users know that their action was successful without disturbing their flow.
 
-**Welcome Message**
+**Welcome Message** <br>
 ![Welcome Message](public/documentation/screenshots/welcomedesktop.png)
 
-**Welcome Message Mobile**
+**Welcome Message Mobile** <br>
 ![Welcome Message Mobile](public/documentation/screenshots/welcomemobile.png)
 
 ### CRUD Functionality
@@ -403,14 +403,14 @@ Users can send messages via a contact form by providing their full name, email, 
 
 HTML testing was completed by running the website through [W3C HTML Validator](https://validator.w3.org/). The results were as follows:
 
-**HTML Validation**
+**HTML Validation** <br>
 ![HTML Validation](public/documentation/screenshots/htmltest.png)
 
 The validator gave an informational warning about the trailing slashes on void elements (like <meta>, <link>, etc.). This is just a note because, in HTML5, the trailing slash is optional and doesn't impact how browsers interpret the code. It’s a stylistic preference, and since the code remains valid and works correctly, these warnings can be safely ignored. There’s no actual issue with the current code; it’s just a validation note, not a problem affecting functionality.
 
 ### CSS Validation
 
-**CSS Validation**
+**CSS Validation** <br>
 ![CSS Validation](public/documentation/screenshots/cssvalidator.png)
 
 The CSS validation passed without any errors.
@@ -459,7 +459,6 @@ Even though Django already has a built-in User model, I decided to create my own
 
 ### Languages
 
-
 * [HTML](https://en.wikipedia.org/wiki/HTML "HTML")  
   Used for structuring the web pages and defining the layout of the user interface.
 
@@ -476,9 +475,6 @@ Even though Django already has a built-in User model, I decided to create my own
 
 ### Libraries & Frameworks
 
-* [Django](https://en.wikipedia.org/wiki/Django_(web_framework) "Django")  
-  A high-level Python web framework used to develop the backend API, manage database models, handle user authentication, and serve data to the frontend.
-
 * [React Bootstrap v4.6](https://react-bootstrap-v4.netlify.app/ "React Bootstrap")  
   A React component library that integrates Bootstrap's styles and components, enabling building responsive, styled user interfaces quickly.
 
@@ -486,128 +482,56 @@ Even though Django already has a built-in User model, I decided to create my own
   For icons, included via CDN with the script tag:
   `<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>`
 
-### Databases
+### State Management with Contexts
 
-* [PostgreSQL](https://www.postgresql.org/) 
-Used as the main database, hosted via NeonDB.
+UserContext: Manages the authenticated user's state across the application. It tracks whether a user is logged in, stores their basic profile information, and handles login and logout actions. This allows components throughout the app to adapt their behavior based on the user's authentication status, ensuring a personalized and seamless user experience.
+
+### Toggles and Navigation Logic
+
+The navigation bar uses Bootstrap’s built-in toggle feature so on smaller screens, clicking the hamburger icon smoothly shows or hides the menu items.
+
+The links change depending on whether the user is logged in. If they’re logged in, they see options like “My Rentals” and "Logout." When they click "Logout," it clears their info from storage, updates the app state, and automatically redirects them to the homepage.
+
+If they’re not logged in, they see "Login" and "Sign Up" links. Also, when a logged-in user clicks certain links, like "My Rentals," they are taken directly to that page—no extra steps needed.
+
+This setup makes navigation clear and smooth, whether on desktop or mobile, and always shows the right options based on login status.
+
+### Package.json: Project Dependencies
+
+This file manages all the libraries and tools our project relies on.
+Dependencies are external packages needed for the app to work, like React, Bootstrap, Axios, and icons.
+Dev Dependencies are tools used during development, like testing libraries and code linters, which help keep the code quality high.
+The scripts section includes commands to run the app locally, build it for production, or run tests.
 
 ### Tools
+
+Here are the main tools and libraries used to build and develop the project, helping ensure a smooth development process and a responsive website.
 
 * [GitHub](https://github.com "GitHub") — Version control and project hosting.
 * [Gitpod](https://gitpod.io "Gitpod") — Cloud-based development environment.
 * [Balsamiq](https://balsamiq.com "Balsamiq") — Wireframing and UI design.
 * [Coolors](https://coolors.co "Coolors") — Color palette generation.
 * [Chrome DevTools](https://developer.chrome.com/docs/devtools "DevTools") — Browser debugging and inspection.
-* [Gunicorn](https://gunicorn.org "Gunicorn") — WSGI server for deploying Django.
-* [Cloudinary](https://cloudinary.com/ "Cloudinary") — Image hosting and management.
 * [Heroku](https://heroku.com "Heroku") — Cloud platform for deployment.
-* [Psycopg](https://wiki.postgresql.org/wiki/Psycopg "Psycopg") — PostgreSQL database adapter for Python.
+* [Favicon](https://favicon.io/ "Favicon") — Custom favicon creation.
 
 ## Development and Deployment
 
-### Development
+Guidance on setting up the project locally and deploying it live.
 
-#### Cloudinary
+####  Development
 
-1. Navigate to [Cloudinary](https://cloudinary.com/ "Cloudinary") and create an account.
-2. Log in.
-3. Navigate to your dashboard and copy the API Enviroment variable.
-4. Keep a note of this variable as you will need to add it to your env.py file in your project.
+This section explains how to run the app locally for development purposes.
 
-### Requirements
-
-The project relies on the following packages:
-
-* asgiref==3.8.1
-* astroid==3.3.10
-* certifi==2025.1.31
-* charset-normalizer==3.4.1
-* cloudinary==1.43.0
-* dill==0.4.0
-* dj-database-url==0.5.0
-* Django==3.2.25
-* django-cloudinary-storage==0.3.0
-* django-cors-headers==4.5.0
-* djangorestframework==3.12.4
-* flake8==7.2.0
-* gunicorn==23.0.0
-* idna==3.10
-* isort==6.0.1
-* mccabe==0.7.0
-* packaging==24.2
-* pillow==11.1.0
-* platformdirs==4.3.8
-* psycopg2-binary==2.9.10
-* pycodestyle==2.13.0
-* pyflakes==3.3.2
-* pylint==3.3.7
-* pytz==2025.2
-* requests==2.32.3
-* setuptools==78.1.0
-* six==1.17.0
-* sqlparse==0.5.3
-* tomlkit==0.13.2
-* urllib3==2.3.0
-
-Keep your requirements.txt up-to-date by running:
-
-pip freeze > requirements.txt
-
-This command captures all currently installed packages and their exact versions, making it easy to recreate the environment elsewhere.
-
-To install all dependencies listed in your requirements file, use:
-
-pip3 install -r requirements.txt
-
-Note: Depending on your system and Python environment, you might need to use pip instead of pip3. Always verify with your Python documentation.
-
-### Deployment
-
-#### Backend
-
-##### env File
-
-Create an env.py file in the root folder of your project. This file is used to securely store sensitive variables and must be added to your .gitignore to prevent it from being published publicly.
-
-To set up your environment:
-
-Add the following variables, replacing the placeholder values with your actual credentials:
-
-# env.py
-
-* DATABASE_URL: The connection string for your database (e.g., ElephantSQL, NeonDB). You can find this in your database provider’s dashboard after creating your database.
-
-* SECRET_KEY: Your Django secret key. Generate a secure key using Django Secret Key Generator. This key is crucial for cryptographic signing and should be kept secret.
-
-* CLOUDINARY_URL: Your Cloudinary API environment variable. Remove the prefix before cloudinary:// and keep only the portion with your credentials (cloudinary://<api_key>:<api_secret>@<cloud_name>).
-
-* DEV: Set to "1" during development to enable debug mode. In production, remove this line or set to an empty string, so your app runs with debug mode disabled.
-
-* ALLOWED_HOST: Your development URL (e.g., localhost) or your production URL (e.g., your deployed app’s domain). This restricts access to your site.
-
-* Note: Replace placeholder values with your actual credentials, but do not commit env.py to your repository.
-
-This project was deployed using [Heroku](https://www.heroku.com "Heroku") by following the steps detailed below.
-
-##### Heroku Backend
-
-1. Navigate to Heroku website and sign up or log in.
-2. From your dashboard, click New > Create new app.
-3. Assign a unique name to your app, select your region, then click Create app.
-4. Go to the Settings tab.
-5. Scroll down to Config Vars and click Reveal Config Vars.
-6. Add the required environment variables, ensuring they match your credentials (replace the example values below with your actual data):
-* CLOUDINARY_URL	your Cloudinary API URL	Your Cloudinary credentials (remove the prefix if needed)
-* DATABASE_URL	your database URL	Your PostgreSQL connection string (e.g., NeonDB, ElephantSQL)
-* ALLOWED_HOST	your deployed site URL	Without https:// (e.g., yourapp.herokuapp.com)
-* CLIENT_ORIGIN	your frontend URL	The live URL of your frontend app
-* CLIENT_ORIGIN_DEV	your local URL	Typically http://localhost:3000
-* SECRET_KEY	your secret key	Generate a unique secret key for production (keep it private)
-* DEVELOPMENT	1	Set to "1" during development to enable debug mode
-
-#### Frontend
+To run the app locally:
+1. Clone this repository.
+2. Run `npm install` to install dependencies.
+3. Use `npm start` to start the development server.
+4. Access the app at `http://localhost:3000`.
 
 #### Deploying from a Github Repository
+
+This section explains how to deploy the application to a live environment using Heroku, with step-by-step instructions.
 
 1. Go to the Deploy tab in your Heroku dashboard.
 2. Choose GitHub - Connect as your deployment method and authorize Heroku to access your GitHub account when prompted.
@@ -620,3 +544,51 @@ This project was deployed using [Heroku](https://www.heroku.com "Heroku") by fol
 7. If you selected Automatic Deploys, click Enable Automatic Deploys to activate continuous deployment.
 - If you chose Manual Deploy, hit Deploy Branch to start the deployment.
 8. Wait for the deployment process to complete. Once finished, you'll see a confirmation message saying Your app was successfully deployed, along with a button to view your live site.
+
+## Favicon
+
+A favicon is a small icon displayed in the browser tab next to your website's title, helping users easily identify your site. My favicon was custom-created using [Favicon](https://favicon.io/ "Favicon"), which allows easy generation of icons.
+
+Steps to update or add a favicon:
+
+- Create your favicon image using favicon.io, or prepare your own .ico or .png image.
+- Save the generated favicon as favicon.ico and place it in the public folder of your project.
+- Open the public/index.html file and place your favicon inside the <head> section.
+
+**Favicon** <br>
+![Favicon](public/documentation/favicon/favicon.ico)
+
+## Media Section
+
+In this section, you'll find the background image used in the "About Us" page, as well as all the car photos featured throughout the project. These images give you a visual overview of our fleet and the variety of vehicles we offer.
+
+All images used in this project are sourced from official manufacturers, channels, or dedicated websites. The specific credits are as follows:
+
+- The Kia car image is from MotorPassion Mexico.
+- The Ford Ranger image is from ford.com.
+- The Mazda vehicle image is from mazda.com.
+- The Volkswagen car image is from volkswagen.com.
+- The Fiat Ducato van image is from Carado.com.
+- The Ford RV van image is from the "We're the Russos" YouTube channel, which features various travel styles including camper vans, international trips, and RV living.
+- The background image used on the "About Us" page is from cargini.rent.
+
+**Kia**
+![Kia](public/documentation/media/kiaoptima.jpg)
+
+**Ford**
+![Ford](public/documentation/media/ford.jpeg)
+
+**Mazda**
+![Mazda](public/documentation/media/mazda.webp)
+
+**Volkswagen**
+![Volkswagen](public/documentation/media/volkswagen.jpg)
+
+**Fiat Ducato**
+![Fiat Ducato](public/documentation/media/fiat-ducato8-colors.jpg)
+
+**Ford RV**
+![Ford RV](public/documentation/media/fordrv.jpg)
+
+**About Us Page Background Image**
+![About Us Page Background Image](public/documentation/media/car.png)

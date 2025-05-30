@@ -28,15 +28,12 @@ function SignInForm() {
         {
           email: formData.email,
           password: formData.password
-          // No username field needed
         }
       );
 
-      // Save user data and token
       localStorage.setItem("user", JSON.stringify(response.data));
       setUser(response.data);
 
-      // Handle booking redirect if needed
       if (location.state?.bookingIntent) {
         const pendingBooking = JSON.parse(sessionStorage.getItem('pendingBooking'));
         sessionStorage.removeItem('pendingBooking');
@@ -58,7 +55,6 @@ function SignInForm() {
         });
       }
     } catch (err) {
-      // Improved error handling
       const errorMessage = err.response?.data?.detail || 
                          "Login failed. Please check your credentials.";
       setError(errorMessage);
