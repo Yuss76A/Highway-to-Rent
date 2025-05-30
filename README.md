@@ -6,6 +6,14 @@ Welcome to Happy Rental Jönköping! This is a small, local company dedicated to
 
 ![Responsive](public/documentation/screenshots/responsive.png)
 
+## Links to the Deployed Sites
+
+[Happy Rental Backend - API live site](https://carbookingbackend-df57468af270.herokuapp.com/)
+
+[Happy Rental Jönköping - Front-End live site](https://highway-to-rent-6dc001f7bfed.herokuapp.com/)
+
+[Readme Backend](https://github.com/Yuss76A/app-backend)
+
 ### User Stories
 
 #### Navigating the Site
@@ -69,6 +77,12 @@ Welcome to Happy Rental Jönköping! This is a small, local company dedicated to
 #### User Stories Information
 
 * Initially, I outlined high-level user stories to guide the overall structure and features of the project, focusing on the main functionalities users would need. As I progressed, I created more detailed, specific user stories in GitHub to break down those broader goals into actionable tasks and edge cases, helping to refine the development process and ensure a thorough understanding of each component.
+
+#### Additional Note on User Stories
+
+Some of the user stories from this section are also found in the "User Stories" section of the backend README—they concern backend functionalities like data management, APIs, and security. I chose to keep these stories in the frontend README as well to provide a complete overview of the features I developed. 
+
+It's important to understand that the backend supports and manages these core features, which enable the frontend to function properly. I didn't remove or duplicate them; instead, I kept them to give a clear picture of both how the frontend interacts with the backend and the overall development process.
 
 ### Agile Aproach
 
@@ -545,6 +559,50 @@ This section explains how to deploy the application to a live environment using 
 - If you chose Manual Deploy, hit Deploy Branch to start the deployment.
 8. Wait for the deployment process to complete. Once finished, you'll see a confirmation message saying Your app was successfully deployed, along with a button to view your live site.
 
+## Bugs
+
+During the final review before writing this README, I identified a couple of issues:
+
+- Booking without an end date: When a user selected a start date for a booking but did not select an end date, the available cars would still appear below in the "to be booked" list after clicking "Book Cars." However, because no end date was chosen, clicking the "Book" button for any car in that list would not work — it was effectively disabled.
+
+This wasn't just a UX oversight; the main idea was that cars should only appear after both start and end dates are selected. If either date is missing, the available cars should not be shown to avoid confusion.
+
+- Status: This bug has now been fixed. The system now correctly requires both start and end dates before displaying available cars, ensuring a smoother and more logical user experience.
+
+- Editing bookings with past dates: Initially, I believed I had disabled the ability to select past dates when editing a booking, to prevent users from making invalid reservations. However, this restriction was not fully implemented, and users could still edit and save bookings with past dates.
+
+- Status: This bug has now been fixed. The system now correctly prevents users from selecting past dates when editing bookings, ensuring all reservations remain valid and consistent.
+
+## Note
+
+I’ve tested and reviewed everything multiple times, and everything has been functioning as it should. That said, this is a big project, and no matter how much you test, mistakes can sometimes slip through. I might have overlooked some issues or made errors — it’s only human. I apologize if there are any problems, and I want to assure you that your feedback is always welcome. If you encounter any issues or mistakes, please don’t hesitate to contact us through the contact page or leave a comment in the reviews page. We are committed to improving and fixing things whenever possible.
+
+## Future Features and Ideas
+
+Due to limited time, personal commitments, and working a full-time job, I wasn't able to implement everything I envisioned for this project. I know the site could be much bigger and better — this is just the start. I focused on creating the basic functions of a car rental website, making sure it’s useful and easy to navigate.
+
+Some ideas I’d like to add in the future include a user profile page where users can upload a picture, add personal details like phone number, and manage their information.Also, I’d like to introduce a way for users to pay directly after booking — making the process smoother and more seamless.
+
+Other small ideas include a live map showing the exact location of the office, or perhaps a messaging/chat feature for users to communicate directly with the staff or each other. These are just some ideas for now—they could grow into much bigger features over time. 
+
+Of course, once I start implementing one thing, new ideas often come up. This project is a work in progress, and I see it evolving and improving continuously. That’s what makes this journey exciting!
+
+## Personal Reflection
+
+When I started this project, it definitely wasn’t easy. I had a lot going on outside of my studies — working full time and trying to juggle everything else. Like I mentioned in my backend README, balancing those things made it really tough. I ran into issues sometimes trying to properly connect the backend with the frontend, and there were days I just didn’t even try. I got angry and felt like I wouldn’t be able to pull this off, so I skipped some days completely.
+
+But here I am, at the end of what’s been an incredible journey over this past year. Despite the tough moments, I had a lot of fun working on this. It feels really good to see it come together, and I’ve learned a ton in the process. It wasn’t always smooth sailing, but I’m proud of what I managed to accomplish, and I’m grateful for the experience.
+
+## A Note of Gratitude
+
+Starting this journey with Code Institute has truly been a transformative experience. Their platform provided me with invaluable tools, guidance, and a structured path to learn and grow. I am grateful for the resources, support, and community they foster, which made tackling this project possible.
+
+A special thanks goes to the assessors whose detailed feedback and constructive criticism helped me improve and push my skills further. Your insights challenged me to learn from my mistakes and to become better with each step.
+
+I also want to extend my appreciation to the Slack community — a place where I found constant support, encouragement, and inspiration. Whenever I faced challenges or needed advice, this community was always there for me.
+
+Thank you to everyone involved — Code Institute, the assessors, mentors, and the Slack community — for making this experience truly life-changing. Your support and guidance made all the difference.
+
 ## Favicon
 
 A favicon is a small icon displayed in the browser tab next to your website's title, helping users easily identify your site. My favicon was custom-created using [Favicon](https://favicon.io/ "Favicon"), which allows easy generation of icons.
@@ -592,3 +650,19 @@ All images used in this project are sourced from official manufacturers, channel
 
 **About Us Page Background Image**
 ![About Us Page Background Image](public/documentation/media/car.png)
+
+## Inspiration and Idea
+
+The main idea for this project came from a personal experience. I visited Jönköping before moving there permanently, and I wanted to rent a car for my stay. I called a rental company to book a vehicle, but on the day of the reservation, they couldn’t find my booking. I had to wait until the next day for an available car. Despite their efforts to locate my reservation, their fleet was limited at the Jönköping office, and I was lucky that a car became available the next day.
+
+This experience highlighted the importance of a reliable, accessible, and well-managed rental service—something I wish I had during that time. The project was born from the desire to improve the rental experience, making it more seamless, transparent, and accessible for visitors and residents alike in Jönköping and beyond.
+
+## Credits
+
+I want to express my sincere gratitude to [CodeInstitute](https://codeinstitute.net/ "Code Institute") and their vibrant Slack community of mentors and fellow learners. Their support, advice, and shared knowledge have been instrumental in helping me progress throughout this project and reach my goals.
+
+A special shoutout to my wife, Fatty, and my younger brother, Mett, whose encouragement, testing, and feedback were invaluable in shaping this work. Your support kept me motivated and focused.
+
+I also owe a huge thank you to my mentor, [Iuliia Konovalova](https://github.com/IuliiaKonovalova), for your ongoing guidance and insightful tips. Your mentorship truly made a positive difference in my learning experience.
+
+Finally, I must acknowledge the creators of [GitHub](https://github.com/), whose platform has revolutionized collaboration and coding education. It’s more than just a tool — it’s been an essential part of my growth as a developer.
