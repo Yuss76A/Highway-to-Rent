@@ -429,6 +429,21 @@ The validator gave an informational warning about the trailing slashes on void e
 
 The CSS validation passed without any errors.
 
+### Automated Testing
+
+I implemented automated tests to verify the signup form works correctly. The tests check that:
+
+1. The form successfully submits user data to the /register/ API endpoint
+
+2. All required fields (name, email, password) are included in the submission
+
+3. The data is properly formatted before being sent to the backend
+
+These tests run automatically and help catch any errors in the registration process before they affect users. The test results confirm that new users can reliably create accounts through the form.
+
+**Results Test** <br>
+![Results Test](public/documentation/screenshots/resultsfrontend.png)
+
 ### Manual Testing
 
 Throughout the development process and upon final completion, manual testing was performed. The outcomes are summarized in the table below.
