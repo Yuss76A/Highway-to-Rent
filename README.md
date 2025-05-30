@@ -465,10 +465,6 @@ I have listed all the features I manually tested and observed during the testing
 
 Extensive manual testing was conducted across all CRUD operations within the backend system. During creation tests, new entries were correctly added to the database, reflecting the intended data. Update operations successfully modified existing records, with changes accurately saved. Deletion tests effectively removed specified data entries from the database, confirming proper functionality of delete actions.
 
-### Why I created a custom User model
-
-Even though Django already has a built-in User model, I decided to create my own. I wanted to make the email the main way users log in, and I needed to add some extra fields like full name. By making a custom User model, I can handle user info exactly how I want and make sure the login process fits my app’s requirements better. It gives me more control over user data and how authentication works.
-
 ## Technologies Used
 
 ### Languages
