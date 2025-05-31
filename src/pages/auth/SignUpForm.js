@@ -41,7 +41,7 @@ function SignUpForm() {
 
       localStorage.setItem("user", JSON.stringify(response.data));
       setUser(response.data);
-      navigate("/");
+      navigate("/", { state: { welcome_message: "Welcome to Happy Rental Jönköping!" } });
     } catch (err) {
       const errorMessage = err.response?.data?.email?.[0] || 
                          err.response?.data?.password?.[0] || 
