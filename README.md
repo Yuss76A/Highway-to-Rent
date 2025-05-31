@@ -473,6 +473,7 @@ Throughout the development process and upon final completion, manual testing was
 | All cars displayed                                              | All cars show with name, price, and description.                 | Visit the All Cars page.                                          | Everything displays correctly as expected.                         | As expected  |
 | Contact page                                                    | Contact page works as expected.                                    | Submit a message. | Message sent successfully and confirmation message displayed. | As expected  |
 | Admin actions                                                     | Admin can read emails, modify bookings, manage cars, delete users, reviews, bookings, and contact messages. | Perform admin tasks like viewing emails, editing data, deleting entries. | All actions complete successfully; data updates reflect correctly. | As expected  |
+| Welcome message after registration | After a user successfully registers, a clear welcome message appears on the screen, confirming registration success. | Upon successful registration, the message "Welcome to Happy Rental Jönköping!" is displayed prominently on the page. | User sees a visible, congratulatory message confirming they are registered and welcomed. | As expected |
 
 I have listed all the features I manually tested and observed during the testing process. If I happened to forget something, that can happen — tracking every detail can be challenging. I apologize in advance for any oversights and appreciate your understanding.
 
@@ -527,6 +528,13 @@ Important Note:
 ### Manual Testing Summary CRUD:
 
 Extensive manual testing was conducted across all CRUD operations within the backend system. During creation tests, new entries were correctly added to the database, reflecting the intended data. Update operations successfully modified existing records, with changes accurately saved. Deletion tests effectively removed specified data entries from the database, confirming proper functionality of delete actions.
+
+## Site Management in Django Admin
+
+ Everything you do on the website—like booking, reviewing, or managing your account—is actually managed behind the scenes by the admin or authorized staff through the Django admin page. They handle all the data, approve reviews, update car info, and manage bookings directly. So while it looks seamless on your side, all the actions are controlled by trusted personnel to keep everything organized and secure.
+
+ **Django Admin** <br>
+![Django Admin](public/documentation/screenshots/djangoadmin.png)
 
 ## Technologies Used
 
