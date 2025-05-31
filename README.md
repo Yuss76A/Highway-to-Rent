@@ -476,6 +476,54 @@ Throughout the development process and upon final completion, manual testing was
 
 I have listed all the features I manually tested and observed during the testing process. If I happened to forget something, that can happen — tracking every detail can be challenging. I apologize in advance for any oversights and appreciate your understanding.
 
+## Succes and Error Messages
+
+Important Note:
+
+- In this section, I will showcase the success and error messages implemented in the project. I have tried to track and include all the messages I've added. However, given the size of this project, it might be possible that some messages are not listed here or do not appear. If that's the case, I apologize—keeping track of every message across a large project can be challenging.  
+
+**Duplicated Email** <br>
+![Duplicated Email](public/documentation/screenshots/duplicateduseremail.png)
+
+**Password Do Not Match** <br>
+![Password Do Not Match](public/documentation/screenshots/passworddonotmatch.png)
+
+**Invalid Password** <br>
+![Invalid Password](public/documentation/screenshots/invalidpassword.png)
+
+**You Can Not Select Past Days** <br>
+![You Can Not Select Past Days](public/documentation/screenshots/youcannotselectpastdays.png)
+
+**Start And End Date** <br>
+![Start And End Date](public/documentation/screenshots/startandenddate.png)
+
+**Already Booked Car** <br>
+![Already Booked Car](public/documentation/screenshots/alreadybookedcar.png)
+
+**Booking Success** <br>
+![Booking Success](public/documentation/screenshots/bookingsuccess.png)
+
+**Review Success** <br>
+![Review Success](public/documentation/screenshots/reviewsuccess.png)
+
+**Review Deleted** <br>
+![Review Deleted](public/documentation/screenshots/reviewdeleted.png)
+
+**Booking Canceled** <br>
+![Booking Canceled](public/documentation/screenshots/bookingcanceled.png)
+
+**End Must be after Start Date** <br>
+![End Must be after Start Date](public/documentation/screenshots/endmustbeafterstartdate.png)
+
+**Booking Updated** <br>
+![Booking Updated](public/documentation/screenshots/bookingupdated.png)
+
+**Contact Request** <br>
+![Contact Request](public/documentation/screenshots/contactrequest.png)
+
+**Editing Booking Fail / Car Already Booked** <br>
+![Editing Booking Fail / Car Already Booked](public/documentation/screenshots/editingfailcaralreadybooked.png)
+
 ### Manual Testing Summary CRUD:
 
 Extensive manual testing was conducted across all CRUD operations within the backend system. During creation tests, new entries were correctly added to the database, reflecting the intended data. Update operations successfully modified existing records, with changes accurately saved. Deletion tests effectively removed specified data entries from the database, confirming proper functionality of delete actions.
