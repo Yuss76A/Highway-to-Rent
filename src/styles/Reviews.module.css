@@ -8,7 +8,6 @@
   flex-direction: column;
 }
 
-/* Animated Alerts */
 .alert {
   padding: 1rem;
   margin-bottom: 2rem;
@@ -460,7 +459,7 @@
 /* Mobile-specific fixes */
 @media (max-width: 768px) {
   .reviewsContainer {
-    padding-bottom: 80px; /* Space for footer */
+    padding-bottom: 80px;
   }
 
   .pagination {
@@ -471,7 +470,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     width: 90%;
-    max-width: 400px; /* Prevents becoming too wide */
+    max-width: 400px;
   }
 
   .pageBtn {
