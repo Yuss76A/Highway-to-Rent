@@ -724,6 +724,14 @@ The main idea for this project came from a personal experience. I visited Jönk�
 
 This experience highlighted the importance of a reliable, accessible, and well-managed rental service—something I wish I had during that time. The project was born from the desire to improve the rental experience, making it more seamless, transparent, and accessible for visitors and residents alike in Jönköping and beyond.
 
+## Assessment Linkage
+
+This project demonstrates the following:
+
+- **LO1:** The front-end application is built with React, utilizing modular components for navigation, review management, booking calendar, and more, ensuring maintainability and reusability. Accessibility features such as alt texts, keyboard navigation, and responsive design are implemented following best practices.
+- **LO2:** The UI/UX design emphasizes clarity, user feedback, and responsiveness, reflecting a professional front-end development approach.
+- **LO4:** The React front-end consumes these APIs for CRUD operations, manages user sessions with tokens, and updates the interface dynamically based on real-time data.
+
 ## Credits
 
 I want to express my sincere gratitude to [CodeInstitute](https://codeinstitute.net/ "Code Institute") and their vibrant Slack community of mentors and fellow learners. Their support, advice, and shared knowledge have been instrumental in helping me progress throughout this project and reach my goals.
